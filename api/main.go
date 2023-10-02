@@ -34,7 +34,6 @@ func main() {
 			Fatal().
 			Err(fmt.Errorf("database connection fail: %+v", err)).
 			Send()
-		// log.Fatalf("database connection fail: %+v", err)
 	}
 
 	s := server.New().Init()
