@@ -22,7 +22,7 @@ func New() *server {
 	}
 }
 
-func (s *server) Init() {
+func (s *server) Init() *server {
 	s.engine.Use(RequestLoggerMiddleware())
 	s.engine.Use(BodyDumpMiddleware())
 	s.engine.Use(middleware.RequestID())
@@ -38,6 +38,8 @@ func (s *server) Init() {
 
 	// handles only unhandled errors
 	s.engine.HTTPErrorHandler = UnHandledHTTPErrorHandler
+
+	return s
 }
 
 func (s *server) Engine() *echo.Echo {

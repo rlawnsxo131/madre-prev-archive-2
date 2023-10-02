@@ -32,9 +32,7 @@ func main() {
 		log.Fatalf("database connection fail: %+v", err)
 	}
 
-	s := server.New()
-	s.Init()
-
+	s := server.New().Init()
 	engine := s.Engine()
 
 	root := engine.Group("")
