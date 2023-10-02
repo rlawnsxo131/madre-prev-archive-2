@@ -1,13 +1,10 @@
 package lib
 
 import (
-	"fmt"
 	"os"
 	"sync"
-	"time"
 
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/diode"
 )
 
 // thread safe singleton default logger
@@ -18,10 +15,10 @@ var (
 
 func GetDefaultLogger() *zerolog.Logger {
 	_onceDefaultLogger.Do(func() {
-		wr := diode.NewWriter(os.Stdout, 100, 10*time.Millisecond, func(missed int) {
-			fmt.Printf("Logger Dropped %d messages", missed)
-		})
-		l := zerolog.New(wr)
+		// wr := diode.NewWriter(os.Stdout, 100, 0, func(missed int) {
+		// 	fmt.Printf("Logger Dropped %d messages", missed)
+		// })
+		l := zerolog.New(os.Stdout)
 		singletonDefaultLogger = &l
 	})
 	return singletonDefaultLogger
