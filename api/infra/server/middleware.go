@@ -21,7 +21,7 @@ const (
 	_loggerResponseBodyKey = "loggerResponseBodyKey"
 )
 
-var EchoRequestLoggerMiddleware = func() echo.MiddlewareFunc {
+func EchoRequestLoggerMiddleware() echo.MiddlewareFunc {
 	return middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogLatency:   true,
 		LogProtocol:  true,
@@ -91,14 +91,14 @@ var EchoRequestLoggerMiddleware = func() echo.MiddlewareFunc {
 }
 
 // @TODO body 인코딩 처리
-var EchoBodyDumpMiddleware = func() echo.MiddlewareFunc {
+func EchoBodyDumpMiddleware() echo.MiddlewareFunc {
 	return middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 		c.Set(_loggerRequstBodyKey, reqBody)
 		c.Set(_loggerResponseBodyKey, resBody)
 	})
 }
 
-var EchoCORSMiddleware = func() echo.MiddlewareFunc {
+func EchoCORSMiddleware() echo.MiddlewareFunc {
 	return middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins:     []string{"http://localhost:5001", "http://localhost:8000"},
 		AllowHeaders:     []string{"*"},
@@ -107,12 +107,12 @@ var EchoCORSMiddleware = func() echo.MiddlewareFunc {
 	})
 }
 
-var EchoRateLimiterMiddleware = func() echo.MiddlewareFunc {
+func EchoRateLimiterMiddleware() echo.MiddlewareFunc {
 	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(1000))
 }
 
 // @TODO 타임아웃 핸들러 정의
-var EchoTimeoutMiddleware = func() echo.MiddlewareFunc {
+func EchoTimeoutMiddleware() echo.MiddlewareFunc {
 	return middleware.TimeoutWithConfig(middleware.TimeoutConfig{
 		ErrorMessage: "request timeout",
 		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {
@@ -125,7 +125,7 @@ var EchoTimeoutMiddleware = func() echo.MiddlewareFunc {
 	})
 }
 
-var EchoCSRFMiddleware = func() echo.MiddlewareFunc {
+func EchoCSRFMiddleware() echo.MiddlewareFunc {
 	return middleware.CSRFWithConfig(middleware.CSRFConfig{
 		// CookieDomain: ".juntae.kim",
 		CookiePath:     "/",
@@ -136,7 +136,7 @@ var EchoCSRFMiddleware = func() echo.MiddlewareFunc {
 }
 
 // @TODO 에러 핸들링 처리
-var EchoCustomErrorHandlerMiddleware = func() echo.MiddlewareFunc {
+func EchoCustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			err := next(c)
