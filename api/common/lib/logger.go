@@ -7,7 +7,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-// thread safe singleton default logger
+// singleton default logger
 var (
 	_onceDefaultLogger     sync.Once
 	singletonDefaultLogger *zerolog.Logger
