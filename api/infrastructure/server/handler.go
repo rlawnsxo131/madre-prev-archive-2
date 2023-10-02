@@ -11,7 +11,7 @@ import (
 // 아래와 같이 리턴하면 집중된 에러 핸들러가 작동한다.
 // return errors.New("asdf")
 // return echo.NewHTTPError(http.StatusUnauthorized, "myerror")
-func echoUnHandledHTTPErrorHandler(err error, c echo.Context) {
+func UnHandledHTTPErrorHandler(err error, c echo.Context) {
 	code := http.StatusInternalServerError
 	if he, ok := err.(*echo.HTTPError); ok {
 		code = he.Code

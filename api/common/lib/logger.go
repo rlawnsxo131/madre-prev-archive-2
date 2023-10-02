@@ -12,19 +12,19 @@ import (
 
 // thread safe singleton default logger
 var (
-	_onceDefaultLogger sync.Once
-	defaultLogger      *zerolog.Logger
+	_onceDefaultLogger     sync.Once
+	singletonDefaultLogger *zerolog.Logger
 )
 
 func GetDefaultLogger() *zerolog.Logger {
 	_onceDefaultLogger.Do(func() {
-		wr := diode.NewWriter(os.Stdout, 1000, 10*time.Millisecond, func(missed int) {
+		wr := diode.NewWriter(os.Stdout, 100, 10*time.Millisecond, func(missed int) {
 			fmt.Printf("Logger Dropped %d messages", missed)
 		})
 		l := zerolog.New(wr)
-		defaultLogger = &l
+		singletonDefaultLogger = &l
 	})
-	return defaultLogger
+	return singletonDefaultLogger
 }
 
 // default logger

@@ -4,15 +4,37 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/rlawnsxo131/madre-server/api/persistence"
 )
 
-func InitAuthController(e *echo.Group) {
+type authController struct {
+	conn persistence.Conn
+}
+
+func InitAuthController(e *echo.Group, conn persistence.Conn) {
 	auth := e.Group("/auth")
 
-	auth.POST("/signup-login/:provider", func(c echo.Context) error {
-		res := map[string]string{"body": "body"}
-		return c.JSON(http.StatusOK, res)
-	})
-	auth.DELETE("/logout", func(c echo.Context) error { return nil })
-	auth.DELETE("/", func(c echo.Context) error { return nil })
+	ctrl := &authController{conn}
+
+	auth.POST("/signup-login/:provider", ctrl.signupLogin())
+	auth.DELETE("/logout", ctrl.logout())
+	auth.DELETE("/account", ctrl.deleteAccount())
+}
+
+func (ctrl *authController) signupLogin() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return c.JSON(http.StatusOK, "signupLogin")
+	}
+}
+
+func (ctrl *authController) logout() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return c.JSON(http.StatusOK, "logout")
+	}
+}
+
+func (ctrl *authController) deleteAccount() echo.HandlerFunc {
+	return func(c echo.Context) error {
+		return c.JSON(http.StatusOK, "deleteAccount")
+	}
 }

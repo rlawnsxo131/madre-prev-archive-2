@@ -2,11 +2,13 @@ package main
 
 import (
 	"log"
+	"runtime"
 
+	"github.com/rlawnsxo131/madre-server/api/common/lib"
 	"github.com/rlawnsxo131/madre-server/api/controller"
 	controllerv1 "github.com/rlawnsxo131/madre-server/api/controller/v1"
-	"github.com/rlawnsxo131/madre-server/api/infra/database"
-	"github.com/rlawnsxo131/madre-server/api/infra/server"
+	"github.com/rlawnsxo131/madre-server/api/infrastructure/database"
+	"github.com/rlawnsxo131/madre-server/api/infrastructure/server"
 )
 
 func init() {
@@ -14,7 +16,16 @@ func init() {
 }
 
 func main() {
-	_, err := database.CreateConnection(
+	coreCount := runtime.NumCPU()
+	runtime.GOMAXPROCS(coreCount - 1)
+
+	lib.GetDefaultLogger().
+		Info().
+		Int("core count", coreCount).
+		Int("max use cpu count", runtime.GOMAXPROCS(0)).
+		Send()
+
+	db, err := database.CreateConnection(
 		database.MainDBConfig(),
 	)
 	if err != nil {
@@ -31,7 +42,8 @@ func main() {
 	v1 := api.Group("/v1")
 
 	controller.InitHealthController(root)
-	controllerv1.InitAuthController(v1)
+	controllerv1.InitAuthController(v1, db)
+	controllerv1.InitMeController(v1, db)
 
 	s.Start(5001)
 }
