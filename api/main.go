@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"runtime"
 
@@ -29,7 +30,11 @@ func main() {
 		database.MainDBConfig(),
 	)
 	if err != nil {
-		log.Fatalf("database connection fail: %+v", err)
+		lib.GetDefaultLogger().
+			Fatal().
+			Err(fmt.Errorf("database connection fail: %+v", err)).
+			Send()
+		// log.Fatalf("database connection fail: %+v", err)
 	}
 
 	s := server.New().Init()
