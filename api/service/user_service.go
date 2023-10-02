@@ -12,7 +12,7 @@ type UserService struct {
 	userRepo *repository.UserRepository
 }
 
-func NewUserService(conn persistence.Conn, userRepo *repository.UserRepository) *UserService {
+func NewUserService(conn persistence.Conn) *UserService {
 	return &UserService{
 		conn:     conn,
 		userRepo: repository.NewUserRepository(),

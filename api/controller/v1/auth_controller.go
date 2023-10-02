@@ -5,16 +5,19 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/rlawnsxo131/madre-server/api/persistence"
+	"github.com/rlawnsxo131/madre-server/api/service"
 )
 
 type authController struct {
-	conn persistence.Conn
+	userService *service.UserService
 }
 
 func InitAuthController(e *echo.Group, conn persistence.Conn) {
 	auth := e.Group("/auth")
 
-	ctrl := &authController{conn}
+	ctrl := &authController{
+		userService: service.NewUserService(conn),
+	}
 
 	auth.POST("/signup-login/:provider", ctrl.signupLogin())
 	auth.DELETE("/logout", ctrl.logout())
