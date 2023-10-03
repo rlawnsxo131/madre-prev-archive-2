@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"runtime"
 
 	"github.com/rlawnsxo131/madre-server/api/common/lib"
@@ -13,19 +12,17 @@ import (
 )
 
 func init() {
-	log.Println("init")
-}
-
-func main() {
 	coreCount := runtime.NumCPU()
 	runtime.GOMAXPROCS(coreCount - 1)
 
 	lib.GetDefaultLogger().
 		Info().
 		Int("core count", coreCount).
-		Int("max use cpu count", runtime.GOMAXPROCS(0)).
+		Int("max use core count", runtime.GOMAXPROCS(0)).
 		Send()
+}
 
+func main() {
 	db, err := database.CreateConnection(
 		database.MainDBConfig(),
 	)
