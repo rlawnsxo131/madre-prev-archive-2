@@ -2,7 +2,6 @@ package server
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -34,15 +33,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 		LogUserAgent: true,
 		LogStatus:    true,
 		LogError:     true,
-		LogHeaders: []string{
-			"Accept",
-			"Accept-Encoding",
-			"Cache-Control",
-			"Connection",
-			"Authorization",
-			"Cookie",
-			"X-CSRF-Token",
-		},
+		LogHeaders:   []string{"Accept", "Accept-Encoding", "Cache-Control", "Connection", "Authorization", "Cookie", "X-CSRF-Token"},
 		// @link https://echo.labstack.com/docs/middleware/logger#configuration
 		BeforeNextFunc: func(c echo.Context) {
 		},
@@ -63,11 +54,6 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 				e = _logger.Error()
 			}
 
-			headers, err := json.Marshal(v.Headers)
-			if err != nil {
-				return err
-			}
-
 			e.Str("id", v.RequestID).
 				Time("time", v.StartTime).
 				Dur("latency(ms)", v.Latency).
@@ -78,7 +64,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 				Str("host", v.Host).
 				Str("uri", v.URI).
 				Any("body", c.Get(_loggerBodyKey)).
-				RawJSON("headers", headers).
+				Any("headers", v.Headers).
 				Str("referer", v.Referer).
 				Str("user-agent", v.UserAgent).
 				Err(v.Error).
