@@ -114,7 +114,7 @@ func CORSMiddleware() echo.MiddlewareFunc {
 }
 
 func RateLimiterMiddleware() echo.MiddlewareFunc {
-	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(20))
+	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(15))
 }
 
 func TimeoutMiddleware() echo.MiddlewareFunc {

@@ -28,10 +28,10 @@ func (s *server) Init() *server {
 	s.engine.Use(RequestLoggerMiddleware())
 	s.engine.Use(middleware.Secure())
 	s.engine.Use(CSRFMiddleware())
-	s.engine.Use(RateLimiterMiddleware())
 	s.engine.Use(CORSMiddleware())
 	s.engine.Use(middleware.Gzip())
 	s.engine.Use(BodyDumpMiddleware())
+	s.engine.Use(RateLimiterMiddleware())
 	s.engine.Use(CustomErrorHandlerMiddleware())
 	s.engine.Use(middleware.Recover())
 
