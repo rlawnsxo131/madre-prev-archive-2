@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/rlawnsxo131/madre-server/api/persistence"
-	"github.com/rlawnsxo131/madre-server/api/persistence/repository"
+	"github.com/rlawnsxo131/madre-server/api/infra/persistence"
+	"github.com/rlawnsxo131/madre-server/api/infra/persistence/repository"
 )
 
 type UserService struct {

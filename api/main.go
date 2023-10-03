@@ -8,8 +8,8 @@ import (
 	"github.com/rlawnsxo131/madre-server/api/common/lib"
 	"github.com/rlawnsxo131/madre-server/api/controller"
 	controllerv1 "github.com/rlawnsxo131/madre-server/api/controller/v1"
-	"github.com/rlawnsxo131/madre-server/api/infrastructure/database"
-	"github.com/rlawnsxo131/madre-server/api/infrastructure/server"
+	"github.com/rlawnsxo131/madre-server/api/infra/database"
+	"github.com/rlawnsxo131/madre-server/api/infra/server"
 )
 
 func init() {

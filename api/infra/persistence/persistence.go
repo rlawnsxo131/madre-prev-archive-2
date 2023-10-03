@@ -23,7 +23,6 @@ type QueryOptions struct {
 
 var (
 	_onceQueryLogger     sync.Once
-	_loggerMux           sync.Mutex
 	singletonQueryLogger *QueryLogger
 )
 
