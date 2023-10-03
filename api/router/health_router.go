@@ -1,4 +1,4 @@
-package controller
+package router
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func InitHealthController(e *echo.Group) {
+func InitHealthRouter(e *echo.Group) {
 	e.GET("/ping", func(c echo.Context) error {
 		return c.JSON(http.StatusOK, map[string]string{"pong": "pong"})
 	})

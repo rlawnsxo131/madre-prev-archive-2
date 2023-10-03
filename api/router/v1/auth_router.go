@@ -1,4 +1,4 @@
-package controllerv1
+package routerv1
 
 import (
 	"net/http"
@@ -8,35 +8,35 @@ import (
 	"github.com/rlawnsxo131/madre-server/api/service"
 )
 
-type authController struct {
+type authRouter struct {
 	userService *service.UserService
 }
 
-func InitAuthController(e *echo.Group, conn persistence.Conn) {
+func InitAuthRouter(e *echo.Group, conn persistence.Conn) {
 	auth := e.Group("/auth")
 
-	ctrl := &authController{
+	rr := &authRouter{
 		userService: service.NewUserService(conn),
 	}
 
-	auth.POST("/signup-login/:provider", ctrl.signupLogin())
-	auth.DELETE("/logout", ctrl.logout())
-	auth.DELETE("/account", ctrl.deleteAccount())
+	auth.POST("/signup-login/:provider", rr.signupLogin())
+	auth.DELETE("/logout", rr.logout())
+	auth.DELETE("/account", rr.deleteAccount())
 }
 
-func (ctrl *authController) signupLogin() echo.HandlerFunc {
+func (rr *authRouter) signupLogin() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "signupLogin")
 	}
 }
 
-func (ctrl *authController) logout() echo.HandlerFunc {
+func (rr *authRouter) logout() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "logout")
 	}
 }
 
-func (ctrl *authController) deleteAccount() echo.HandlerFunc {
+func (rr *authRouter) deleteAccount() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		return c.JSON(http.StatusOK, "deleteAccount")
 	}

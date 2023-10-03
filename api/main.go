@@ -6,10 +6,10 @@ import (
 	"runtime"
 
 	"github.com/rlawnsxo131/madre-server/api/common/lib"
-	"github.com/rlawnsxo131/madre-server/api/controller"
-	controllerv1 "github.com/rlawnsxo131/madre-server/api/controller/v1"
 	"github.com/rlawnsxo131/madre-server/api/infra/database"
 	"github.com/rlawnsxo131/madre-server/api/infra/server"
+	"github.com/rlawnsxo131/madre-server/api/router"
+	routerv1 "github.com/rlawnsxo131/madre-server/api/router/v1"
 )
 
 func init() {
@@ -43,9 +43,9 @@ func main() {
 	api := root.Group("/api")
 	v1 := api.Group("/v1")
 
-	controller.InitHealthController(root)
-	controllerv1.InitAuthController(v1, db)
-	controllerv1.InitMeController(v1, db)
+	router.InitHealthRouter(root)
+	routerv1.InitAuthRouter(v1, db)
+	routerv1.InitMeRouter(v1, db)
 
 	s.Start(5001)
 }
