@@ -16,32 +16,38 @@ type Conn interface {
 	ExecContext(ctx context.Context, query string, args ...any) (sql.Result, error)
 }
 
-type QueryOptions struct {
-	Conn   Conn
-	WithTx bool
-}
-
+// query layer
 var (
-	_onceQueryLogger     sync.Once
-	singletonQueryLogger *QueryLogger
+	_onceQueryLayer     sync.Once
+	singletonQueryLayer *QueryLayer
 )
 
-// query logger
-type QueryLogger struct {
+type QueryLayer struct {
 	l *zerolog.Logger
 }
 
-func GetQueryLogger() *QueryLogger {
-	_onceQueryLogger.Do(func() {
-		singletonQueryLogger = &QueryLogger{
+func GetQueryLayer() *QueryLayer {
+	_onceQueryLayer.Do(func() {
+		singletonQueryLayer = &QueryLayer{
 			l: lib.NewDefaultLogger(),
 		}
 	})
 
-	return singletonQueryLogger
+	return singletonQueryLayer
 }
 
-func (ql QueryLogger) Logging(sql string, args ...any) {
+func (ql *QueryLayer) Options(opts ...QueryOption) queryOptions {
+	options := queryOptions{
+		Ctx:    context.Background(),
+		WithTx: false,
+	}
+	for _, o := range opts {
+		o.Apply(&options)
+	}
+	return options
+}
+
+func (ql *QueryLayer) Logging(sql string, args ...any) {
 	ql.l.Log().
 		Str("time", time.Now().Local().Format(time.RFC3339Nano)).
 		Str("sql", sql).

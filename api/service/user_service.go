@@ -1,8 +1,6 @@
 package service
 
 import (
-	"context"
-
 	"github.com/rlawnsxo131/madre-server/api/infra/persistence"
 	"github.com/rlawnsxo131/madre-server/api/infra/persistence/repository"
 )
@@ -21,8 +19,7 @@ func NewUserService(conn persistence.Conn) *UserService {
 
 func (svc *UserService) IsExistsUsername(username string) (bool, error) {
 	exsits, err := svc.userRepo.ExistsByUsername(
-		context.Background(),
-		&persistence.QueryOptions{Conn: svc.conn},
+		svc.conn,
 		username,
 	)
 

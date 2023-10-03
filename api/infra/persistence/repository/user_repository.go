@@ -1,7 +1,6 @@
 package repository
 
 import (
-	"context"
 	"database/sql"
 	"errors"
 
@@ -12,52 +11,55 @@ import (
 )
 
 type UserRepository struct {
-	l      *persistence.QueryLogger
+	layer  *persistence.QueryLayer
 	mapper model.UserMapper
 }
 
 func NewUserRepository() *UserRepository {
 	return &UserRepository{
-		l:      persistence.GetQueryLogger(),
+		layer:  persistence.GetQueryLayer(),
 		mapper: model.UserMapper{},
 	}
 }
 
 var _userStruct = sqlbuilder.NewStruct(&model.User{})
 
-func (ur *UserRepository) FindById(
-	ctx context.Context,
-	opts *persistence.QueryOptions,
+func (repo *UserRepository) FindById(
+	conn persistence.Conn,
 	id int64,
+	opts ...persistence.QueryOption,
 ) (*entity.User, error) {
+	options := repo.layer.Options(opts...)
+
 	sb := _userStruct.SelectFrom("user")
 	sb.Where(sb.Equal("id", id))
 
-	if opts.WithTx {
+	if options.WithTx {
 		sb.ForUpdate()
 	}
 
 	query, args := sb.Build()
 
-	ur.l.Logging(query, args)
+	repo.layer.Logging(query, args)
 
 	var u model.User
-	err := opts.Conn.
-		QueryRowContext(ctx, query, args...).
+	err := conn.
+		QueryRowContext(options.Ctx, query, args...).
 		Scan(_userStruct.Addr(&u)...)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return ur.mapper.MapToEntity(&u), nil
+	return repo.mapper.MapToEntity(&u), nil
 }
 
-func (ur *UserRepository) ExistsByUsername(
-	ctx context.Context,
-	opts *persistence.QueryOptions,
+func (repo *UserRepository) ExistsByUsername(
+	conn persistence.Conn,
 	username string,
+	opts ...persistence.QueryOption,
 ) (bool, error) {
+	options := repo.layer.Options(opts...)
 	sb := sqlbuilder.NewSelectBuilder()
 	existsSb := sqlbuilder.NewSelectBuilder()
 
@@ -75,11 +77,11 @@ func (ur *UserRepository) ExistsByUsername(
 			),
 		).Build()
 
-	ur.l.Logging(query, args)
+	repo.layer.Logging(query, args)
 
 	var exists bool
-	err := opts.Conn.
-		QueryRowContext(ctx, query, args...).
+	err := conn.
+		QueryRowContext(options.Ctx, query, args...).
 		Scan(&exists)
 
 	if err != nil {
