@@ -168,7 +168,6 @@ func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 					res.Error = errData{
 						Message: "internal http error",
 					}
-					return c.JSON(code, res)
 				}
 				return c.JSON(code, res)
 			}
