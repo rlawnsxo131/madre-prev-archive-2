@@ -127,8 +127,7 @@ func TimeoutMiddleware() echo.MiddlewareFunc {
 
 func CSRFMiddleware() echo.MiddlewareFunc {
 	return middleware.CSRFWithConfig(middleware.CSRFConfig{
-		// @TODO prod 내보내기 전에 domain 체크 필요
-		// CookieDomain: ".juntae.kim",
+		// CookieDomain: ".juntae.kim", @TODO prod 내보내기 전에 domain 체크 필요
 		CookiePath:     "/",
 		CookieMaxAge:   1800,
 		CookieHTTPOnly: true,
@@ -152,13 +151,9 @@ func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 			err := next(c)
 
 			if err != nil {
-				path := c.Path()
-				id := c.Request().Header.Get(echo.HeaderXRequestID)
-				if id == "" {
-					id = c.Response().Header().Get(echo.HeaderXRequestID)
-				}
+				id := getRequestId(c)
 				c.Logger().Error(
-					fmt.Errorf("request-id: %s, err: %+v, path: %s", id, err, path),
+					fmt.Errorf("request-id: %s, err: %+v", id, err),
 				)
 
 				he, ok := err.(*echo.HTTPError)
