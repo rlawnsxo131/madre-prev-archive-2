@@ -1,16 +1,16 @@
 package service
 
 import (
-	"github.com/rlawnsxo131/madre-server/api/infra/persistence"
-	"github.com/rlawnsxo131/madre-server/api/infra/persistence/repository"
+	"github.com/rlawnsxo131/madre-server/api/infra/persist"
+	"github.com/rlawnsxo131/madre-server/api/infra/persist/repository"
 )
 
 type UserService struct {
-	conn     persistence.Conn
+	conn     persist.Conn
 	userRepo *repository.UserRepository
 }
 
-func NewUserService(conn persistence.Conn) *UserService {
+func NewUserService(conn persist.Conn) *UserService {
 	return &UserService{
 		conn:     conn,
 		userRepo: repository.NewUserRepository(),

@@ -1,8 +1,9 @@
 package server
 
 import (
+	"bytes"
 	"encoding/json"
-	"log"
+	"fmt"
 	"net/http"
 	"time"
 
@@ -17,8 +18,7 @@ var (
 )
 
 const (
-	_loggerRequstBodyKey   = "loggerRequstBodyKey"
-	_loggerResponseBodyKey = "loggerResponseBodyKey"
+	_loggerBodyKey = "loggerBodyKey"
 )
 
 func RequestLoggerMiddleware() echo.MiddlewareFunc {
@@ -68,17 +68,16 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 				return err
 			}
 
-			// @TODO body 인코딩 처리
 			e.Str("id", v.RequestID).
 				Time("time", v.StartTime).
 				Dur("latency(ms)", v.Latency).
-				Int("status", v.Status).
+				Int("status", statusCode).
+				Str("remote-ip", v.RemoteIP).
 				Str("protocol", v.Protocol).
 				Str("method", v.Method).
 				Str("host", v.Host).
 				Str("uri", v.URI).
-				Bytes("body", c.Get(_loggerRequstBodyKey).([]byte)).
-				Bytes("response", c.Get(_loggerResponseBodyKey).([]byte)).
+				Any("body", c.Get(_loggerBodyKey)).
 				RawJSON("headers", headers).
 				Str("referer", v.Referer).
 				Str("user-agent", v.UserAgent).
@@ -90,11 +89,18 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-// @TODO body 인코딩 처리
 func BodyDumpMiddleware() echo.MiddlewareFunc {
 	return middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		c.Set(_loggerRequstBodyKey, reqBody)
-		c.Set(_loggerResponseBodyKey, resBody)
+		c.Set(
+			_loggerBodyKey,
+			struct {
+				ReqBody string
+				ResBody string
+			}{
+				ReqBody: bytes.NewBuffer(reqBody).String(),
+				ResBody: bytes.NewBuffer(resBody).String(),
+			},
+		)
 	})
 }
 
@@ -108,25 +114,20 @@ func CORSMiddleware() echo.MiddlewareFunc {
 }
 
 func RateLimiterMiddleware() echo.MiddlewareFunc {
-	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(1000))
+	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(20))
 }
 
-// @TODO 타임아웃 핸들러 정의
 func TimeoutMiddleware() echo.MiddlewareFunc {
 	return middleware.TimeoutWithConfig(middleware.TimeoutConfig{
-		ErrorMessage: "request timeout",
-		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {
-			// OnTimeoutRouteErrorHandler is an error handler that is executed for error that was returned from wrapped route after
-			// request timeouted and we already had sent the error code (503) and message response to the client.
-			// NB: do not write headers/body inside this handler. The response has already been sent to the client and response writer
-			// will not accept anything no more. If you want to know what actual route middleware timeouted use `c.Path()`
-		},
-		Timeout: 15 * time.Second,
+		ErrorMessage:               "request timeout",
+		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {},
+		Timeout:                    5 * time.Second,
 	})
 }
 
 func CSRFMiddleware() echo.MiddlewareFunc {
 	return middleware.CSRFWithConfig(middleware.CSRFConfig{
+		// @TODO prod 내보내기 전에 domain 체크 필요
 		// CookieDomain: ".juntae.kim",
 		CookiePath:     "/",
 		CookieMaxAge:   1800,
@@ -135,38 +136,47 @@ func CSRFMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-// @TODO 에러 핸들링 처리
+// @TODO 전역 에러 객체 만들고 구조체 정리
+type errData struct {
+	Message string `json:"message"`
+}
+type errRes struct {
+	Code   int     `json:"code"`
+	Status string  `json:"status"`
+	Error  errData `json:"error"`
+}
+
 func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			err := next(c)
 
 			if err != nil {
+				path := c.Path()
+				id := c.Request().Header.Get(echo.HeaderXRequestID)
+				if id == "" {
+					id = c.Response().Header().Get(echo.HeaderXRequestID)
+				}
+				c.Logger().Error(
+					fmt.Errorf("request-id: %s, err: %+v, path: %s", id, err, path),
+				)
+
 				he, ok := err.(*echo.HTTPError)
 				code := he.Code
-
-				if ok {
-					var res = struct {
-						Code   int      `json:"code"`
-						Status string   `json:"status"`
-						Error  struct{} `json:"error"`
-					}{
-						Code:   code,
-						Status: http.StatusText(code),
-						Error:  struct{}{},
-					}
-
-					switch code {
-					case http.StatusNotFound:
-						return c.JSON(code, res)
-					}
+				res := errRes{
+					Code:   code,
+					Status: http.StatusText(code),
 				}
 
-				log.Printf("err: %+v\n", err)
-
+				if ok {
+					res.Error = errData{
+						Message: "internal http error",
+					}
+					return c.JSON(code, res)
+				}
+				return c.JSON(code, res)
 			}
-
-			return err
+			return nil
 		}
 	}
 }

@@ -23,21 +23,17 @@ func New() *server {
 }
 
 func (s *server) Init() *server {
-	s.engine.Use(RequestLoggerMiddleware())
-	s.engine.Use(BodyDumpMiddleware())
+	s.engine.Use(TimeoutMiddleware())
 	s.engine.Use(middleware.RequestID())
+	s.engine.Use(RequestLoggerMiddleware())
 	s.engine.Use(middleware.Secure())
 	s.engine.Use(CSRFMiddleware())
+	s.engine.Use(RateLimiterMiddleware())
 	s.engine.Use(CORSMiddleware())
 	s.engine.Use(middleware.Gzip())
-
-	s.engine.Use(RateLimiterMiddleware())
-	s.engine.Use(TimeoutMiddleware())
+	s.engine.Use(BodyDumpMiddleware())
 	s.engine.Use(CustomErrorHandlerMiddleware())
 	s.engine.Use(middleware.Recover())
-
-	// handles only unhandled errors
-	s.engine.HTTPErrorHandler = UnHandledHTTPErrorHandler
 
 	return s
 }

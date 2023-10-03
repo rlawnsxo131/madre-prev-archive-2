@@ -6,18 +6,18 @@ import (
 
 	"github.com/huandu/go-sqlbuilder"
 	"github.com/rlawnsxo131/madre-server/api/entity"
-	"github.com/rlawnsxo131/madre-server/api/infra/persistence"
-	"github.com/rlawnsxo131/madre-server/api/infra/persistence/model"
+	"github.com/rlawnsxo131/madre-server/api/infra/persist"
+	"github.com/rlawnsxo131/madre-server/api/infra/persist/model"
 )
 
 type UserRepository struct {
-	layer  *persistence.QueryLayer
+	layer  *persist.QueryLayer
 	mapper model.UserMapper
 }
 
 func NewUserRepository() *UserRepository {
 	return &UserRepository{
-		layer:  persistence.GetQueryLayer(),
+		layer:  persist.GetQueryLayer(),
 		mapper: model.UserMapper{},
 	}
 }
@@ -25,9 +25,9 @@ func NewUserRepository() *UserRepository {
 var _userStruct = sqlbuilder.NewStruct(&model.User{})
 
 func (repo *UserRepository) FindById(
-	conn persistence.Conn,
+	conn persist.Conn,
 	id int64,
-	opts ...persistence.QueryOption,
+	opts ...persist.QueryOption,
 ) (*entity.User, error) {
 	options := repo.layer.Options(opts...)
 
@@ -55,9 +55,9 @@ func (repo *UserRepository) FindById(
 }
 
 func (repo *UserRepository) ExistsByUsername(
-	conn persistence.Conn,
+	conn persist.Conn,
 	username string,
-	opts ...persistence.QueryOption,
+	opts ...persist.QueryOption,
 ) (bool, error) {
 	options := repo.layer.Options(opts...)
 	sb := sqlbuilder.NewSelectBuilder()

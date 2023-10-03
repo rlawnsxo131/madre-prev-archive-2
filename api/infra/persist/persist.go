@@ -1,4 +1,4 @@
-package persistence
+package persist
 
 import (
 	"context"
@@ -10,6 +10,17 @@ import (
 	"github.com/rs/zerolog"
 )
 
+/* example
+repo := repository.NewUserRepository()
+exists, err := repo.FindById(
+	conn,
+	"username",
+	persist.WithCtx(context.Background()),
+	persist.WithTx(true),
+)
+*/
+
+// interface for not directly receiving sql.DB
 type Conn interface {
 	QueryRowContext(ctx context.Context, query string, args ...any) *sql.Row
 	QueryContext(ctx context.Context, query string, args ...any) (*sql.Rows, error)
@@ -17,6 +28,7 @@ type Conn interface {
 }
 
 // query layer
+// it exists as a field within the repository
 var (
 	_onceQueryLayer     sync.Once
 	singletonQueryLayer *QueryLayer
