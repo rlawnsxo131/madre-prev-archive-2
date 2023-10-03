@@ -128,6 +128,7 @@ func TimeoutMiddleware() echo.MiddlewareFunc {
 func CSRFMiddleware() echo.MiddlewareFunc {
 	return middleware.CSRFWithConfig(middleware.CSRFConfig{
 		// CookieDomain: ".juntae.kim", @TODO prod 내보내기 전에 domain 체크 필요
+		TokenLookup:    "header:X-CSRF-Token,cookie:_csrf",
 		CookiePath:     "/",
 		CookieMaxAge:   1800,
 		CookieHTTPOnly: true,
@@ -171,7 +172,7 @@ func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 				}
 				return c.JSON(code, res)
 			}
-			return nil
+			return err
 		}
 	}
 }
