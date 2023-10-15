@@ -12,15 +12,12 @@ import (
 	"github.com/rs/zerolog"
 )
 
-var (
-	_logger *zerolog.Logger = lib.NewDefaultLogger()
-)
-
 const (
 	_loggerBodyKey = "loggerBodyKey"
 )
 
 func RequestLoggerMiddleware() echo.MiddlewareFunc {
+	l := lib.NewDefaultLogger()
 	return middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogLatency:   true,
 		LogProtocol:  true,
@@ -45,13 +42,13 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 
 			switch {
 			case statusCode > 0 && statusCode < 300:
-				e = _logger.Info()
+				e = l.Info()
 			case statusCode > 299 && statusCode < 500:
-				e = _logger.Warn()
+				e = l.Warn()
 			case statusCode > 499:
-				e = _logger.Error()
+				e = l.Error()
 			default:
-				e = _logger.Error()
+				e = l.Error()
 			}
 
 			e.Str("id", v.RequestID).
