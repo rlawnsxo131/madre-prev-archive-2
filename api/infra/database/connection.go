@@ -35,8 +35,9 @@ func CreateConnection(cfg *mysql.Config) (*sql.DB, error) {
 	db.SetMaxOpenConns(10)
 
 	if rows, err := db.Query("SELECT 1"); err != nil {
-		defer rows.Close()
 		return nil, err
+	} else {
+		defer rows.Close()
 	}
 
 	return db, nil
