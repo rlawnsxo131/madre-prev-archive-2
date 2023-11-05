@@ -1,0 +1,41 @@
+{
+  "name": "@madre/shared",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@emotion/react": "^11.11.1",
+    "@storybook/addon-essentials": "^7.6.0-alpha.4",
+    "@storybook/addon-interactions": "^7.6.0-alpha.4",
+    "@storybook/addon-links": "^7.6.0-alpha.4",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.6.0-alpha.4",
+    "@storybook/react": "^7.6.0-alpha.4",
+    "@storybook/react-vite": "^7.6.0-alpha.4",
+    "@storybook/test": "^7.6.0-alpha.3",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.2.35",
+    "@types/react-dom": "^18.2.14",
+    "framer-motion": "^10.16.4",
+    "jsdom": "^22.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.0-alpha.4",
+    "vitest": "^0.34.6"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "framer-motion": ">=10.16.4",
+    "@emotion/react": ">=11.11.1"
+  }
+}
