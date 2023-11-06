@@ -20,6 +20,7 @@ export type EffectRefCallback<E extends HTMLElement = HTMLElement> = (
  *
  * @param callback
  * @param deps
+ *
  * @returns EffectRef<E>
  */
 export function useRefEffect<E extends HTMLElement = HTMLElement>(

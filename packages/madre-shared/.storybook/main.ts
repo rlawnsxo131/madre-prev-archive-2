@@ -23,9 +23,7 @@ const config: StorybookConfig = {
         preprocessorOptions: {
           scss: {
             additionalData: `
-              @import '../src/styles/_base.scss';
-              @import '../src/styles/_variables.scss';
-              @import '../src/styles/_mixins.scss';
+              @import '../src/styles/_main.scss';
             `,
           },
         },

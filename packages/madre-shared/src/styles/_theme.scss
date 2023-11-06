@@ -1,0 +1,12 @@
+/* theme */
+html,
+body,
+:root {
+  &[data-theme='light'] {
+    background-color: white;
+  }
+
+  &[data-theme='dark'] {
+    background-color: black;
+  }
+}

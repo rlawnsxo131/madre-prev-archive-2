@@ -5,17 +5,17 @@ export function useBooleanState(initialState: boolean | (() => boolean)) {
     typeof initialState === 'function' ? initialState() : initialState,
   );
 
-  const onSetValueToTrue = useCallback(() => {
+  const onSetStateToTrue = useCallback(() => {
     setState(true);
   }, []);
 
-  const onSetValueToFalse = useCallback(() => {
+  const onSetStateToFalse = useCallback(() => {
     setState(false);
   }, []);
 
   return {
     state,
-    onSetValueToTrue,
-    onSetValueToFalse,
+    onSetStateToTrue,
+    onSetStateToFalse,
   };
 }
