@@ -3,6 +3,8 @@
  */
 export type { ButtonProps } from './components/ui/Button/Button';
 export { Button } from './components/ui/Button/Button';
+export type { OverlayProps } from './components/ui/Overlay/Overlay';
+export { Overlay } from './components/ui/Overlay/Overlay';
 
 /**
  * utility components
