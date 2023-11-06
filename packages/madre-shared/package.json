@@ -1,8 +1,8 @@
 {
   "name": "@madre/shared",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "madre shared package",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
