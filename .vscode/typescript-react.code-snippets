@@ -24,13 +24,5 @@
       "  return <div></div>;",
       "}"
     ]
-  },
-  "VanillaExtractTsFile": {
-    "prefix": "st",
-    "body": [
-      "import { style } from '@vanilla-extract/css'",
-      "",
-      "export const block = style({});"
-    ]
   }
 }

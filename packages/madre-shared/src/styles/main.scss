@@ -1,4 +1,42 @@
-@import './reset';
-@import './variables';
-@import './theme';
-@import './mixins';
+@use './mixins';
+@use './variables';
+
+@forward './variables';
+
+html,
+body,
+:root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  * {
+    box-sizing: inherit;
+    font-family: inherit;
+  }
+}
+
+/* theme */
+html,
+body,
+:root {
+  @include mixins.spread-map(variables.$theme-map-base);
+
+  &[data-theme='light'] {
+    @include mixins.spread-map(variables.$theme-map-light);
+    background-color: var(variables.$color-white);
+  }
+
+  &[data-theme='dark'] {
+    @include mixins.spread-map(variables.$theme-map-dark);
+    background-color: var(variables.$color-gray10);
+  }
+}

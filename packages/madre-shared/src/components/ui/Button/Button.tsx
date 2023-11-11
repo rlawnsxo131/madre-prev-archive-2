@@ -1,6 +1,4 @@
-import './Button.scss';
-
-import classNames from 'classnames';
+import classnames from 'classnames';
 import type {
   ComponentPropsWithoutRef,
   ComponentPropsWithRef,
@@ -8,6 +6,8 @@ import type {
   ReactNode,
 } from 'react';
 import { forwardRef } from 'react';
+
+import styles from './Button.module.scss';
 
 export type ButtonProps<E extends ElementType> = ComponentPropsWithoutRef<E> & {
   as?: E;
@@ -43,9 +43,14 @@ export const Button: ButtonComponent = forwardRef(function <
   return (
     <Element
       ref={ref}
-      className={classNames('Button', size, `radius-${radius}`, {
-        'full-width': fullWidth,
-      })}
+      className={classnames(
+        styles['Button'],
+        styles[size],
+        styles[`radius-${radius}`],
+        {
+          [styles['full-width']]: fullWidth,
+        },
+      )}
       {...props}
     >
       {children}

@@ -1,8 +1,8 @@
-import './Overlay.scss';
-
 import { AnimatePresence, motion } from 'framer-motion';
 import type { ComponentProps, MouseEvent, PropsWithoutRef } from 'react';
 import { forwardRef } from 'react';
+
+import styles from './Overlay.module.scss';
 
 export type OverlayProps = PropsWithoutRef<
   ComponentProps<typeof motion.div> & {
@@ -21,7 +21,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
       {visible && (
         <motion.div
           ref={ref}
-          className="Overlay"
+          className={styles['Overlay']}
           onClick={onClick}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
