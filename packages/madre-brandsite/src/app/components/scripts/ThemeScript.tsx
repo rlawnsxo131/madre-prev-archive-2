@@ -10,21 +10,21 @@ export function ThemeScript(props: ThemeScriptProps) {
     <Script
       dangerouslySetInnerHTML={{
         __html: `
-    const theme = ${safeLocalStorage.get(THEME.key)};
-    if (theme) {
-      if (theme === ${THEME.themes.light}) {
-        document.documentElement.dataset.theme = 'light';
-      } else {
-        document.documentElement.dataset.theme = 'dark';
-      }
-    } else {
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.dataset.theme = 'dark';
-      } else {
-        document.documentElement.dataset.theme = 'light';
-      }
-    }
-  `,
+          const theme = ${safeLocalStorage.get(THEME.key)};
+          if (theme) {
+            if (theme === ${THEME.themes.light}) {
+              document.documentElement.dataset.theme = 'light';
+            } else {
+              document.documentElement.dataset.theme = 'dark';
+            }
+          } else {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              document.documentElement.dataset.theme = 'dark';
+            } else {
+              document.documentElement.dataset.theme = 'light';
+            }
+          }
+        `,
       }}
     />
   );
