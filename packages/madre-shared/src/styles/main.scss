@@ -1,8 +1,6 @@
 @use './mixins';
 @use './variables';
 
-@forward './variables';
-
 html,
 body,
 :root {
@@ -39,4 +37,8 @@ body,
     @include mixins.spread-map(variables.$theme-map-dark);
     background-color: var(variables.$color-gray10);
   }
+}
+
+a {
+  text-decoration: none;
 }

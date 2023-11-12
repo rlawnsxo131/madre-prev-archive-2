@@ -1,3 +1,5 @@
+'use client';
+
 /**
  * ui components
  */
@@ -40,3 +42,8 @@ export {
 } from './lib/storage/safeStorage';
 export { isClient } from './lib/utils/isClient';
 export { isServer } from './lib/utils/isServer';
+
+/**
+ * constants
+ */
+export { THEME } from './constants';

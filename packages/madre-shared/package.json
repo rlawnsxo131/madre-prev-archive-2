@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "madre shared package",
   "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./main.scss": "./src/styles/main.scss",
+    "./variables.scss": "./src/styles/_variables.scss"
+  },
   "scripts": {
     "test": "vitest",
     "storybook": "storybook dev -p 6006",

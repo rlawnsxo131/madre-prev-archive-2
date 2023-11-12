@@ -6,6 +6,7 @@
   "scripts": {
     "list": "pnpm list",
     "shared": "pnpm --filter @madre/shared",
+    "brandsite": "pnpm --filter @madre/brandsite",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {

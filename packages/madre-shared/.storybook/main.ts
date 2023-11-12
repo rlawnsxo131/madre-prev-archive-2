@@ -24,6 +24,7 @@ const config: StorybookConfig = {
           scss: {
             additionalData: `
               @import '../src/styles/main.scss';
+              @import '../src/styles/_variables.scss';
             `,
           },
         },
