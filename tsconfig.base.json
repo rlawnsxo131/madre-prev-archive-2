@@ -21,10 +21,10 @@
       "path": "./packages/madre-app"
     },
     {
-      "path": "./packages/madre-ui"
+      "path": "./packages/madre-brandsite"
     },
     {
-      "path": "./packages/madre-brandsite"
+      "path": "./packages/madre-shared"
     }
   ]
 }

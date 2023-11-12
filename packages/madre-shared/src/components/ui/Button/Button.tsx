@@ -12,9 +12,9 @@ import styles from './Button.module.scss';
 export type ButtonProps<E extends ElementType> = ComponentPropsWithoutRef<E> & {
   as?: E;
   children?: ReactNode;
-  // variant?: keyof typeof _theme;
-  // theme?: keyof (typeof _theme)['solid' | 'outline'];
-  radius?: 'small' | 'medium' | 'full';
+  variant?: 'solid' | 'outline' | 'ghost';
+  theme?: 'primary' | 'primary-low' | 'secondary' | 'warn';
+  radius?: 'none' | 'medium' | 'full';
   size?: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
 };
@@ -29,8 +29,8 @@ export const Button: ButtonComponent = forwardRef(function <
   {
     as,
     children,
-    // variant = 'solid',
-    // theme = 'primary',
+    variant = 'solid',
+    theme = 'primary',
     radius = 'medium',
     size = 'medium',
     fullWidth = false,
@@ -47,6 +47,8 @@ export const Button: ButtonComponent = forwardRef(function <
         styles['Button'],
         styles[size],
         styles[`radius-${radius}`],
+        styles[variant],
+        styles[theme],
         {
           [styles['full-width']]: fullWidth,
         },

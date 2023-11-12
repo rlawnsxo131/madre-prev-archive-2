@@ -18,6 +18,32 @@ $color-gray100: --color-gray100;
 $color-gray110: --color-gray110;
 $color-gray120: --color-gray120;
 
+$color-blue10: --color-blue10;
+$color-blue20: --color-blue20;
+$color-blue30: --color-blue30;
+$color-blue40: --color-blue40;
+$color-blue50: --color-blue50;
+$color-blue60: --color-blue60;
+$color-blue70: --color-blue70;
+$color-blue80: --color-blue80;
+$color-blue90: --color-blue90;
+$color-blue100: --color-blue100;
+$color-blue110: --color-blue110;
+$color-blue120: --color-blue120;
+
+$color-red10: --color-red10;
+$color-red20: --color-red20;
+$color-red30: --color-red30;
+$color-red40: --color-red40;
+$color-red50: --color-red50;
+$color-red60: --color-red60;
+$color-red70: --color-red70;
+$color-red80: --color-red80;
+$color-red90: --color-red90;
+$color-red100: --color-red100;
+$color-red110: --color-red110;
+$color-red120: --color-red120;
+
 $theme-map-base: (
   $color-white: #ffffff,
   $color-black: #000000,
@@ -36,6 +62,32 @@ $theme-map-light: (
   $color-gray100: #838383,
   $color-gray110: #646464,
   $color-gray120: #202020,
+
+  $color-blue10: #fbfdff,
+  $color-blue20: #f4faff,
+  $color-blue30: #e6f4fe,
+  $color-blue40: #d5efff,
+  $color-blue50: #c2e5ff,
+  $color-blue60: #acd8fc,
+  $color-blue70: #8ec8f6,
+  $color-blue80: #5eb1ef,
+  $color-blue90: #0090ff,
+  $color-blue100: #0588f0,
+  $color-blue110: #0d74ce,
+  $color-blue120: #113264,
+
+  $color-red10: #fffcfc,
+  $color-red20: #fff7f7,
+  $color-red30: #feebec,
+  $color-red40: #ffdbdc,
+  $color-red50: #ffcdce,
+  $color-red60: #fdbdbe,
+  $color-red70: #f4a9aa,
+  $color-red80: #eb8e90,
+  $color-red90: #e5484d,
+  $color-red100: #dc3e42,
+  $color-red110: #ce2c31,
+  $color-red120: #641723,
 );
 
 $theme-map-dark: (
@@ -51,4 +103,30 @@ $theme-map-dark: (
   $color-gray100: #7b7b7b,
   $color-gray110: #b4b4b4,
   $color-gray120: #eeeeee,
+
+  $color-blue10: #0d1520,
+  $color-blue20: #111927,
+  $color-blue30: #0d2847,
+  $color-blue40: #003362,
+  $color-blue50: #004074,
+  $color-blue60: #104d87,
+  $color-blue70: #205d9e,
+  $color-blue80: #2870bd,
+  $color-blue90: #0090ff,
+  $color-blue100: #3b9eff,
+  $color-blue110: #70b8ff,
+  $color-blue120: #c2e6ff,
+
+  $color-red10: #191111,
+  $color-red20: #201314,
+  $color-red30: #3b1219,
+  $color-red40: #500f1c,
+  $color-red50: #611623,
+  $color-red60: #72232d,
+  $color-red70: #8c333a,
+  $color-red80: #b54548,
+  $color-red90: #e5484d,
+  $color-red100: #ec5d5e,
+  $color-red110: #ff9592,
+  $color-red120: #ffd1d9,
 );

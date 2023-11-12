@@ -24,5 +24,9 @@ export const Default: Story = {
     fullWidth: false,
     disabled: false,
   },
-  render: (args) => <Button {...args}>hello</Button>,
+  render: (args) => (
+    <div>
+      <Button {...args}>hello</Button>
+    </div>
+  ),
 };
