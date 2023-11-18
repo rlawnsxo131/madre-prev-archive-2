@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rlawnsxo131/madre-server/api/infra/persist"
+	"github.com/rlawnsxo131/madre-server/api/persist"
 )
 
 type meRouter struct{}

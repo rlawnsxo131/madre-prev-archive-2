@@ -6,8 +6,8 @@ import (
 
 	"github.com/huandu/go-sqlbuilder"
 	"github.com/rlawnsxo131/madre-server/api/entity"
-	"github.com/rlawnsxo131/madre-server/api/infra/persist"
-	"github.com/rlawnsxo131/madre-server/api/infra/persist/model"
+	"github.com/rlawnsxo131/madre-server/api/persist"
+	"github.com/rlawnsxo131/madre-server/api/persist/model"
 )
 
 type UserRepository struct {
