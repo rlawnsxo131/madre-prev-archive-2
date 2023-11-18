@@ -19,6 +19,7 @@ export { SwitchCase } from './components/utility/SwitchCase/SwitchCase';
 /**
  * hooks
  */
+export { useCombinedRefs } from './hooks/useCombinedRefs';
 export { useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect';
 export { usePreservedCallback } from './hooks/usePreservedCallback';
 export { usePreservedReference } from './hooks/usePreservedReference';
