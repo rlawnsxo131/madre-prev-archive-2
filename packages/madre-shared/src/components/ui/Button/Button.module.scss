@@ -1,3 +1,5 @@
+@use '../../../styles/variables';
+
 .Button {
   display: inline-flex;
   justify-content: center;
@@ -51,137 +53,137 @@
   // solid
   &.solid {
     &.primary {
-      color: var($color-white);
-      background-color: var($color-blue100);
-      border: 1px solid var($color-blue100);
+      color: var(variables.$color-white);
+      background-color: var(variables.$color-blue100);
+      border: 1px solid var(variables.$color-blue100);
       &:hover:not([disabled]) {
-        background-color: var($color-blue110);
-        border: 1px solid var($color-blue110);
+        background-color: var(variables.$color-blue110);
+        border: 1px solid var(variables.$color-blue110);
       }
     }
 
     &.primary-low {
-      color: var($color-blue110);
-      background-color: var($color-blue40);
-      border: 1px solid var($color-blue40);
+      color: var(variables.$color-blue110);
+      background-color: var(variables.$color-blue40);
+      border: 1px solid var(variables.$color-blue40);
       &:hover:not([disabled]) {
-        background-color: var($color-blue50);
-        border: 1px solid var($color-blue50);
+        background-color: var(variables.$color-blue50);
+        border: 1px solid var(variables.$color-blue50);
       }
     }
 
     &.secondary {
-      color: var($color-gray120);
-      background-color: var($color-gray30);
-      border: 1px solid var($color-gray30);
+      color: var(variables.$color-gray120);
+      background-color: var(variables.$color-gray30);
+      border: 1px solid var(variables.$color-gray30);
       &:hover:not([disabled]) {
-        background-color: var($color-gray40);
-        border: 1px solid var($color-gray40);
+        background-color: var(variables.$color-gray40);
+        border: 1px solid var(variables.$color-gray40);
       }
     }
 
     &.warn {
-      color: var($color-white);
-      background-color: var($color-red90);
-      border: 1px solid var($color-red90);
+      color: var(variables.$color-white);
+      background-color: var(variables.$color-red90);
+      border: 1px solid var(variables.$color-red90);
       &:hover:not([disabled]) {
-        background-color: var($color-red100);
-        border: 1px solid var($color-red100);
+        background-color: var(variables.$color-red100);
+        border: 1px solid var(variables.$color-red100);
       }
     }
 
     &[disabled] {
-      color: var($color-gray80);
-      background-color: var($color-gray30);
-      border: 1px solid var($color-gray30);
+      color: var(variables.$color-gray80);
+      background-color: var(variables.$color-gray30);
+      border: 1px solid var(variables.$color-gray30);
     }
   }
 
   // outline
   &.outline {
     &.primary {
-      color: var($color-blue110);
+      color: var(variables.$color-blue110);
       background-color: transparent;
-      border: 1px solid var($color-blue100);
+      border: 1px solid var(variables.$color-blue100);
       &:hover:not([disabled]) {
-        background-color: var($color-blue20);
-        border: 1px solid var($color-blue110);
+        background-color: var(variables.$color-blue20);
+        border: 1px solid var(variables.$color-blue110);
       }
     }
 
     &.primary-low {
-      color: var($color-blue110);
-      background-color: var($color-blue20);
-      border: 1px solid var($color-blue100);
+      color: var(variables.$color-blue110);
+      background-color: var(variables.$color-blue20);
+      border: 1px solid var(variables.$color-blue100);
       &:hover:not([disabled]) {
-        background-color: var($color-blue30);
+        background-color: var(variables.$color-blue30);
       }
     }
 
     &.secondary {
-      color: var($color-gray120);
+      color: var(variables.$color-gray120);
       background-color: transparent;
-      border: 1px solid var($color-gray80);
+      border: 1px solid var(variables.$color-gray80);
       &:hover:not([disabled]) {
-        background-color: var($color-gray30);
+        background-color: var(variables.$color-gray30);
       }
     }
 
     &.warn {
-      color: var($color-red110);
-      background-color: var($color-red20);
-      border: 1px solid var($color-red100);
+      color: var(variables.$color-red110);
+      background-color: var(variables.$color-red20);
+      border: 1px solid var(variables.$color-red100);
       &:hover:not([disabled]) {
-        background-color: var($color-red30);
+        background-color: var(variables.$color-red30);
       }
     }
 
     &[disabled] {
-      color: var($color-gray80);
-      border: 1px solid var($color-gray30);
+      color: var(variables.$color-gray80);
+      border: 1px solid var(variables.$color-gray30);
     }
   }
 
   // ghost
   &.ghost {
     &.primary {
-      color: var($color-blue110);
+      color: var(variables.$color-blue110);
       background-color: transparent;
       border: 1px solid transparent;
       &:hover:not([disabled]) {
-        background-color: var($color-blue30);
+        background-color: var(variables.$color-blue30);
       }
     }
 
     &.primary-low {
-      color: var($color-blue110);
+      color: var(variables.$color-blue110);
       background-color: transparent;
       border: 1px solid transparent;
       &:hover:not([disabled]) {
-        background-color: var($color-gray30);
+        background-color: var(variables.$color-gray30);
       }
     }
 
     &.secondary {
-      color: var($color-gray120);
+      color: var(variables.$color-gray120);
       background-color: transparent;
       border: 1px solid transparent;
       &:hover:not([disabled]) {
-        background-color: var($color-gray30);
+        background-color: var(variables.$color-gray30);
       }
     }
 
     &.warn {
-      color: var($color-red110);
+      color: var(variables.$color-red110);
       background-color: transparent;
       border: 1px solid transparent;
       &:hover:not([disabled]) {
-        background-color: var($color-red30);
+        background-color: var(variables.$color-red30);
       }
     }
 
     &[disabled] {
-      color: var($color-gray80);
+      color: var(variables.$color-gray80);
     }
   }
 }

@@ -8,7 +8,8 @@
       "import": "./src/index.ts"
     },
     "./main.scss": "./src/styles/main.scss",
-    "./variables.scss": "./src/styles/_variables.scss"
+    "./variables.scss": "./src/styles/_variables.scss",
+    "./mixins.scss": "./src/styles/_mixins.scss"
   },
   "scripts": {
     "test": "vitest",

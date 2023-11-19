@@ -1,3 +1,6 @@
+@use '@madre/shared/variables.scss';
+@use '@madre/shared/mixins.scss';
+
 .container {
   height: 100%;
   display: flex;
@@ -16,11 +19,17 @@
 }
 
 .brand-link {
-  color: var($color-gray120);
+  color: var(variables.$color-gray120);
   font-size: 1.25rem;
   font-weight: 500;
 }
 
 .main {
   padding-top: 3rem;
+}
+
+@include mixins.mobile {
+  .brand-link {
+    color: red;
+  }
 }

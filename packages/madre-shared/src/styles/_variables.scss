@@ -1,6 +1,15 @@
 /* z-index */
 $zIndex-overlay: 12;
 
+/* break point */
+$breakpoint-sm: 320px;
+$breakpoint-mm: 375px;
+$breakpoint-lm: 425px;
+$breakpoint-t: 768px;
+$breakpoint-sd: 1024px;
+$breakpoint-md: 1440px;
+$breakpoint-ld: 1920px;
+
 /* themes */
 $color-white: --color-white;
 $color-black: --color-black;

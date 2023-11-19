@@ -1,6 +1,20 @@
+@use './variables';
+
 /* spread map variable */
 @mixin spread-map($map: ()) {
   @each $key, $value in $map {
     #{$key}: $value;
   }
+}
+
+/* media screen */
+@mixin mobile {
+  @media screen and (min-width: variables.$breakpoint-sm) and (max-width: #{variables.$breakpoint-t - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+}
+@mixin desktop {
 }
