@@ -1,0 +1,19 @@
+@use '@madre/shared/variables.scss';
+
+.main {
+  width: 93%;
+  height: 100%;
+  padding-top: 3rem;
+}
+
+@media (min-width: variables.$breakpoint-l) {
+  .main {
+    width: 768px;
+  }
+}
+
+@media (min-width: variables.$breakpoint-xl) {
+  .main {
+    width: 1200px;
+  }
+}

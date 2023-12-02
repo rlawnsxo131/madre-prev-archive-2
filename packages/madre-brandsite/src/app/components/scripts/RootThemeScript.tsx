@@ -5,7 +5,7 @@ import Script from 'next/script';
 
 type ThemeScriptProps = {};
 
-export function ThemeScript(props: ThemeScriptProps) {
+export function RootThemeScript(props: ThemeScriptProps) {
   return (
     <Script
       dangerouslySetInnerHTML={{
