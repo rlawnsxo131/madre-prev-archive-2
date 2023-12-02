@@ -30,6 +30,6 @@ describe('<If />는', () => {
   it(`'() => false' 라는 함수를 주면 'a' 가 렌더링되면 안된다.`, () => {
     const controls = prepare(() => false);
 
-    expect(controls.getByText('a')).toBeInTheDocument();
+    expect(controls.queryByText('a')).not.toBeInTheDocument();
   });
 });
