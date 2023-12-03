@@ -20,7 +20,7 @@ export type ButtonProps<E extends ElementType> = ComponentPropsWithoutRef<E> & {
 };
 
 export type ButtonComponent = <E extends ElementType = 'button'>(
-  Props: ButtonProps<E> & { ref?: ComponentPropsWithRef<E>['ref'] },
+  props: ButtonProps<E> & { ref?: ComponentPropsWithRef<E>['ref'] },
 ) => ReactNode;
 
 export const Button: ButtonComponent = forwardRef(function <

@@ -23,8 +23,10 @@ export function RootPageSection({
         <Image {...imageProps} fill={true} />
       </div>
       <div className={styles.desc}>
-        <h3>{descProps.title}</h3>
-        <h4>{descProps.content}</h4>
+        <div className={styles['desc-content']}>
+          <h3>{descProps.title}</h3>
+          <h4>{descProps.content}</h4>
+        </div>
       </div>
     </section>
   );

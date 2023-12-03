@@ -8,6 +8,8 @@
   height: 3rem;
   display: flex;
   justify-content: center;
+  background-color: var(variables.$color-white);
+  z-index: variables.$zIndex-header;
 }
 
 .header-content {

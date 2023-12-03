@@ -18,10 +18,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <RootThemeScript />
       </head>
       <body>
-        <_RootLayout.Container>
+        <_RootLayout>
           <_RootLayout.Header />
           <_RootLayout.Main>{children}</_RootLayout.Main>
-        </_RootLayout.Container>
+        </_RootLayout>
       </body>
     </html>
   );
