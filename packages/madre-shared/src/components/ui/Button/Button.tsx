@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import type {
   ComponentPropsWithoutRef,
   ComponentPropsWithRef,
@@ -43,7 +43,7 @@ export const Button: ButtonComponent = forwardRef(function <
   return (
     <Element
       ref={ref}
-      className={classnames(
+      className={classNames(
         styles['Button'],
         styles[size],
         styles[`radius-${radius}`],

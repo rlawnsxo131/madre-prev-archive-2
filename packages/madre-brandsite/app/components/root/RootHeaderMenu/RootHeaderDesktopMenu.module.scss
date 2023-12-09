@@ -1,0 +1,31 @@
+@use '@madre/shared/variables.scss';
+
+.root {
+  display: none;
+  list-style: none;
+  margin-right: 2rem;
+
+  @media (min-width: variables.$breakpoint-sm) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.item {
+  & + & {
+    margin-left: 3rem;
+  }
+}
+
+.link {
+  color: var(variables.$color-font1);
+  font-weight: 500;
+
+  &.active {
+    color: var(variables.$color-primary1);
+  }
+
+  &.pending {
+    color: var(variables.$color-primary2);
+  }
+}

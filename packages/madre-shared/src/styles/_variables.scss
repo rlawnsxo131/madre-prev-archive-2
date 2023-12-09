@@ -14,6 +14,16 @@ $breakpoint-xl: 1440px;
 $breakpoint-xxl: 1920px;
 
 /* themes */
+
+/* feature color */
+$color-bg1: --color-bg1;
+
+$color-font1: --color-font1;
+
+$color-primary1: --color-primary1;
+$color-primary2: --color-primary2;
+
+/* default theme color */
 $color-white: --color-white;
 $color-black: --color-black;
 
@@ -62,6 +72,15 @@ $theme-map-base: (
 );
 
 $theme-map-light: (
+  // feature color
+  $color-bg1: #ffffff,
+
+  $color-font1: #000000,
+
+  $color-primary1: #0588f0,
+  $color-primary2: #0090ff,
+
+  // default theme color
   $color-gray10: #fcfcfc,
   $color-gray20: #f9f9f9,
   $color-gray30: #f0f0f0,
@@ -99,10 +118,19 @@ $theme-map-light: (
   $color-red90: #e5484d,
   $color-red100: #dc3e42,
   $color-red110: #ce2c31,
-  $color-red120: #641723,
+  $color-red120: #641723
 );
 
 $theme-map-dark: (
+  // feature color
+  $color-bg1: #111111,
+
+  $color-font1: #ffffff,
+
+  $color-primary1: #3b9eff,
+  $color-primary2: #0090ff,
+
+  // default theme color
   $color-gray10: #111111,
   $color-gray20: #191919,
   $color-gray30: #222222,
@@ -140,5 +168,5 @@ $theme-map-dark: (
   $color-red90: #e5484d,
   $color-red100: #ec5d5e,
   $color-red110: #ff9592,
-  $color-red120: #ffd1d9,
+  $color-red120: #ffd1d9
 );

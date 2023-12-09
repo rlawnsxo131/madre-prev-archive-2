@@ -1,5 +1,3 @@
-'use client';
-
 /**
  * ui components
  */
@@ -32,6 +30,15 @@ export type {
 export { useRefEffect } from './hooks/useRefEffect';
 
 /**
+ * features
+ */
+export type { ThemeButtonProps } from './features/theme/components/ThemeButton/ThemeButton';
+export { ThemeButton } from './features/theme/components/ThemeButton/ThemeButton';
+export type { Theme } from './features/theme/models/models';
+export { ThemeModel } from './features/theme/models/models';
+export { themeService } from './features/theme/services/themeService';
+
+/**
  * lib
  */
 export type { Storage } from './lib/storage/safeStorage';
@@ -43,8 +50,3 @@ export {
 } from './lib/storage/safeStorage';
 export { isClient } from './lib/utils/isClient';
 export { isServer } from './lib/utils/isServer';
-
-/**
- * constants
- */
-export { THEME } from './constants';

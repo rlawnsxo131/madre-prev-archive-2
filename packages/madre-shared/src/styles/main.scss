@@ -30,12 +30,12 @@ body,
 
   &[data-theme='light'] {
     @include mixins.spread-map(variables.$theme-map-light);
-    background-color: var(variables.$color-white);
+    background-color: var(variables.$color-bg1);
   }
 
   &[data-theme='dark'] {
     @include mixins.spread-map(variables.$theme-map-dark);
-    background-color: var(variables.$color-gray10);
+    background-color: var(variables.$color-bg1);
   }
 }
 

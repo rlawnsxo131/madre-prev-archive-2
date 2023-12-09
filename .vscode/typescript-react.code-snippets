@@ -23,12 +23,12 @@
       "type ${TM_FILENAME_BASE}Props = {};",
       "",
       "export function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
-      "  return <div></div>;",
+      "  return <div className={styles.root}></div>;",
       "}"
     ],
   },
   "FunctionPageComponent": {
-    "prefix": "mf",
+    "prefix": "pg",
     "body": [
       "import type { MetaFunction } from '@remix-run/node'"
       "",
@@ -38,6 +38,14 @@
       "    { name: 'description', content: '' },"
       "  ];"
       "};"
+    ],
+  },
+  "ScssUseVariablesFile": {
+    "prefix": "sc",
+    "body": [
+      "@use '@madre/shared/variables.scss';"
+      "",
+      ".root {}"
     ],
   }
 }

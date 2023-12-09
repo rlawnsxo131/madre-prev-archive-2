@@ -1,0 +1,18 @@
+@use '../../../../styles/variables';
+
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0.25rem 0.25rem;
+}
+
+.light {
+  fill: var(variables.$color-black);
+}
+.dark {
+  fill: var(variables.$color-white);
+}

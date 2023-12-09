@@ -5,5 +5,5 @@ import styles from './RootPageContainer.module.scss';
 type RootPageContainerProps = PropsWithChildren;
 
 export function RootPageContainer({ children }: RootPageContainerProps) {
-  return <div className={styles.container}>{children}</div>;
+  return <div className={styles.root}>{children}</div>;
 }

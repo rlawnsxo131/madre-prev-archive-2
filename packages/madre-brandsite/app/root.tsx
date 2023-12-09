@@ -10,6 +10,7 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 
+import { RootHeaderMenu } from './components/root/RootHeaderMenu/RootHeaderMenu';
 import { RootLayout } from './components/root/RootLayout/RootLayout';
 
 export const links: LinksFunction = () => {
@@ -33,7 +34,7 @@ export default function App() {
       </head>
       <body>
         <RootLayout>
-          <RootLayout.Header />
+          <RootLayout.Header Menu={<RootHeaderMenu />} />
           <RootLayout.Main>
             <Outlet />
           </RootLayout.Main>

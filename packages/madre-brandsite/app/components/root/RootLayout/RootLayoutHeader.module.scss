@@ -8,7 +8,7 @@
   height: 3rem;
   display: flex;
   justify-content: center;
-  background-color: var(variables.$color-white);
+  background-color: var(variables.$color-bg1);
   z-index: variables.$zIndex-header;
 }
 
@@ -17,22 +17,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (min-width: variables.$breakpoint-l) {
+    width: 768px;
+  }
+
+  @media (min-width: variables.$breakpoint-xl) {
+    width: 1200px;
+  }
 }
 
 .brand-link {
   color: var(variables.$color-gray120);
   font-size: 1.25rem;
   font-weight: 500;
-}
-
-@media (min-width: variables.$breakpoint-l) {
-  .header-content {
-    width: 768px;
-  }
-}
-
-@media (min-width: variables.$breakpoint-xl) {
-  .header-content {
-    width: 1200px;
-  }
 }
