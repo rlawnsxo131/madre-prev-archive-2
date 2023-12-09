@@ -30,11 +30,7 @@ class ThemeService {
   #getCurrentTheme(): Theme {
     let theme: Theme = ThemeModel.themes.light;
 
-    const madreTheme =
-      (safeLocalStorage.get(ThemeModel.key) as Theme) ??
-      (document
-        .querySelector(this.#root)
-        ?.getAttribute(this.#dataTheme) as Theme);
+    const madreTheme = safeLocalStorage.get(ThemeModel.key) as Theme | null;
 
     if (madreTheme) {
       theme = madreTheme;
