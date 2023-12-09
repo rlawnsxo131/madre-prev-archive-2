@@ -1,8 +1,26 @@
-import type { PropsWithChildren } from 'react';
+import { NavLink } from '@remix-run/react';
+import type { PropsWithChildren, ReactNode } from 'react';
+
+import { Routes } from '@/routes';
 
 import styles from './RootLayout.module.scss';
-import { RootLayoutHeader } from './RootLayoutHeader';
-import { RootLayoutMain } from './RootLayoutMain';
+
+function RootLayoutHeader({ Menu }: { Menu: ReactNode }) {
+  return (
+    <header className={styles.header}>
+      <div className={styles['header-content']}>
+        <NavLink className={styles['brand-link']} to={Routes.root.path}>
+          Madre
+        </NavLink>
+        {Menu}
+      </div>
+    </header>
+  );
+}
+
+function RootLayoutMain({ children }: PropsWithChildren) {
+  return <main className={styles.main}>{children}</main>;
+}
 
 export const RootLayout = Object.assign(
   ({ children }: PropsWithChildren) => (
