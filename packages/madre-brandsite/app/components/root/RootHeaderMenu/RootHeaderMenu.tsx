@@ -1,8 +1,8 @@
 import { ThemeButton } from '@madre/shared';
 
-import { RootHeaderDesktopMenu } from './RootHeaderDesktopMenu';
+import { RootHeaderDesktopMenu } from './RootHeaderDesktopMenu/RootHeaderDesktopMenu';
 import styles from './RootHeaderMenu.module.scss';
-import { RootHeaderMobileMenu } from './RootHeaderMobileMenu';
+import { RootHeaderMobileMenu } from './RootHeaderMobileMenu/RootHeaderMobileMenu';
 
 type RootHeaderMenuProps = {};
 
