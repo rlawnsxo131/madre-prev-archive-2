@@ -1,3 +1,4 @@
+import { Button } from '@madre/shared';
 import { NavLink } from '@remix-run/react';
 import classNames from 'classnames';
 
@@ -25,6 +26,9 @@ export function RootHeaderDesktopMenu(props: RootHeaderDesktopMenuProps) {
           </NavLink>
         </li>
       ))}
+      <li className={styles.item}>
+        <Button>시작하기</Button>
+      </li>
     </ul>
   );
 }

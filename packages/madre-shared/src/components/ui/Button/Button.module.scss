@@ -54,11 +54,11 @@
   &.solid {
     &.primary {
       color: var(variables.$color-white);
-      background-color: var(variables.$color-blue100);
-      border: 1px solid var(variables.$color-blue100);
+      background-color: var(variables.$color-blue90);
+      border: 1px solid var(variables.$color-blue90);
       &:hover:not([disabled]) {
-        background-color: var(variables.$color-blue110);
-        border: 1px solid var(variables.$color-blue110);
+        background-color: var(variables.$color-blue100);
+        border: 1px solid var(variables.$color-blue100);
       }
     }
 
