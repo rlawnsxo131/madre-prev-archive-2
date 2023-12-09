@@ -9,7 +9,7 @@ type RootHeaderDesktopMenuProps = {};
 
 export function RootHeaderDesktopMenu(props: RootHeaderDesktopMenuProps) {
   return (
-    <ul className={styles.root}>
+    <ul className={styles.container}>
       {Object.entries(Routes).map(([_, value]) => (
         <li className={styles.item} key={value.path}>
           <NavLink

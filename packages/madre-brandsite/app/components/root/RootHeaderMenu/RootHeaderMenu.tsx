@@ -8,7 +8,7 @@ type RootHeaderMenuProps = {};
 
 export function RootHeaderMenu(props: RootHeaderMenuProps) {
   return (
-    <div className={styles.root}>
+    <div className={styles.container}>
       <RootHeaderDesktopMenu />
       <RootHeaderMobileMenu />
       <ThemeButton />

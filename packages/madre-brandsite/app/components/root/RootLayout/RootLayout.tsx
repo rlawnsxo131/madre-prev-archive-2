@@ -6,7 +6,7 @@ import { RootLayoutMain } from './RootLayoutMain';
 
 export const RootLayout = Object.assign(
   ({ children }: PropsWithChildren) => (
-    <div className={styles.root}>{children}</div>
+    <div className={styles.container}>{children}</div>
   ),
   {
     Header: RootLayoutHeader,
