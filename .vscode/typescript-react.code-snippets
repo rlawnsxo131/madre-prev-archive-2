@@ -18,13 +18,26 @@
   "FunctionComponent": {
     "prefix": "fc",
     "body": [
-      "import styles from './${TM_FILENAME_BASE}.module.scss'"
+      "import styles from './${TM_FILENAME_BASE}.module.scss';"
       "",
-      "type ${TM_FILENAME_BASE}Props = {}",
+      "type ${TM_FILENAME_BASE}Props = {};",
       "",
       "export function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
       "  return <div></div>;",
       "}"
-    ]
+    ],
+  },
+  "FunctionPageComponent": {
+    "prefix": "mf",
+    "body": [
+      "import type { MetaFunction } from '@remix-run/node'"
+      "",
+      "export const meta: MetaFunction = () => {",
+      "  return [",
+      "    { title: '' },"
+      "    { name: 'description', content: '' },"
+      "  ];"
+      "};"
+    ],
   }
 }

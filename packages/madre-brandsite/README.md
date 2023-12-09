@@ -1,3 +1,5 @@
-# Image
+```sh
+# create-remix@latest --template https://github.com/mcansh/remix-fastify/tree/main/examples/unstable-vite
 
-- [undraw - #0588F0](https://undraw.co/illustrations)
+pnpm dlx create-remix@latest --template https://github.com/mcansh/remix-fastify/tree/main/examples/unstable-vite
+```

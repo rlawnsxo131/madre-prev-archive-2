@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { NavLink } from '@remix-run/react';
 
 import styles from './RootLayoutHeader.module.scss';
 
@@ -8,9 +8,9 @@ export function RootLayoutHeader(props: RootLayoutHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles['header-content']}>
-        <Link className={styles['brand-link']} href="/">
+        <NavLink className={styles['brand-link']} to="/">
           Madre
-        </Link>
+        </NavLink>
         <div>오른쪽</div>
       </div>
     </header>

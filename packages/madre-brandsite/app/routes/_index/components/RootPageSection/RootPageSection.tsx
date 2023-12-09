@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import styles from './RootPageSection.module.scss';
 
 type RootPageSectionProps = {
@@ -20,7 +18,7 @@ export function RootPageSection({
   return (
     <section className={styles.section}>
       <div className={styles.image}>
-        <Image {...imageProps} fill={true} />
+        <img {...imageProps} />
       </div>
       <div className={styles.desc}>
         <div className={styles['desc-content']}>
