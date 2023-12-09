@@ -44,7 +44,7 @@ export const Button: ButtonComponent = forwardRef(function <
     <Element
       ref={ref}
       className={classNames(
-        styles['Button'],
+        styles.Button,
         styles[size],
         styles[`radius-${radius}`],
         styles[variant],

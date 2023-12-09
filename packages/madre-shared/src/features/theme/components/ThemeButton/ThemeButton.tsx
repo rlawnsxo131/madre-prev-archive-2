@@ -29,7 +29,12 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
     }, []);
 
     return (
-      <button ref={ref} className={styles.Button} onClick={onToggle} {...props}>
+      <button
+        ref={ref}
+        className={styles.ThemeButton}
+        onClick={onToggle}
+        {...props}
+      >
         <SwitchCase
           value={theme}
           caseBy={{
