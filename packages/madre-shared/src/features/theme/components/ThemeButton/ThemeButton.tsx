@@ -3,7 +3,8 @@ import { forwardRef, useEffect, useState } from 'react';
 
 import { SwitchCase } from '../../../..';
 import { Icons } from '../../../../components/ui/Icons/Icons';
-import { type Theme, ThemeModel } from '../../models/models';
+import type { Theme } from '../../models/models';
+import { ThemeModel } from '../../models/models';
 import { themeService } from '../../services/themeService';
 import styles from './ThemeButton.module.scss';
 

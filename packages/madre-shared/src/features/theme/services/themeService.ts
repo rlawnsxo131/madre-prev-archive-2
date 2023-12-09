@@ -1,5 +1,6 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
-import { type Theme, ThemeModel } from '../models/models';
+import type { Theme } from '../models/models';
+import { ThemeModel } from '../models/models';
 
 class ThemeService {
   #root = ':root';
