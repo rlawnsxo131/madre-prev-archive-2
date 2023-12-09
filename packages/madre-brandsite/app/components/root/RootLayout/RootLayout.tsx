@@ -5,7 +5,11 @@ import { Routes } from '@/routes';
 
 import styles from './RootLayout.module.scss';
 
-function RootLayoutHeader({ Menu }: { Menu: ReactNode }) {
+function Container({ children }: PropsWithChildren) {
+  return <div className={styles.container}>{children}</div>;
+}
+
+function Header({ Menu }: { Menu: ReactNode }) {
   return (
     <header className={styles.header}>
       <div className={styles['header-content']}>
@@ -18,16 +22,11 @@ function RootLayoutHeader({ Menu }: { Menu: ReactNode }) {
   );
 }
 
-function RootLayoutMain({ children }: PropsWithChildren) {
+function Main({ children }: PropsWithChildren) {
   return <main className={styles.main}>{children}</main>;
 }
 
-export const RootLayout = Object.assign(
-  ({ children }: PropsWithChildren) => (
-    <div className={styles.container}>{children}</div>
-  ),
-  {
-    Header: RootLayoutHeader,
-    Main: RootLayoutMain,
-  },
-);
+export const RootLayout = Object.assign(Container, {
+  Header,
+  Main,
+});
