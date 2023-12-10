@@ -28,22 +28,17 @@ class ThemeService {
   }
 
   #getCurrentTheme(): Theme {
-    let theme: Theme = ThemeModel.themes.light;
-
     const madreTheme = safeLocalStorage.get(ThemeModel.key) as Theme | null;
 
     if (madreTheme) {
-      theme = madreTheme;
-    } else {
-      const systemPrefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-      theme = systemPrefersDark
-        ? ThemeModel.themes.dark
-        : ThemeModel.themes.light;
+      return madreTheme;
     }
 
-    return theme;
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+
+    return systemPrefersDark ? ThemeModel.themes.dark : ThemeModel.themes.light;
   }
 
   #setThemeData(theme: Theme) {

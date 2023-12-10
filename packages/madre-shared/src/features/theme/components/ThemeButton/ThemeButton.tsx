@@ -1,7 +1,6 @@
 import type { ButtonHTMLAttributes, PropsWithoutRef } from 'react';
 import { forwardRef, useEffect, useState } from 'react';
 
-import { SwitchCase } from '../../../..';
 import { Icons } from '../../../../components/ui/Icons/Icons';
 import type { Theme } from '../../models/models';
 import { ThemeModel } from '../../models/models';
@@ -15,6 +14,7 @@ export type ThemeButtonProps = PropsWithoutRef<
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function (props, ref) {
     const [theme, setTheme] = useState<Theme>(ThemeModel.themes.light);
+    const icon = theme === 'light' ? 'sun' : 'crescentMoon';
 
     const onToggle = () => setTheme(themeService.toggle());
 
@@ -35,13 +35,7 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
         onClick={onToggle}
         {...props}
       >
-        <SwitchCase
-          value={theme}
-          caseBy={{
-            light: <Icons className={styles[theme]} type="sun" />,
-            dark: <Icons className={styles[theme]} type="night" />,
-          }}
-        />
+        <Icons className={styles[theme]} type={icon} />
       </button>
     );
   },

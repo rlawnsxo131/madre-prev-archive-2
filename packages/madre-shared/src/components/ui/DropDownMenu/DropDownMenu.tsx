@@ -1,16 +1,22 @@
 import type { PropsWithChildren } from 'react';
 
-import styles from './DropDownMenu.module.scss';
+import styles from './DropdownMenu.module.scss';
+import { DropdownMenuContent } from './DropdownMenuContent/DropdownMenuContent';
+import { DropdownMenuItem } from './DropdownMenuItem/DropdownMenuItem';
+import { DropdownMenuProvider } from './DropdownMenuProvider';
+import { DropdownMenuTrigger } from './DropdownMenuTrigger/DropDownMenuTrigger';
 
-type DropDownMenuProps = PropsWithChildren;
+type DropdownMenuProps = PropsWithChildren;
 
-export const DropDownMenu = Object.assign(
-  ({ children }: DropDownMenuProps) => (
-    <div className={styles.DropDownMenu}>{children}</div>
+export const DropdownMenu = Object.assign(
+  ({ children }: DropdownMenuProps) => (
+    <DropdownMenuProvider>
+      <div className={styles.DropdownMenu}>{children}</div>
+    </DropdownMenuProvider>
   ),
   {
-    Trigger: () => <div>trigger</div>,
-    Content: () => <div>Content</div>,
-    Item: () => <div>Item</div>,
+    Trigger: DropdownMenuTrigger,
+    Content: DropdownMenuContent,
+    Item: DropdownMenuItem,
   },
 );

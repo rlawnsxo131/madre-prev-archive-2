@@ -1,7 +1,12 @@
 import type { MetaFunction } from '@remix-run/node';
 
+import { ROUTES } from '@/routes';
+
 export const meta: MetaFunction = () => {
-  return [{ title: 'Madre - 문의' }, { name: 'description', content: '' }];
+  return [
+    { title: `Madre - ${ROUTES.contact.title}` },
+    { name: 'description', content: '' },
+  ];
 };
 
 export default function ContactPage() {

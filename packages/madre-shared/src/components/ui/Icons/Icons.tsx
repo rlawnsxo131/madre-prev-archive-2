@@ -1,18 +1,19 @@
-import type { SVGProps } from 'react';
+import type { SVGAttributes } from 'react';
 
-import { NightIcon } from './NightIcon';
-import { SunIcon } from './SunIcon';
+import { CrescentMoonIcon, SunIcon } from './IconComponents';
 
-export type IconsProps = SVGProps<SVGSVGElement> & {
-  type: 'sun' | 'night';
+export type IconsProps = {
+  type: 'sun' | 'crescentMoon';
+  className?: string;
+  style?: SVGAttributes<SVGAElement>['style'];
 };
 
 export function Icons({ type, ...props }: IconsProps) {
   switch (type) {
     case 'sun':
       return <SunIcon {...props} />;
-    case 'night':
-      return <NightIcon {...props} />;
+    case 'crescentMoon':
+      return <CrescentMoonIcon {...props} />;
     default:
       return null;
   }

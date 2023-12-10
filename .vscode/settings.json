@@ -9,7 +9,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.sortMembers": true
+    "source.fixAll": "explicit",
+    "source.sortMembers": "explicit"
   }
 }

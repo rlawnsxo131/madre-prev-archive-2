@@ -1,4 +1,4 @@
-export const Routes = {
+export const ROUTES = {
   root: {
     path: '/',
     title: '홈',

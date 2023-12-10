@@ -21,7 +21,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
       {visible && (
         <motion.div
           ref={ref}
-          className={styles['Overlay']}
+          className={styles.Overlay}
           onClick={onClick}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

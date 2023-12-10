@@ -2,7 +2,7 @@ import { Button } from '@madre/shared';
 import { NavLink } from '@remix-run/react';
 import classNames from 'classnames';
 
-import { Routes } from '@/routes';
+import { ROUTES } from '@/routes';
 
 import styles from './RootHeaderDesktopMenu.module.scss';
 
@@ -11,7 +11,7 @@ type RootHeaderDesktopMenuProps = {};
 export function RootHeaderDesktopMenu(props: RootHeaderDesktopMenuProps) {
   return (
     <ul className={styles.container}>
-      {Object.entries(Routes).map(([_, value]) => (
+      {Object.entries(ROUTES).map(([_, value]) => (
         <li className={styles.item} key={value.path}>
           <NavLink
             to={value.path}

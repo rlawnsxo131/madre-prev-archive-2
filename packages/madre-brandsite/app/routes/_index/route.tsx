@@ -1,7 +1,7 @@
 import type { MetaFunction } from '@remix-run/node';
 
-import { RootPageContainer } from './components/RootPageContainer/RootPageContainer';
 import { RootPageSection } from './components/RootPageSection/RootPageSection';
+import styles from './route.module.scss';
 
 export const meta: MetaFunction = () => {
   return [
@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function RootPage() {
   return (
-    <RootPageContainer>
+    <div className={styles.container}>
       <RootPageSection
         imageProps={{
           src: '/svg/undraw_environmental_study_re_bg_1.svg',
@@ -37,6 +37,6 @@ export default function RootPage() {
           content: '마치 그림을 그리듯,\n자유로운 표현이 가능한 공간을요.',
         }}
       />
-    </RootPageContainer>
+    </div>
   );
 }
