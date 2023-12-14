@@ -19,8 +19,6 @@ export function DropdownMenuTrigger({
     );
   }
 
-  console.log(context.visible);
-
   return (
     <div className={styles.DropdownMenuTrigger}>
       <Element onClick={context.toggle} />

@@ -2,7 +2,7 @@ import { safeLocalStorage } from '../../../lib/storage/safeStorage';
 import type { Theme } from '../models/models';
 import { ThemeModel } from '../models/models';
 
-class ThemeService {
+class _ThemeService {
   #root = ':root';
   #dataTheme = 'data-theme';
 
@@ -47,4 +47,4 @@ class ThemeService {
   }
 }
 
-export const themeService = new ThemeService();
+export const ThemeService = new _ThemeService();

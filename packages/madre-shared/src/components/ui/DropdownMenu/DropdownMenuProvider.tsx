@@ -1,12 +1,16 @@
-import type { PropsWithChildren } from 'react';
+import type { ContextType, PropsWithChildren, ReactNode } from 'react';
 import { createContext, useState } from 'react';
 
 export const DropdownMenuContext = createContext<{
   visible: boolean;
-  show: () => void;
+  open: () => void;
   close: () => void;
   toggle: () => void;
 } | null>(null);
+
+export type DropdownMenuContext = (
+  props: ContextType<typeof DropdownMenuContext>,
+) => ReactNode;
 
 export function DropdownMenuProvider({ children }: PropsWithChildren) {
   const [visible, setVisible] = useState(false);
@@ -15,7 +19,7 @@ export function DropdownMenuProvider({ children }: PropsWithChildren) {
     <DropdownMenuContext.Provider
       value={{
         visible,
-        show: () => setVisible(true),
+        open: () => setVisible(true),
         close: () => setVisible(false),
         toggle: () => setVisible((visible) => !visible),
       }}

@@ -47,7 +47,7 @@ export const Default: Story = {
     return (
       <Wrapper>
         <AttributeWrapper>
-          <Button {...args} />
+          <Button {..._args} />
         </AttributeWrapper>
 
         {/* variant solid */}
