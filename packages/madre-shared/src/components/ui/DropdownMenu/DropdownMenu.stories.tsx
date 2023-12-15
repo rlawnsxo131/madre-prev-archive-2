@@ -23,23 +23,21 @@ export const Default: Story = {
     children: (_) => <div />,
   },
   render: (_) => (
-    <>
-      <DropdownMenu>
-        {({ visible, toggle }) => (
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Button onClick={toggle}>click</Button>
-            </DropdownMenu.Trigger>
-            <DropdownMenuContent visible={visible}>
-              <DropdownMenu.Item>item1</DropdownMenu.Item>
-              <DropdownMenu.Item>item2</DropdownMenu.Item>
-              <DropdownMenu.Item>item3</DropdownMenu.Item>
-              <DropdownMenu.Item>item4</DropdownMenu.Item>
-              <DropdownMenu.Item>item5</DropdownMenu.Item>
-            </DropdownMenuContent>
-          </DropdownMenu.Root>
-        )}
-      </DropdownMenu>
-    </>
+    <DropdownMenu>
+      {({ visible, toggle }) => (
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            <Button onClick={toggle}>click</Button>
+          </DropdownMenu.Trigger>
+          <DropdownMenuContent visible={visible}>
+            <DropdownMenu.Item>item1</DropdownMenu.Item>
+            <DropdownMenu.Item>item2</DropdownMenu.Item>
+            <DropdownMenu.Item>item3</DropdownMenu.Item>
+            <DropdownMenu.Item>item4</DropdownMenu.Item>
+            <DropdownMenu.Item>item5</DropdownMenu.Item>
+          </DropdownMenuContent>
+        </DropdownMenu.Root>
+      )}
+    </DropdownMenu>
   ),
 };
