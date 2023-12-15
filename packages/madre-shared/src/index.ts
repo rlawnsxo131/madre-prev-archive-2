@@ -1,8 +1,11 @@
 /**
  * ui components
  */
+// button
 export type { ButtonProps } from './components/ui/Button/Button';
 export { Button } from './components/ui/Button/Button';
+export { DropdownMenu } from './components/ui/DropdownMenu/DropdownMenu';
+export type { DropdownMenuElement } from './components/ui/DropdownMenu/DropdownMenuProvider';
 export type { IconsProps } from './components/ui/Icons/Icons';
 export { Icons } from './components/ui/Icons/Icons';
 export type { OverlayProps } from './components/ui/Overlay/Overlay';
@@ -13,6 +16,8 @@ export { Overlay } from './components/ui/Overlay/Overlay';
  */
 export type { IfProps } from './components/utility/If/If';
 export { If } from './components/utility/If/If';
+export type { PortalProps } from './components/utility/Portal/Portal';
+export { Portal } from './components/utility/Portal/Portal';
 export type { SwitchCaseProps } from './components/utility/SwitchCase/SwitchCase';
 export { SwitchCase } from './components/utility/SwitchCase/SwitchCase';
 
