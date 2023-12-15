@@ -5,7 +5,7 @@ import type { IconsProps } from '../../../../components/ui/Icons/Icons';
 import { Icons } from '../../../../components/ui/Icons/Icons';
 import type { Theme } from '../../models/models';
 import { ThemeModel } from '../../models/models';
-import { ThemeService } from '../../services/themeService';
+import { ThemeService } from '../../services/ThemeService';
 import styles from './ThemeButton.module.scss';
 
 export type ThemeIcon = Extract<IconsProps['type'], 'sun' | 'crescent-moon'>;

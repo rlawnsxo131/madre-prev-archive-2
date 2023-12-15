@@ -38,7 +38,7 @@ export type { ThemeButtonProps } from './features/theme/components/ThemeButton/T
 export { ThemeButton } from './features/theme/components/ThemeButton/ThemeButton';
 export type { Theme } from './features/theme/models/models';
 export { ThemeModel } from './features/theme/models/models';
-export { themeService } from './features/theme/services/themeService';
+export { ThemeService } from './features/theme/services/ThemeService';
 
 /**
  * lib
