@@ -44,8 +44,6 @@
     "prefix": "sc",
     "body": [
       "@use '@madre/shared/variables.scss';"
-      "",
-      ".container {}"
     ],
   }
 }

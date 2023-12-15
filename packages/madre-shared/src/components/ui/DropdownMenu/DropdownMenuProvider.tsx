@@ -1,18 +1,15 @@
-import type { ContextType, PropsWithChildren, ReactNode } from 'react';
+import type { ContextType, PropsWithChildren } from 'react';
 import { createContext, useState } from 'react';
+import { useContext } from 'react';
 
-export const DropdownMenuContext = createContext<{
+const DropdownMenuContext = createContext<{
   visible: boolean;
   open: () => void;
   close: () => void;
   toggle: () => void;
 } | null>(null);
 
-export type DropdownMenuContext = (
-  props: ContextType<typeof DropdownMenuContext>,
-) => ReactNode;
-
-export function DropdownMenuProvider({ children }: PropsWithChildren) {
+function DropdownMenuProvider({ children }: PropsWithChildren) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -26,5 +23,37 @@ export function DropdownMenuProvider({ children }: PropsWithChildren) {
     >
       {children}
     </DropdownMenuContext.Provider>
+  );
+}
+
+export type DropdownMenuElement = (
+  props: NonNullable<ContextType<typeof DropdownMenuContext>>,
+) => JSX.Element;
+
+function DropdownMenuController({
+  children: Element,
+}: {
+  children: DropdownMenuElement;
+}) {
+  const context = useContext(DropdownMenuContext);
+
+  if (!context) {
+    throw new Error('DropdownMenu is only available within OverlayProvider.');
+  }
+
+  return <Element {...context} />;
+}
+
+export function DropdownMenuContainer({
+  children: Element,
+}: {
+  children: DropdownMenuElement;
+}) {
+  return (
+    <DropdownMenuProvider>
+      <DropdownMenuController>
+        {(props) => <Element {...props} />}
+      </DropdownMenuController>
+    </DropdownMenuProvider>
   );
 }

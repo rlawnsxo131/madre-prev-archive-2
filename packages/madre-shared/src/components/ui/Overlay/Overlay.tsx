@@ -17,7 +17,7 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
   ref,
 ) {
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence>
       {visible && (
         <motion.div
           ref={ref}
