@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from '../Button/Button';
+import { Button } from '../Button';
 import { DropdownMenu } from './DropdownMenu';
-import { DropdownMenuContent } from './DropdownMenuContent/DropdownMenuContent';
 
 const meta = {
   title: 'ui/DropdownMenu',
@@ -15,27 +14,23 @@ const meta = {
 } satisfies Meta<typeof DropdownMenu>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = Omit<StoryObj<typeof meta>, 'args'>;
 
 export const Default: Story = {
-  args: {
-    // noop
-    children: (_) => <div />,
-  },
-  render: (_) => (
+  render: () => (
     <DropdownMenu>
       {({ visible, toggle }) => (
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <Button onClick={toggle}>click</Button>
           </DropdownMenu.Trigger>
-          <DropdownMenuContent visible={visible}>
+          <DropdownMenu.Content visible={visible}>
             <DropdownMenu.Item>item1</DropdownMenu.Item>
             <DropdownMenu.Item>item2</DropdownMenu.Item>
             <DropdownMenu.Item>item3</DropdownMenu.Item>
             <DropdownMenu.Item>item4</DropdownMenu.Item>
             <DropdownMenu.Item>item5</DropdownMenu.Item>
-          </DropdownMenuContent>
+          </DropdownMenu.Content>
         </DropdownMenu.Root>
       )}
     </DropdownMenu>

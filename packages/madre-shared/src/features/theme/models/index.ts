@@ -1,3 +1,5 @@
+import type { IconsProps } from '../../../components/ui/Icons/Icons';
+
 export const ThemeModel = {
   key: 'theme',
   themes: {
@@ -7,3 +9,5 @@ export const ThemeModel = {
 } as const;
 
 export type Theme = keyof typeof ThemeModel.themes;
+
+export type ThemeIcon = Extract<IconsProps['type'], 'sun' | 'crescent-moon'>;

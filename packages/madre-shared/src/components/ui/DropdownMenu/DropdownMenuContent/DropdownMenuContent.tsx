@@ -31,7 +31,7 @@ export function DropdownMenuContent({
           }}
           exit={{
             translateY: 0,
-            opacity: 1,
+            opacity: 0,
           }}
           transition={{
             duration,

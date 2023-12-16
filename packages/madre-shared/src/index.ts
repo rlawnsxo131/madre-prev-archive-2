@@ -1,59 +1,36 @@
 /**
  * ui components
  */
-// button
-export type { ButtonProps } from './components/ui/Button/Button';
-export { Button } from './components/ui/Button/Button';
-export { DropdownMenu } from './components/ui/DropdownMenu/DropdownMenu';
-export type { DropdownMenuElement } from './components/ui/DropdownMenu/DropdownMenuProvider';
-export type { IconsProps } from './components/ui/Icons/Icons';
-export { Icons } from './components/ui/Icons/Icons';
-export type { OverlayProps } from './components/ui/Overlay/Overlay';
-export { Overlay } from './components/ui/Overlay/Overlay';
+export * from './components/ui/Button';
+export * from './components/ui/DropdownMenu';
+export * from './components/ui/Icons';
+export * from './components/ui/Overlay';
 
 /**
  * utility components
  */
-export type { IfProps } from './components/utility/If/If';
-export { If } from './components/utility/If/If';
-export type { PortalProps } from './components/utility/Portal/Portal';
-export { Portal } from './components/utility/Portal/Portal';
-export type { SwitchCaseProps } from './components/utility/SwitchCase/SwitchCase';
-export { SwitchCase } from './components/utility/SwitchCase/SwitchCase';
+export * from './components/utility/If';
+export * from './components/utility/Portal';
+export * from './components/utility/SwitchCase';
 
 /**
  * hooks
  */
-export { useCombinedRefs } from './hooks/useCombinedRefs';
-export { useIsomorphicLayoutEffect } from './hooks/useIsomorphicLayoutEffect';
-export { usePreservedCallback } from './hooks/usePreservedCallback';
-export { usePreservedReference } from './hooks/usePreservedReference';
-export { usePrevious } from './hooks/usePrevious';
-export type {
-  EffectRef,
-  EffectRefCallback,
-  EffectRefCleanupCallback,
-} from './hooks/useRefEffect';
-export { useRefEffect } from './hooks/useRefEffect';
-
-/**
- * features
- */
-export type { ThemeButtonProps } from './features/theme/components/ThemeButton/ThemeButton';
-export { ThemeButton } from './features/theme/components/ThemeButton/ThemeButton';
-export type { Theme } from './features/theme/models/models';
-export { ThemeModel } from './features/theme/models/models';
-export { ThemeService } from './features/theme/services/ThemeService';
+export * from './hooks/useCombinedRefs';
+export * from './hooks/useIsomorphicLayoutEffect';
+export * from './hooks/usePreservedCallback';
+export * from './hooks/usePreservedReference';
+export * from './hooks/usePrevious';
+export * from './hooks/useRefEffect';
 
 /**
  * lib
  */
-export type { Storage } from './lib/storage/safeStorage';
-export {
-  generateSessionStorage,
-  generateStorage,
-  safeLocalStorage,
-  safeSessionStorage,
-} from './lib/storage/safeStorage';
-export { isClient } from './lib/utils/isClient';
-export { isServer } from './lib/utils/isServer';
+export * from './lib/storage/safeStorage';
+export * from './lib/utils/isClient';
+export * from './lib/utils/isServer';
+
+/**
+ * features
+ */
+export * from './features/theme';

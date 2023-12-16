@@ -1,14 +1,16 @@
 import type { ButtonHTMLAttributes, PropsWithoutRef } from 'react';
 import { forwardRef, useEffect, useState } from 'react';
 
-import type { IconsProps } from '../../../../components/ui/Icons/Icons';
-import { Icons } from '../../../../components/ui/Icons/Icons';
-import type { Theme } from '../../models/models';
-import { ThemeModel } from '../../models/models';
-import { ThemeService } from '../../services/ThemeService';
+import { Icons } from '../../../../components/ui/Icons';
+import type { Theme } from '../../models';
+import { ThemeModel } from '../../models';
+import { ThemeService } from '../../services';
 import styles from './ThemeButton.module.scss';
 
-export type ThemeIcon = Extract<IconsProps['type'], 'sun' | 'crescent-moon'>;
+const iconMap = {
+  light: 'sun',
+  dark: 'crescent-moon',
+} as const;
 
 export type ThemeButtonProps = PropsWithoutRef<
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
@@ -17,11 +19,6 @@ export type ThemeButtonProps = PropsWithoutRef<
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function (props, ref) {
     const [theme, setTheme] = useState<Theme>(ThemeModel.themes.light);
-
-    const icon: Record<Theme, ThemeIcon> = {
-      light: 'sun',
-      dark: 'crescent-moon',
-    };
 
     const onToggle = () => setTheme(ThemeService.toggle());
 
@@ -42,7 +39,7 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
         onClick={onToggle}
         {...props}
       >
-        <Icons className={styles[theme]} type={icon[theme]} />
+        <Icons className={styles[theme]} type={iconMap[theme]} />
       </button>
     );
   },
