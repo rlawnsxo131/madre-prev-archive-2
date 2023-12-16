@@ -1,6 +1,7 @@
 /* z-index */
 $zIndex-header: 12;
 $zIndex-overlay: 12;
+$zIndex-dropdown: 15;
 
 /* break point */
 $breakpoint-xxs: 320px;
@@ -17,7 +18,13 @@ $breakpoint-xxl: 1920px;
 // feature color
 $color-bg1: --color-bg1;
 
+$color-bg-element1: --color-element;
+
+$color-bg-hover-element1: --color-bg-hover-element1;
+
 $color-font1: --color-font1;
+
+$color-border1: --color-border1;
 
 $color-primary1: --color-primary1;
 $color-primary2: --color-primary2;
@@ -75,7 +82,13 @@ $theme-map-light: (
   // feature color
   $color-bg1: #ffffff,
 
+  $color-bg-element1: #ffffff,
+
+  $color-bg-hover-element1: #f9f9f9,
+
   $color-font1: #000000,
+
+  $color-border1: #e8e8e8,
 
   $color-primary1: #0090ff,
   $color-primary2: #0588f0,
@@ -125,7 +138,13 @@ $theme-map-dark: (
   // feature color
   $color-bg1: #111111,
 
+  $color-bg-element1: #222222,
+
+  $color-bg-hover-element1: #191919,
+
   $color-font1: #ffffff,
+
+  $color-border1: #3a3a3a,
 
   $color-primary1: #0090ff,
   $color-primary2: #3b9eff,

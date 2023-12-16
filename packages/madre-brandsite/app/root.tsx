@@ -1,6 +1,6 @@
 import '@madre/shared/main.scss';
 
-import type { LinksFunction } from '@remix-run/node';
+import { type LinksFunction } from '@remix-run/node';
 import {
   Links,
   LiveReload,

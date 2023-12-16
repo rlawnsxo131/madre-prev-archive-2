@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import type { PropsWithChildren } from 'react';
+import { type Meta, type StoryObj } from '@storybook/react';
+import { type PropsWithChildren } from 'react';
 
 import { Button } from './Button';
 

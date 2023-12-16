@@ -1,6 +1,10 @@
-import type { ContextType, PropsWithChildren } from 'react';
-import { createContext, useState } from 'react';
-import { useContext } from 'react';
+import {
+  type ContextType,
+  createContext,
+  type PropsWithChildren,
+  useContext,
+  useState,
+} from 'react';
 
 const DropdownMenuContext = createContext<{
   visible: boolean;

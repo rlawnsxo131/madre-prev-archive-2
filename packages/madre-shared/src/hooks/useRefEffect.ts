@@ -1,5 +1,4 @@
-import type { DependencyList } from 'react';
-import { useCallback, useRef } from 'react';
+import { type DependencyList, useCallback, useRef } from 'react';
 
 import { usePreservedCallback } from './usePreservedCallback';
 

@@ -1,5 +1,5 @@
 import { NavLink } from '@remix-run/react';
-import type { PropsWithChildren, ReactNode } from 'react';
+import { type PropsWithChildren, type ReactNode } from 'react';
 
 import { ROUTES } from '@/routes';
 

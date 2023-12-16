@@ -1,9 +1,13 @@
-import type { ButtonHTMLAttributes, PropsWithoutRef } from 'react';
-import { forwardRef, useEffect, useState } from 'react';
+import {
+  type ButtonHTMLAttributes,
+  forwardRef,
+  type PropsWithoutRef,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Icons } from '../../../../components/ui/Icons';
-import type { Theme } from '../../models';
-import { ThemeModel } from '../../models';
+import { type Theme, ThemeModel } from '../../models';
 import { ThemeService } from '../../services';
 import styles from './ThemeButton.module.scss';
 

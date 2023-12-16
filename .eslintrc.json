@@ -41,7 +41,7 @@
       {
         "prefer": "type-imports",
         "disallowTypeAnnotations": false,
-        "fixStyle": "separate-type-imports"
+        "fixStyle": "inline-type-imports"
       }
     ],
     "@typescript-eslint/ban-types": [

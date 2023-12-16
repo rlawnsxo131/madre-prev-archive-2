@@ -1,4 +1,4 @@
-import type { IconsProps } from '../../../components/ui/Icons/Icons';
+import { type IconsProps } from '../../../components/ui/Icons';
 
 export const ThemeModel = {
   key: 'theme',

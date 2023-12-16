@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import type {
-  ComponentPropsWithoutRef,
-  ComponentPropsWithRef,
-  ElementType,
-  ReactNode,
+import {
+  type ComponentPropsWithoutRef,
+  type ComponentPropsWithRef,
+  type ElementType,
+  forwardRef,
+  type ReactNode,
 } from 'react';
-import { forwardRef } from 'react';
 
 import styles from './Button.module.scss';
 

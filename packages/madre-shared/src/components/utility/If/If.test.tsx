@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import type { IfProps } from './If';
-import { If } from './If';
+import { If, type IfProps } from './If';
 
 function prepare(predicate: IfProps['predicate']) {
   return render(<If predicate={predicate}>a</If>);

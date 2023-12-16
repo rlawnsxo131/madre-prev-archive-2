@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import { type Preview } from '@storybook/react';
 import { addons } from '@storybook/preview-api';
 
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';

@@ -1,4 +1,4 @@
-import type { MetaFunction } from '@remix-run/node';
+import { type MetaFunction } from '@remix-run/node';
 
 import { RootPageSection } from './components/RootPageSection/RootPageSection';
 import styles from './route.module.scss';

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import type { DependencyList } from 'react';
+import { type DependencyList } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useRefEffect } from './useRefEffect';

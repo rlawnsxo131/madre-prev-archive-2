@@ -1,12 +1,25 @@
+@use '../../../../styles/variables';
+
 .DropdownMenuContent {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  list-style: none;
-  min-width: 8rem;
-  padding: 0;
-  margin: 0;
-  border-radius: 0.25rem;
-  isolation: isolate;
-  border: 1px solid black;
+  position: relative;
+  width: 1px;
+  color: var(variables.$color-font1);
+  background-color: var(variables.$color-bg-element1);
+  z-index: variables.$zIndex-dropdown;
+
+  .items {
+    position: absolute;
+    top: 0.125rem;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    min-width: 8rem;
+    padding: 0;
+    margin: 0;
+    isolation: isolate;
+    border-radius: 0.5rem;
+    background-color: var(variables.$color-bg-element1);
+    border: 1px solid var(variables.$color-border1);
+  }
 }

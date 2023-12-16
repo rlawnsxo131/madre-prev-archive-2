@@ -1,6 +1,10 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import type { ComponentProps, MouseEvent, PropsWithoutRef } from 'react';
-import { forwardRef } from 'react';
+import {
+  type ComponentProps,
+  forwardRef,
+  type MouseEvent,
+  type PropsWithoutRef,
+} from 'react';
 
 import styles from './Overlay.module.scss';
 

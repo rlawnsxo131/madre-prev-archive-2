@@ -7,16 +7,16 @@
   cursor: pointer;
 
   &:nth-of-type(1) {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
   }
 
   &:nth-last-of-type(1) {
-    border-bottom-left-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
   }
 
   &:hover {
-    background-color: var(variables.$color-blue40);
+    background-color: var(variables.$color-bg-hover-element1);
   }
 }
