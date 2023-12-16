@@ -18,6 +18,7 @@ type Story = Omit<StoryObj<typeof meta>, 'args'>;
 export const Default: Story = {
   render: () => (
     <>
+      <div style={{ color: '#000000' }}>asdf</div>
       <DropdownMenu>
         {({ visible, close, toggle }) => (
           <DropdownMenu.Root touchOutside={close}>
