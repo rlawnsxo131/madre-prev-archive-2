@@ -1,6 +1,6 @@
 import styles from './RootPageSection.module.scss';
 
-type RootPageSectionProps = {
+type Props = {
   imageProps: {
     src: string;
     alt: string;
@@ -11,10 +11,7 @@ type RootPageSectionProps = {
   };
 };
 
-export function RootPageSection({
-  imageProps,
-  descProps,
-}: RootPageSectionProps) {
+export function RootPageSection({ imageProps, descProps }: Props) {
   return (
     <section className={styles.section}>
       <div className={styles.image}>

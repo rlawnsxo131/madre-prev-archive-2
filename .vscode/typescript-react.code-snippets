@@ -20,10 +20,22 @@
     "body": [
       "import styles from './${TM_FILENAME_BASE}.module.scss';"
       "",
-      "type ${TM_FILENAME_BASE}Props = {};",
+      "type Props = {};",
+      "",
+      "export function ${TM_FILENAME_BASE}(props: Props) {",
+      "  return <div className={styles.${TM_FILENAME_BASE}}></div>;",
+      "}"
+    ],
+  },
+  "SharedFunctionComponent": {
+    "prefix": "sfc",
+    "body": [
+      "import styles from './${TM_FILENAME_BASE}.module.scss';"
+      "",
+      "export type ${TM_FILENAME_BASE}Props = {};",
       "",
       "export function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
-      "  return <div className={styles.container}></div>;",
+      "  return <div className={styles.${TM_FILENAME_BASE}}></div>;",
       "}"
     ],
   },

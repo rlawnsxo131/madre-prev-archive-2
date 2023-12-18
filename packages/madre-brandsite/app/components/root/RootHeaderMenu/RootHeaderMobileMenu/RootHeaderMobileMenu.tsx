@@ -7,9 +7,7 @@ import { DISPLAY_ROUTES } from '@/routes';
 import linkStyles from '../RootHeaderLink.module.scss';
 import styles from './RootHeaderMobileMenu.module.scss';
 
-type RootHeaderMobileMenuProps = {};
-
-export function RootHeaderMobileMenu(props: RootHeaderMobileMenuProps) {
+export function RootHeaderMobileMenu() {
   return (
     <div className={styles.RootHeaderMobileMenu}>
       <ThemeButton />

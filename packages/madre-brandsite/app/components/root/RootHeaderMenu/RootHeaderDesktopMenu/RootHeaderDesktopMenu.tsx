@@ -7,9 +7,7 @@ import { DISPLAY_ROUTES } from '@/routes';
 import linkStyles from '../RootHeaderLink.module.scss';
 import styles from './RootHeaderDesktopMenu.module.scss';
 
-type RootHeaderDesktopMenuProps = {};
-
-export function RootHeaderDesktopMenu(props: RootHeaderDesktopMenuProps) {
+export function RootHeaderDesktopMenu() {
   return (
     <div className={styles.RootHeaderDesktopMenu}>
       <ul className={styles.list}>
