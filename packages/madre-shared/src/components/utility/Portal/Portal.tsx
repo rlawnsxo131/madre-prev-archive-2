@@ -1,5 +1,4 @@
 import {
-  type Attributes,
   type ComponentType,
   forwardRef,
   type HTMLAttributes,
@@ -14,10 +13,10 @@ function getContainer(container: PortalProps['container']) {
 
 export type PortalProps = PropsWithoutRef<{
   children?: ReactNode;
-  key?: Attributes['key'];
+  container?: Element | (() => Element | null) | null;
+  key?: string | null;
   className?: HTMLAttributes<HTMLElement>['className'];
   style?: HTMLAttributes<HTMLElement>['style'];
-  container?: Element | (() => Element | null) | null;
 }>;
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(function (
@@ -27,10 +26,11 @@ export const Portal = forwardRef<HTMLDivElement, PortalProps>(function (
   const mountNode = getContainer(container) || document.body;
 
   return createPortal(
-    <div ref={ref} key={key} className={className} style={style}>
+    <div ref={ref} className={className} style={style}>
       {children}
     </div>,
     mountNode,
+    key,
   );
 });
 

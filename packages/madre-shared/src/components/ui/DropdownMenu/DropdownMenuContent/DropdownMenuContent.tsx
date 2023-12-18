@@ -20,11 +20,11 @@ type PortalProps =
 
 type DropdownMenuContentProps = PortalProps &
   PropsWithChildren<{
-    className?: HTMLAttributes<HTMLUListElement>['className'];
-    style?: HTMLAttributes<HTMLUListElement>['style'];
     visible: boolean;
     align?: 'left' | 'right';
     duration?: number;
+    className?: HTMLAttributes<HTMLUListElement>['className'];
+    style?: HTMLAttributes<HTMLUListElement>['style'];
   }>;
 
 export function DropdownMenuContent({
