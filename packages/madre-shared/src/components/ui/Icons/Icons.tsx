@@ -1,11 +1,9 @@
-import { type SVGAttributes } from 'react';
+import { type SVGProps } from 'react';
 
 import { CrescentMoonIcon, SunIcon } from './IconComponents';
 
-export type IconsProps = {
+export type IconsProps = SVGProps<SVGSVGElement> & {
   type: 'sun' | 'crescent-moon';
-  className?: SVGAttributes<SVGAElement>['className'];
-  style?: SVGAttributes<SVGAElement>['style'];
 };
 
 export function Icons({ type, ...props }: IconsProps) {

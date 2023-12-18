@@ -29,13 +29,13 @@ type DropdownMenuContentProps = PortalProps &
 
 export function DropdownMenuContent({
   children,
-  className,
-  style,
   visible,
   align = 'left',
   duration = 0.15,
   isPortal,
   portalProps,
+  className,
+  style,
 }: DropdownMenuContentProps) {
   const Comp = (
     <AnimatePresence>

@@ -34,6 +34,7 @@ export const Button: ButtonComponent = forwardRef(function <
     radius = 'medium',
     size = 'medium',
     fullWidth = false,
+    className,
     ...props
   }: ButtonProps<E>,
   ref?: ComponentPropsWithRef<E>['ref'],
@@ -52,6 +53,7 @@ export const Button: ButtonComponent = forwardRef(function <
         {
           [styles['full-width']]: fullWidth,
         },
+        className,
       )}
       {...props}
     >

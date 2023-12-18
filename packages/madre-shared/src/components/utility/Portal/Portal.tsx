@@ -20,7 +20,7 @@ export type PortalProps = PropsWithoutRef<{
 }>;
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(function (
-  { children, key, className, style, container },
+  { children, key, container, className, style },
   ref,
 ) {
   const mountNode = getContainer(container) || document.body;
