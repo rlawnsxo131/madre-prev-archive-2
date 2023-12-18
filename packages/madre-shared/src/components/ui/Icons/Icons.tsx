@@ -4,7 +4,7 @@ import { CrescentMoonIcon, SunIcon } from './IconComponents';
 
 export type IconsProps = {
   type: 'sun' | 'crescent-moon';
-  className?: string;
+  className?: SVGAttributes<SVGAElement>['className'];
   style?: SVGAttributes<SVGAElement>['style'];
 };
 

@@ -20,22 +20,22 @@ type PortalProps =
 
 type DropdownMenuContentProps = PortalProps &
   PropsWithChildren<{
+    className?: HTMLAttributes<HTMLUListElement>['className'];
+    style?: HTMLAttributes<HTMLUListElement>['style'];
     visible: boolean;
     align?: 'left' | 'right';
     duration?: number;
-    className?: HTMLAttributes<HTMLUListElement>['className'];
-    style?: HTMLAttributes<HTMLUListElement>['style'];
   }>;
 
 export function DropdownMenuContent({
   children,
+  className,
+  style,
   visible,
   align = 'left',
   duration = 0.15,
   isPortal,
   portalProps,
-  className,
-  style,
 }: DropdownMenuContentProps) {
   const Comp = (
     <AnimatePresence>
