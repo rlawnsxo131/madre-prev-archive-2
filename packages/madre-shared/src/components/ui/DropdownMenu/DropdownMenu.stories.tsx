@@ -26,6 +26,7 @@ export const Default: Story = {
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               visible={visible}
+              align="left"
               isPortal
               portalProps={{
                 container: () => document.querySelector('.dropdown-menu'),

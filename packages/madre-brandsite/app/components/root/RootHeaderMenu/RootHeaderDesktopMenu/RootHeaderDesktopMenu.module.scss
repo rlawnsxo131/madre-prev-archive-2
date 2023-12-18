@@ -1,17 +1,23 @@
 @use '@madre/shared/variables.scss';
+@use '@madre/shared/mixins.scss';
 
-.container {
+.RootHeaderDesktopMenu {
   display: none;
-  list-style: none;
-  margin-right: 2rem;
+  gap: 2.5rem;
+
+  .list {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    @include mixins.reset-ul;
+
+    .item {
+      padding: 0.5rem;
+    }
+  }
 
   @media (min-width: variables.$breakpoint-sm) {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
   }
-}
-
-.item {
-  padding: 0.5rem;
 }

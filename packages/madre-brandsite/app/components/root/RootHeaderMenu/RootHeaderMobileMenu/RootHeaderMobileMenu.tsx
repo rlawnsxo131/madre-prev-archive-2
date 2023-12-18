@@ -1,4 +1,4 @@
-import { DropdownMenu } from '@madre/shared';
+import { Button, DropdownMenu, Icons, ThemeButton } from '@madre/shared';
 import { NavLink } from '@remix-run/react';
 import classNames from 'classnames';
 
@@ -12,11 +12,14 @@ type RootHeaderMobileMenuProps = {};
 export function RootHeaderMobileMenu(props: RootHeaderMobileMenuProps) {
   return (
     <div className={styles.RootHeaderMobileMenu}>
+      <ThemeButton />
       <DropdownMenu>
         {({ visible, close, toggle }) => (
-          <DropdownMenu.Root touchOutside={close}>
+          <DropdownMenu.Root onClickOutside={close}>
             <DropdownMenu.Trigger>
-              <button onClick={toggle}>메뉴열기</button>
+              <button className={styles['theme-button']} onClick={toggle}>
+                <Icons type="menu" />
+              </button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content visible={visible} align="right">
               {Object.entries(DISPLAY_ROUTES).map(([_, value]) => (
@@ -35,6 +38,9 @@ export function RootHeaderMobileMenu(props: RootHeaderMobileMenuProps) {
                   </NavLink>
                 </DropdownMenu.Item>
               ))}
+              <DropdownMenu.Item>
+                <Button onClick={close}>시작하기</Button>
+              </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         )}

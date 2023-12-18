@@ -1,4 +1,4 @@
-import { Button } from '@madre/shared';
+import { Button, ThemeButton } from '@madre/shared';
 import { NavLink } from '@remix-run/react';
 import classNames from 'classnames';
 
@@ -11,25 +11,28 @@ type RootHeaderDesktopMenuProps = {};
 
 export function RootHeaderDesktopMenu(props: RootHeaderDesktopMenuProps) {
   return (
-    <ul className={styles.container}>
-      {Object.entries(DISPLAY_ROUTES).map(([_, value]) => (
-        <li className={styles.item} key={value.path}>
-          <NavLink
-            to={value.path}
-            className={({ isActive, isPending }) =>
-              classNames(linkStyles.link, {
-                [linkStyles.active]: isActive,
-                [linkStyles.pending]: isPending,
-              })
-            }
-          >
-            {value.title}
-          </NavLink>
+    <div className={styles.RootHeaderDesktopMenu}>
+      <ul className={styles.list}>
+        {Object.entries(DISPLAY_ROUTES).map(([_, value]) => (
+          <li className={styles.item} key={value.path}>
+            <NavLink
+              to={value.path}
+              className={({ isActive, isPending }) =>
+                classNames(linkStyles.link, {
+                  [linkStyles.active]: isActive,
+                  [linkStyles.pending]: isPending,
+                })
+              }
+            >
+              {value.title}
+            </NavLink>
+          </li>
+        ))}
+        <li className={styles.item}>
+          <Button>시작하기</Button>
         </li>
-      ))}
-      <li className={styles.item}>
-        <Button>시작하기</Button>
-      </li>
-    </ul>
+      </ul>
+      <ThemeButton />
+    </div>
   );
 }

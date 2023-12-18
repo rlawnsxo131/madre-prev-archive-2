@@ -40,10 +40,16 @@
       "};"
     ],
   },
-  "ScssUseVariablesFile": {
-    "prefix": "uv",
+  "ScssUseVariables": {
+    "prefix": "var",
     "body": [
       "@use '@madre/shared/variables.scss';"
+    ],
+  },
+  "ScssUseMixins": {
+    "prefix": "mix",
+    "body": [
+      "@use '@madre/shared/mixins.scss';"
     ],
   }
 }

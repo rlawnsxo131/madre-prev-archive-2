@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 
-import { Icons } from '../../../../components/ui/Icons';
+import { Icons, type IconsProps } from '../../../../components/ui/Icons';
 import { type Theme, ThemeModel } from '../../models';
 import { ThemeService } from '../../services';
 import styles from './ThemeButton.module.scss';
@@ -18,10 +18,12 @@ const iconMap = {
 
 export type ThemeButtonProps = PropsWithoutRef<
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
->;
+> & {
+  iconTheme?: IconsProps['theme'];
+};
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
-  function (props, ref) {
+  function ({ iconTheme = 'default', ...props }, ref) {
     const [theme, setTheme] = useState<Theme>(ThemeModel.themes.light);
 
     const onToggle = () => setTheme(ThemeService.toggle());
@@ -43,7 +45,7 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
         onClick={onToggle}
         {...props}
       >
-        <Icons className={styles[theme]} type={iconMap[theme]} />
+        <Icons theme={iconTheme} type={iconMap[theme]} />
       </button>
     );
   },

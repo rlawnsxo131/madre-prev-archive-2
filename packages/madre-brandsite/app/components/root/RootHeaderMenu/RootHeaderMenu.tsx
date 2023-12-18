@@ -1,5 +1,3 @@
-import { ThemeButton } from '@madre/shared';
-
 import { RootHeaderDesktopMenu } from './RootHeaderDesktopMenu/RootHeaderDesktopMenu';
 import styles from './RootHeaderMenu.module.scss';
 import { RootHeaderMobileMenu } from './RootHeaderMobileMenu/RootHeaderMobileMenu';
@@ -11,7 +9,6 @@ export function RootHeaderMenu(props: RootHeaderMenuProps) {
     <div className={styles.RootHeaderMenu}>
       <RootHeaderDesktopMenu />
       <RootHeaderMobileMenu />
-      <ThemeButton />
     </div>
   );
 }

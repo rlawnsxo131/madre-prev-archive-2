@@ -7,7 +7,8 @@ $zIndex-dropdown: 15;
 $breakpoint-xxs: 320px;
 $breakpoint-xs: 375px;
 $breakpoint-s: 425px;
-$breakpoint-sm: 768px;
+$breakpoint-sm: 640px;
+$breakpoint-sl: 768px;
 $breakpoint-m: 800px;
 $breakpoint-lm: 820px;
 $breakpoint-l: 1024px;
@@ -27,8 +28,11 @@ $color-font2: --color-font2;
 
 $color-border1: --color-border1;
 
+$color-svg-fill1: --color-svg-fill1;
+
 $color-primary1: --color-primary1;
 $color-primary2: --color-primary2;
+$color-warn1: --color-warn1;
 
 // default theme color
 // scale link: https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale
@@ -92,8 +96,11 @@ $theme-map-light: (
 
   $color-border1: #e8e8e8,
 
+  $color-svg-fill1: #000000,
+
   $color-primary1: #0090ff,
   $color-primary2: #0588f0,
+  $color-warn1: #e5484d,
 
   // default theme color
   $color-gray10: #fcfcfc,
@@ -149,8 +156,11 @@ $theme-map-dark: (
 
   $color-border1: #3a3a3a,
 
+  $color-svg-fill1: #ffffff,
+
   $color-primary1: #0090ff,
   $color-primary2: #3b9eff,
+  $color-warn1: #e5484d,
 
   // default theme color
   $color-gray10: #111111,

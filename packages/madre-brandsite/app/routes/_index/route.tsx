@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 export default function RootPage() {
   return (
-    <div className={styles.container}>
+    <div className={styles.RootPage}>
       <RootPageSection
         imageProps={{
           src: '/svg/undraw_environmental_study_re_bg_1.svg',

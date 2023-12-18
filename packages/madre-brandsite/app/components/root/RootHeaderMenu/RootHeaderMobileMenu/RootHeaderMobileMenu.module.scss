@@ -1,9 +1,22 @@
 @use '@madre/shared/variables.scss';
+@use '@madre/shared/mixins.scss';
 
 .RootHeaderMobileMenu {
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   @media (min-width: variables.$breakpoint-sm) {
     display: none;
+  }
+
+  .theme-button {
+    @include mixins.reset-button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.725rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
   }
 }

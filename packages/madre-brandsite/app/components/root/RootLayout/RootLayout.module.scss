@@ -1,55 +1,56 @@
 @use '@madre/shared/variables.scss';
 
-.container {
+.RootLayout {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 5rem;
-}
 
-.header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3.5rem;
-  display: flex;
-  justify-content: center;
-  background-color: var(variables.$color-bg1);
-  z-index: variables.$zIndex-header;
-
-  .header-content {
-    width: 93%;
+  .header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3.5rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    background-color: var(variables.$color-bg1);
+    z-index: variables.$zIndex-header;
 
-    .brand-link {
-      color: var(variables.$color-gray120);
-      font-size: 1.25rem;
-      font-weight: 500;
+    .header-content {
+      width: 93%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .brand-link {
+        color: var(variables.$color-gray120);
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+
+      @media (min-width: variables.$breakpoint-l) {
+        width: 768px;
+      }
+
+      @media (min-width: variables.$breakpoint-xl) {
+        width: 1200px;
+      }
     }
+  }
+
+  .main {
+    width: 93%;
+    padding-top: 3.5rem;
 
     @media (min-width: variables.$breakpoint-l) {
       width: 768px;
+      padding-top: 4rem;
     }
 
     @media (min-width: variables.$breakpoint-xl) {
-      width: 1200px;
+      width: 1024px;
     }
-  }
-}
-
-.main {
-  width: 93%;
-  padding-top: 3.5rem;
-
-  @media (min-width: variables.$breakpoint-l) {
-    width: 768px;
-    padding-top: 4rem;
-  }
-
-  @media (min-width: variables.$breakpoint-xl) {
-    width: 1024px;
   }
 }

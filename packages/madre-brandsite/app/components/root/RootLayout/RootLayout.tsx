@@ -6,7 +6,7 @@ import { ROUTES } from '@/routes';
 import styles from './RootLayout.module.scss';
 
 function Container({ children }: PropsWithChildren) {
-  return <div className={styles.container}>{children}</div>;
+  return <div className={styles.RootLayout}>{children}</div>;
 }
 
 function Header({ Menu }: { Menu: ReactNode }) {
