@@ -20,7 +20,7 @@ export const Default: Story = {
     <>
       <DropdownMenu>
         {({ visible, close, toggle }) => (
-          <DropdownMenu.Root touchOutside={close}>
+          <DropdownMenu.Root onClickOutside={close}>
             <DropdownMenu.Trigger>
               <button onClick={toggle}>메뉴열기</button>
             </DropdownMenu.Trigger>

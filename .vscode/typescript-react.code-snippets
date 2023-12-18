@@ -41,7 +41,7 @@
     ],
   },
   "ScssUseVariablesFile": {
-    "prefix": "sc",
+    "prefix": "uv",
     "body": [
       "@use '@madre/shared/variables.scss';"
     ],

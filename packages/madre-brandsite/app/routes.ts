@@ -12,3 +12,9 @@ export const ROUTES = {
     title: '문의',
   },
 };
+
+export const DISPLAY_ROUTES = Object.fromEntries(
+  Object.entries(ROUTES).filter(
+    ([_, value]) => value.path !== ROUTES['root'].path,
+  ),
+);

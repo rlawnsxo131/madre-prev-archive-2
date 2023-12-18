@@ -1,5 +1,6 @@
+import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
+import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import {
   Portal,
@@ -20,25 +21,29 @@ type PortalProps =
 type DropdownMenuContentProps = PortalProps &
   PropsWithChildren<{
     visible: boolean;
+    align?: 'left' | 'right';
     duration?: number;
+    className?: HTMLAttributes<HTMLUListElement>['className'];
+    style?: HTMLAttributes<HTMLUListElement>['style'];
   }>;
 
-/**
- * @TODO Portal
- */
 export function DropdownMenuContent({
   children,
   visible,
+  align = 'left',
   duration = 0.15,
   isPortal,
   portalProps,
+  className,
+  style,
 }: DropdownMenuContentProps) {
   const Comp = (
     <AnimatePresence>
       {visible && (
         <div className={styles.DropdownMenuContent}>
           <motion.ul
-            className={styles.items}
+            className={classNames(styles.items, styles[align], className)}
+            style={style}
             initial={{
               translateY: 0,
               opacity: 0,

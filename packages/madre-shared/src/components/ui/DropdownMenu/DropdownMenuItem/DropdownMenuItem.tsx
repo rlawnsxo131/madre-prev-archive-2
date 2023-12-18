@@ -1,9 +1,18 @@
-import { type PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import styles from './DropdownMenuItem.module.scss';
 
-type DropdownMenuItemProps = PropsWithChildren;
+type DropdownMenuItemProps = HTMLAttributes<HTMLLIElement> & PropsWithChildren;
 
-export function DropdownMenuItem({ children }: DropdownMenuItemProps) {
-  return <li className={styles.DropdownMenuItem}>{children}</li>;
+export function DropdownMenuItem({
+  children,
+  className,
+  ...props
+}: DropdownMenuItemProps) {
+  return (
+    <li className={classNames(styles.DropdownMenuItem, className)} {...props}>
+      {children}
+    </li>
+  );
 }

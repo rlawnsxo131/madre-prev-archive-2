@@ -2,7 +2,6 @@
 
 .DropdownMenuContent {
   position: relative;
-  width: 1px;
   color: var(variables.$color-font2);
   background-color: var(variables.$color-bg-element1);
   z-index: variables.$zIndex-dropdown;
@@ -10,7 +9,6 @@
   .items {
     position: absolute;
     top: 0.125rem;
-    left: 0;
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -21,5 +19,13 @@
     border-radius: 0.5rem;
     background-color: var(variables.$color-bg-element1);
     border: 1px solid var(variables.$color-border1);
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
   }
 }

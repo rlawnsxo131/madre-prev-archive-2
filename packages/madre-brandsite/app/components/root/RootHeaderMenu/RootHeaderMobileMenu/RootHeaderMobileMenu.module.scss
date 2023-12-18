@@ -1,6 +1,6 @@
 @use '@madre/shared/variables.scss';
 
-.container {
+.RootHeaderMobileMenu {
   display: flex;
 
   @media (min-width: variables.$breakpoint-sm) {

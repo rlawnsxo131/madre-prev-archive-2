@@ -1,7 +1,19 @@
-import { type PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import styles from './DropdownMenuTrigger.module.scss';
 
-export function DropdownMenuTrigger({ children }: PropsWithChildren) {
-  return <div className={styles.DropdownMenuTrigger}>{children}</div>;
+export function DropdownMenuTrigger({
+  children,
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & PropsWithChildren) {
+  return (
+    <div
+      className={classNames(styles.DropdownMenuTrigger, className)}
+      {...props}
+    >
+      {children}
+    </div>
+  );
 }
