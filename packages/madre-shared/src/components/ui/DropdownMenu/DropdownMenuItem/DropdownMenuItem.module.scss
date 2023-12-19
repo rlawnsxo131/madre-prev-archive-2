@@ -2,10 +2,16 @@
 
 .DropdownMenuItem {
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
   cursor: pointer;
   border-radius: 0.5rem;
+
+  & > * {
+    width: 100%;
+    padding: 0.5rem;
+  }
 
   &:hover {
     background-color: var(variables.$color-bg-hover-element1);

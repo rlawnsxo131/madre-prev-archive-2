@@ -32,11 +32,21 @@ export const Default: Story = {
                 container: () => document.querySelector('.dropdown-menu'),
               }}
             >
-              <DropdownMenu.Item>item1</DropdownMenu.Item>
-              <DropdownMenu.Item>item2</DropdownMenu.Item>
-              <DropdownMenu.Item>item3</DropdownMenu.Item>
-              <DropdownMenu.Item>item4</DropdownMenu.Item>
-              <DropdownMenu.Item>item5</DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>item1</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>item2</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>item3</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>item4</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item>
+                <span>item5</span>
+              </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
         )}
