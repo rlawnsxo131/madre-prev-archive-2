@@ -1,4 +1,4 @@
-import { VisibleContextBuilder } from '../../../context/builder/VisibleContextBuilder';
+import { VisibleContextBuilder } from '../../../contexts/builder/VisibleContextBuilder';
 import { DropdownMenuContent } from './DropdownMenuContent/DropdownMenuContent';
 import { DropdownMenuItem } from './DropdownMenuItem/DropdownMenuItem';
 import { DropdownMenuRoot } from './DropdownMenuRoot/DropdownMenuRoot';

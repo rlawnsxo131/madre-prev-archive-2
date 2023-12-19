@@ -27,7 +27,7 @@ export * from './hooks/useRefEffect';
 /**
  * context
  */
-export * from './context/builder';
+export * from './contexts/builder';
 
 /**
  * lib

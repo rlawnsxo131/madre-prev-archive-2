@@ -1,4 +1,4 @@
-import { VisibleContextBuilder } from '../../../context/builder';
+import { VisibleContextBuilder } from '../../../contexts/builder';
 import styles from './Drawer.module.scss';
 
 export type DrawerProps = {};
