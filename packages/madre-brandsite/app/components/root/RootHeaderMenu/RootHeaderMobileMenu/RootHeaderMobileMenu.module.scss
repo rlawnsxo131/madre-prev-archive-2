@@ -6,10 +6,6 @@
   justify-content: center;
   align-items: center;
 
-  @media (min-width: variables.$breakpoint-sm) {
-    display: none;
-  }
-
   .theme-button {
     @include mixins.reset-button;
     display: flex;
@@ -18,5 +14,9 @@
     padding: 0.725rem;
     margin-left: 0.5rem;
     cursor: pointer;
+  }
+
+  @media (min-width: variables.$breakpoint-sm) {
+    display: none;
   }
 }

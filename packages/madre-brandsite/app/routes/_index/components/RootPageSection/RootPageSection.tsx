@@ -13,7 +13,7 @@ type Props = {
 
 export function RootPageSection({ imageProps, descProps }: Props) {
   return (
-    <section className={styles.section}>
+    <section className={styles.RootPageSection}>
       <div className={styles.image}>
         <img {...imageProps} />
       </div>
