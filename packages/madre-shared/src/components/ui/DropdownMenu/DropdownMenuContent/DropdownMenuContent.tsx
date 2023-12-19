@@ -37,7 +37,7 @@ export function DropdownMenuContent({
   className,
   style,
 }: DropdownMenuContentProps) {
-  const Comp = (
+  const Component = (
     <AnimatePresence>
       {visible && (
         <div className={styles.DropdownMenuContent}>
@@ -69,8 +69,8 @@ export function DropdownMenuContent({
   );
 
   if (isPortal) {
-    return <Portal {...portalProps}>{Comp}</Portal>;
+    return <Portal {...portalProps}>{Component}</Portal>;
   }
 
-  return Comp;
+  return Component;
 }

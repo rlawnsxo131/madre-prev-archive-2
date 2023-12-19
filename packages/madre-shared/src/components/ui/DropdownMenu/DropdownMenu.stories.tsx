@@ -32,7 +32,6 @@ export const Default: Story = {
                 container: () => document.querySelector('.dropdown-menu'),
               }}
             >
-              {/* @TODO 기본 사이즈 어떻게 잡을까? */}
               <DropdownMenu.Item>item1</DropdownMenu.Item>
               <DropdownMenu.Item>item2</DropdownMenu.Item>
               <DropdownMenu.Item>item3</DropdownMenu.Item>
