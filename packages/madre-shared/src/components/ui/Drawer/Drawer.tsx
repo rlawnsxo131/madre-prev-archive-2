@@ -1,9 +1,9 @@
-import { VisibleContextBuilder } from '../../../contexts/builder';
+import { VisibleContextGenerator } from '../../../contexts/generator';
 import styles from './Drawer.module.scss';
 
 export type DrawerProps = {};
 
-const VisibleContextProvider = VisibleContextBuilder.create();
+const VisibleContextProvider = VisibleContextGenerator.excute();
 
 export function Drawer(props: DrawerProps) {
   return (

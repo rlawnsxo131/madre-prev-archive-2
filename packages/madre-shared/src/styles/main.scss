@@ -23,8 +23,6 @@ body,
 }
 
 /* theme */
-html,
-body,
 :root {
   @include mixins.spread-map(variables.$theme-map-base);
 

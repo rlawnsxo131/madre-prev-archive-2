@@ -5,7 +5,7 @@ import { ROUTES } from '@/routes';
 
 import styles from './RootLayout.module.scss';
 
-function Container({ children }: PropsWithChildren) {
+function Root({ children }: PropsWithChildren) {
   return <div className={styles.RootLayout}>{children}</div>;
 }
 
@@ -26,7 +26,7 @@ function Main({ children }: PropsWithChildren) {
   return <main className={styles.main}>{children}</main>;
 }
 
-export const RootLayout = Object.assign(Container, {
+export const RootLayout = Object.assign(Root, {
   Header,
   Main,
 });

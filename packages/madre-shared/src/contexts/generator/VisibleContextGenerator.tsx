@@ -18,25 +18,25 @@ export type VisibleContextValue = {
 
 export type VisibleContext = ContextType<Context<VisibleContextValue>>;
 
-export type CreateVisibleContextElement = (
+export type VisibleContextElement = (
   props: NonNullable<VisibleContext>,
 ) => JSX.Element;
 
-class _VisibleContextBuilder {
-  #Context: Context<VisibleContextValue>;
+class _VisibleContextGenerator {
+  #context: Context<VisibleContextValue>;
 
   constructor() {
-    this.#Context = createContext<VisibleContextValue>(null);
+    this.#context = createContext<VisibleContextValue>(null);
   }
 
-  create() {
+  excute() {
     const Provider = this.#createProvider();
     const Controller = this.#createController();
 
     return function ({
       children: Element,
     }: {
-      children: CreateVisibleContextElement;
+      children: VisibleContextElement;
     }) {
       return (
         <Provider>
@@ -47,7 +47,7 @@ class _VisibleContextBuilder {
   }
 
   #createProvider() {
-    const Context = this.#Context;
+    const Context = this.#context;
 
     return function ({ children }: { children: ReactNode }) {
       const { bool, actions } = useBoolState();
@@ -69,12 +69,12 @@ class _VisibleContextBuilder {
   }
 
   #createController() {
-    const Context = this.#Context;
+    const Context = this.#context;
 
     return function ({
       children: Element,
     }: {
-      children: CreateVisibleContextElement;
+      children: VisibleContextElement;
     }) {
       const context = useContext(Context);
 
@@ -89,4 +89,4 @@ class _VisibleContextBuilder {
   }
 }
 
-export const VisibleContextBuilder = new _VisibleContextBuilder();
+export const VisibleContextGenerator = new _VisibleContextGenerator();
