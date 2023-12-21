@@ -58,6 +58,12 @@
       "@use '@madre/shared/variables.scss';"
     ],
   },
+  "ScssUseCurrentProjectVariables": {
+    "prefix": "pvar",
+    "body": [
+      "@use '@/styles/variables.scss'; as projectVariables"
+    ]
+  },
   "ScssUseMixins": {
     "prefix": "mix",
     "body": [
