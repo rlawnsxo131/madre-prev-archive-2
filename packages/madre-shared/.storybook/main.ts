@@ -19,6 +19,7 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
+      assetsInclude: ['/sb-preview/runtime.js'],
       css: {
         preprocessorOptions: {
           scss: {

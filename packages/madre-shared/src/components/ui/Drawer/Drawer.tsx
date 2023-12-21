@@ -1,19 +1,12 @@
-import { VisibleContextGenerator } from '../../../contexts/generator';
-import styles from './Drawer.module.scss';
+import { createVisbleContextProvider } from '../../../contexts/visibleContext';
+import { DrawerContent } from './DrawerContent/DrawerContent';
+import { DrawerItem } from './DrawerItem/DrawerItem';
+import { DrawerRoot } from './DrawerRoot/DrawerRoot';
+import { DrawerTrigger } from './DrawerTrigger/DrawerTrigger';
 
-export type DrawerProps = {};
-
-const VisibleContextProvider = VisibleContextGenerator.excute();
-
-export function Drawer(props: DrawerProps) {
-  return (
-    <VisibleContextProvider>
-      {({ visible, toggle }) => (
-        <div className={styles.Drawer}>
-          <button onClick={toggle}>click</button>
-          {`${visible}`}
-        </div>
-      )}
-    </VisibleContextProvider>
-  );
-}
+export const Drawer = Object.assign(createVisbleContextProvider(), {
+  Root: DrawerRoot,
+  Trigger: DrawerTrigger,
+  Content: DrawerContent,
+  Item: DrawerItem,
+});

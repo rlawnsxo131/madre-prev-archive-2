@@ -3,13 +3,11 @@ import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import styles from './DropdownMenuItem.module.scss';
 
-type DropdownMenuItemProps = HTMLAttributes<HTMLLIElement> & PropsWithChildren;
-
 export function DropdownMenuItem({
   children,
   className,
   ...props
-}: DropdownMenuItemProps) {
+}: HTMLAttributes<HTMLLIElement> & PropsWithChildren) {
   return (
     <li className={classNames(styles.DropdownMenuItem, className)} {...props}>
       {children}

@@ -18,7 +18,7 @@ export function useBoolState() {
         setBool((prev) => !prev);
       },
     }),
-    [],
+    [setBool],
   );
 
   return {

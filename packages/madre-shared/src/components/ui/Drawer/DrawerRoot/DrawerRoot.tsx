@@ -2,25 +2,25 @@ import classNames from 'classnames';
 import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import { useOnClickOutsideRef } from '../../../../hooks/useOnClickOutsideRef';
-import styles from './DropdownMenuRoot.module.scss';
+import styles from './DrawerRoot.module.scss';
 
-type DropdownMenuRootProps = HTMLAttributes<HTMLDivElement> &
+type DrawerRootProps = HTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
     onClickOutside: () => void;
   }>;
 
-export function DropdownMenuRoot({
+export function DrawerRoot({
   children,
   onClickOutside,
   className,
   ...props
-}: DropdownMenuRootProps) {
+}: DrawerRootProps) {
   const ref = useOnClickOutsideRef<HTMLDivElement>(onClickOutside);
 
   return (
     <div
       ref={ref}
-      className={classNames(styles.DropdownMenu, className)}
+      className={classNames(styles.DrawerRoot, className)}
       {...props}
     >
       {children}

@@ -1,0 +1,10 @@
+.DrawerItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+
+  & > * {
+    padding: 0.5rem;
+  }
+}

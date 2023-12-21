@@ -33,8 +33,8 @@ const preview: Preview = {
         <div
           style={{
             width: '100%',
-            padding: '1rem',
             minHeight: '320px',
+            padding: '1rem',
           }}
         >
           <Story />

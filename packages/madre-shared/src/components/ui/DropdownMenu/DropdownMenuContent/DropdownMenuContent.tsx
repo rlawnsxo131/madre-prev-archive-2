@@ -24,7 +24,6 @@ type DropdownMenuContentProps = PortalProps &
     align?: 'left' | 'right';
     duration?: number;
     className?: HTMLAttributes<HTMLUListElement>['className'];
-    style?: HTMLAttributes<HTMLUListElement>['style'];
   }>;
 
 export function DropdownMenuContent({
@@ -35,7 +34,6 @@ export function DropdownMenuContent({
   isPortal,
   portalProps,
   className,
-  style,
 }: DropdownMenuContentProps) {
   const Component = (
     <AnimatePresence>
@@ -43,7 +41,6 @@ export function DropdownMenuContent({
         <div className={styles.DropdownMenuContent}>
           <motion.ul
             className={classNames(styles.items, styles[align], className)}
-            style={style}
             initial={{
               translateY: 0,
               opacity: 0,
