@@ -8,7 +8,6 @@ export type DrawerContentProps = PropsWithChildren<{
   visible: boolean;
   duration?: number;
   className?: HTMLAttributes<HTMLUListElement>['className'];
-  style?: HTMLAttributes<HTMLUListElement>['style'];
 }>;
 
 export function DrawerContent({
