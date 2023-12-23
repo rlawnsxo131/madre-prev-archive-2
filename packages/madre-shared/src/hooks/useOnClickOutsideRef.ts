@@ -3,8 +3,8 @@ import { useRefEffect } from './useRefEffect';
 export function useOnClickOutsideRef<E extends HTMLElement = HTMLElement>(
   event: () => void,
 ) {
-  const ref = useRefEffect(
-    (el: E) => {
+  const ref = useRefEffect<E>(
+    (el) => {
       const handler = (e: MouseEvent) => {
         if (e.target && el.contains(e.target as Node)) {
           return;
