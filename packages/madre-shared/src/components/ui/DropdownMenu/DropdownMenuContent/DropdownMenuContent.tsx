@@ -8,23 +8,14 @@ import {
 } from '../../../utility/Portal';
 import styles from './DropdownMenuContent.module.scss';
 
-type PortalProps =
-  | {
-      isPortal?: never;
-      portalProps?: never;
-    }
-  | {
-      isPortal: true;
-      portalProps: Omit<_PortalProps, 'children'>;
-    };
-
-type DropdownMenuContentProps = PortalProps &
-  PropsWithChildren<{
-    visible: boolean;
-    align?: 'left' | 'right';
-    duration?: number;
-    className?: HTMLAttributes<HTMLUListElement>['className'];
-  }>;
+type DropdownMenuContentProps = PropsWithChildren<{
+  visible: boolean;
+  align?: 'left' | 'right';
+  duration?: number;
+  className?: HTMLAttributes<HTMLUListElement>['className'];
+  isPortal: true;
+  portalProps?: Omit<_PortalProps, 'children'>;
+}>;
 
 export function DropdownMenuContent({
   children,
