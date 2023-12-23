@@ -15,8 +15,9 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "types": ["@testing-library/jest-dom"],
-    "composite": true
+    "types": ["@testing-library/jest-dom"]
+    // @link: https://github.com/microsoft/TypeScript/issues/47663
+    // "composite": true
   },
   "include": ["src"]
 }
