@@ -1,4 +1,5 @@
 import {
+  type Context,
   type ContextType,
   createContext,
   type PropsWithChildren,
@@ -7,9 +8,19 @@ import {
 
 import { useBoolState } from '../hooks/useBoolState';
 
-export type VisibleContextType = ContextType<typeof VisibleContext>;
+export type VisibleContextType = Context<{
+  visible: boolean;
+  setVisible: (value: boolean) => void;
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+} | null>;
 
-const VisibleContext = createContext<{
+export type VisibleContextElement = (
+  props: NonNullable<ContextType<VisibleContextType>>,
+) => JSX.Element;
+
+const VisibleContext: VisibleContextType = createContext<{
   visible: boolean;
   setVisible: (value: boolean) => void;
   open: () => void;
@@ -34,10 +45,6 @@ function ContextProvider({ children }: PropsWithChildren) {
     </VisibleContext.Provider>
   );
 }
-
-export type VisibleContextElement = (
-  props: NonNullable<VisibleContextType>,
-) => JSX.Element;
 
 function ContextController({
   children: Element,
