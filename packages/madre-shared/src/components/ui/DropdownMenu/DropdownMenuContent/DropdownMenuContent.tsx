@@ -13,7 +13,7 @@ type DropdownMenuContentProps = PropsWithChildren<{
   align?: 'left' | 'right';
   duration?: number;
   className?: HTMLAttributes<HTMLUListElement>['className'];
-  isPortal: true;
+  isPortal?: boolean;
   portalProps?: Omit<_PortalProps, 'children'>;
 }>;
 
