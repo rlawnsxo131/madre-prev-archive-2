@@ -55,7 +55,7 @@ function ContextController({
   return <Element {...context} />;
 }
 
-export function createVisbleContextProvider() {
+export function createVisibleContextProvider() {
   return function ({ children: Element }: { children: VisibleContextElement }) {
     return (
       <ContextProvider>
