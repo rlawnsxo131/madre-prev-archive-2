@@ -11,22 +11,21 @@ function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;
 }
 
-export type PortalProps = PropsWithoutRef<{
-  children?: ReactNode;
-  container?: Element | (() => Element | null) | null;
-  key?: string | null;
-  className?: HTMLAttributes<HTMLElement>['className'];
-  style?: HTMLAttributes<HTMLElement>['style'];
-}>;
+export type PortalProps = HTMLAttributes<HTMLDivElement> &
+  PropsWithoutRef<{
+    children?: ReactNode;
+    container?: Element | (() => Element | null) | null;
+    key?: string | null;
+  }>;
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(function (
-  { children, key, container, className, style },
+  { children, key, container, ...props },
   ref,
 ) {
   const mountNode = getContainer(container) || document.body;
 
   return createPortal(
-    <div ref={ref} className={className} style={style}>
+    <div ref={ref} {...props}>
       {children}
     </div>,
     mountNode,
