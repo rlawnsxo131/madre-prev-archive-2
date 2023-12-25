@@ -21,12 +21,12 @@ export function Icons({
   className,
   ...props
 }: IconsProps) {
-  const _className = classNames(styles.Icons, styles[theme], className);
   const Component = iconMap[type];
 
-  if (Component) {
-    return <Component className={_className} {...props} />;
-  }
-
-  return null;
+  return Component ? (
+    <Component
+      className={classNames(styles.Icons, styles[theme], className)}
+      {...props}
+    />
+  ) : null;
 }
