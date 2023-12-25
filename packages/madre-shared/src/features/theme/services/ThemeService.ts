@@ -5,44 +5,48 @@ class _ThemeService {
   #root = ':root';
   #dataTheme = 'data-theme';
 
-  getCurrentTheme(): Theme {
+  getCurrentTheme(): Promise<Theme> {
     return this.#getCurrentTheme();
   }
 
-  set(theme: Theme) {
+  set(theme: Theme): Promise<Theme> {
     return this.#setThemeData(theme);
   }
 
-  toggle(): Theme {
-    const currentTheme = this.#getCurrentTheme();
-
-    const newTheme =
-      currentTheme === ThemeModel.themes.light
-        ? ThemeModel.themes.dark
-        : ThemeModel.themes.light;
-
-    this.#setThemeData(newTheme);
-
-    return newTheme;
+  toggle(): Promise<Theme> {
+    return this.#getCurrentTheme().then((theme) =>
+      this.#setThemeData(
+        theme === ThemeModel.themes.light
+          ? ThemeModel.themes.dark
+          : ThemeModel.themes.light,
+      ),
+    );
   }
 
-  #getCurrentTheme(): Theme {
-    const madreTheme = safeLocalStorage.get(ThemeModel.key) as Theme | null;
+  #getCurrentTheme(): Promise<Theme> {
+    return new Promise((resolve) => {
+      const madreTheme = safeLocalStorage.get(ThemeModel.key) as Theme | null;
 
-    if (madreTheme) {
-      return madreTheme;
-    }
+      if (madreTheme) {
+        resolve(madreTheme);
+      }
 
-    const systemPrefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
 
-    return systemPrefersDark ? ThemeModel.themes.dark : ThemeModel.themes.light;
+      resolve(
+        systemPrefersDark ? ThemeModel.themes.dark : ThemeModel.themes.light,
+      );
+    });
   }
 
-  #setThemeData(theme: Theme) {
-    document.querySelector(this.#root)?.setAttribute(this.#dataTheme, theme);
-    safeLocalStorage.set(ThemeModel.key, theme);
+  #setThemeData(theme: Theme): Promise<Theme> {
+    return new Promise((resolve) => {
+      document.querySelector(this.#root)?.setAttribute(this.#dataTheme, theme);
+      safeLocalStorage.set(ThemeModel.key, theme);
+      resolve(theme);
+    });
   }
 }
 

@@ -26,16 +26,17 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function ({ iconTheme = 'default', ...props }, ref) {
     const [theme, setTheme] = useState<Theme>(ThemeModel.themes.light);
 
-    const onToggle = () => setTheme(ThemeService.toggle());
+    const onToggle = () =>
+      ThemeService.toggle().then((theme) => setTheme(theme));
 
     /**
      * @description storybook preview.tsx 에 storybook-dark-mode 와
      * 바인딩된 이벤트로 인해 초기 darkmode 값이 storybook 내에서만 제대로 set 되지 않음
      */
     useEffect(() => {
-      const theme = ThemeService.getCurrentTheme();
-      setTheme(theme);
-      ThemeService.set(theme);
+      ThemeService.getCurrentTheme()
+        .then((theme) => ThemeService.set(theme))
+        .then((theme) => setTheme(theme));
     }, []);
 
     return (
