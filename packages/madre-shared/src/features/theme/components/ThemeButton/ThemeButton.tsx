@@ -1,8 +1,8 @@
+import { useIsomorphicLayoutEffect } from 'framer-motion';
 import {
   type ButtonHTMLAttributes,
   forwardRef,
   type PropsWithoutRef,
-  useEffect,
   useState,
 } from 'react';
 
@@ -33,7 +33,7 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
      * @description storybook preview.tsx 에 storybook-dark-mode 와
      * 바인딩된 이벤트로 인해 초기 darkmode 값이 storybook 내에서만 제대로 set 되지 않음
      */
-    useEffect(() => {
+    useIsomorphicLayoutEffect(() => {
       ThemeService.getCurrentTheme()
         .then((theme) => ThemeService.set(theme))
         .then((theme) => setTheme(theme));
