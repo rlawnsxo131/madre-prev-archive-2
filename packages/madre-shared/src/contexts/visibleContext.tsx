@@ -4,9 +4,8 @@ import {
   createContext,
   type PropsWithChildren,
   useContext,
+  useState,
 } from 'react';
-
-import { useBoolState } from '../hooks/useBoolState';
 
 export type VisibleContextType = Context<{
   visible: boolean;
@@ -29,16 +28,16 @@ const VisibleContext: VisibleContextType = createContext<{
 } | null>(null);
 
 function ContextProvider({ children }: PropsWithChildren) {
-  const { bool, actions } = useBoolState();
+  const [bool, setBool] = useState(false);
 
   return (
     <VisibleContext.Provider
       value={{
         visible: bool,
-        setVisible: actions.setValue,
-        open: actions.setTrue,
-        close: actions.setFalse,
-        toggle: actions.toggle,
+        setVisible: (value: boolean) => setBool(value),
+        open: () => setBool(true),
+        close: () => setBool(false),
+        toggle: () => setBool((prev) => !prev),
       }}
     >
       {children}
