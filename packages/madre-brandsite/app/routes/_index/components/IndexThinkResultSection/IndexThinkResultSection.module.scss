@@ -15,7 +15,7 @@
   .desc {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 
     .desc-content {
       display: flex;
@@ -36,5 +36,9 @@
   @media (min-width: variables.$breakpoint-sl) {
     flex-direction: row-reverse;
     gap: 2rem;
+
+    .desc {
+      justify-content: center;
+    }
   }
 }

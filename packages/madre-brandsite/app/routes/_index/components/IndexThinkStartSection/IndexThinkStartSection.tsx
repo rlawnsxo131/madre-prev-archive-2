@@ -17,9 +17,6 @@ export function IndexThinkStartSection() {
           <p>
             그리고 생각했어요.{'\n'}내가 보고있는 채널을 한곳에 모아두면 어떨까?
           </p>
-          <div>
-            <h1>TODO - 내용추가</h1>
-          </div>
         </div>
       </div>
     </section>

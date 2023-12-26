@@ -13,9 +13,6 @@ export function IndexThinkResultSection() {
         <div className={styles['desc-content']}>
           <h2>그래서 그 공간을 만들었어요.</h2>
           <p>마치 그림을 그리듯,{'\n'}자유로운 표현이 가능한 공간을요.</p>
-          <div>
-            <h1>TODO - 내용추가</h1>
-          </div>
         </div>
       </div>
     </section>

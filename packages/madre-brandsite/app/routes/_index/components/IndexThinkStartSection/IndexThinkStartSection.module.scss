@@ -5,7 +5,7 @@
   flex-direction: column-reverse;
   justify-content: center;
   gap: 4rem;
-  margin-top: 3rem;
+  margin-top: 7rem;
 
   .image {
     flex: 1;
@@ -15,6 +15,7 @@
   .desc {
     flex: 1;
     display: flex;
+    justify-content: flex-start;
 
     .desc-content {
       display: flex;
@@ -35,5 +36,9 @@
   @media (min-width: variables.$breakpoint-sl) {
     flex-direction: row;
     gap: 2rem;
+
+    .desc {
+      justify-content: center;
+    }
   }
 }
