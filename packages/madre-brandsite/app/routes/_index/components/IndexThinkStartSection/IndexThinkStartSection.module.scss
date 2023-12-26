@@ -1,0 +1,42 @@
+@use '@madre/shared/variables.scss';
+
+.IndexThinkStartSection {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 3rem;
+
+  .image {
+    flex: 1;
+    display: flex;
+  }
+
+  .desc {
+    flex: 1;
+    display: flex;
+
+    .desc-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(variables.$color-font1);
+      line-height: 1.5;
+      white-space: pre-line;
+
+      p {
+        font-size: 1.125rem;
+        margin-top: 1rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  @media (min-width: variables.$breakpoint-sl) {
+    flex-direction: row;
+    gap: 2rem;
+
+    .desc {
+    }
+  }
+}

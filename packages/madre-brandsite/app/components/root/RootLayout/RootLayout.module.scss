@@ -2,6 +2,7 @@
 @use '@/styles/variables.scss' as projectVariables;
 
 .RootLayout {
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,10 +32,6 @@
         font-weight: 500;
       }
 
-      @media (min-width: variables.$breakpoint-l) {
-        width: 768px;
-      }
-
       @media (min-width: variables.$breakpoint-xl) {
         width: 1200px;
       }
@@ -43,15 +40,9 @@
 
   .main {
     width: 93%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
     padding-top: 3.5rem;
-
-    @media (min-width: variables.$breakpoint-l) {
-      width: 768px;
-      padding-top: 4rem;
-    }
-
-    @media (min-width: variables.$breakpoint-xl) {
-      width: 1024px;
-    }
   }
 }
