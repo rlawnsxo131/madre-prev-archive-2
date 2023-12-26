@@ -50,4 +50,4 @@ class _ThemeService {
   }
 }
 
-export const ThemeService = new _ThemeService();
+export const ThemeService = Object.freeze(new _ThemeService());

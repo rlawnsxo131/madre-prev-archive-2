@@ -27,7 +27,7 @@ export const Default: Story = {
   render: (args) => (
     <Flex {...args}>
       <div>1</div>
-      <div>1</div>
+      <div>2</div>
     </Flex>
   ),
 };
