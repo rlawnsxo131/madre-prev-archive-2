@@ -4,6 +4,7 @@
 export * from './components/ui/Button';
 export * from './components/ui/Drawer';
 export * from './components/ui/DropdownMenu';
+export * from './components/ui/Flex';
 export * from './components/ui/Icons';
 export * from './components/ui/Overlay';
 
