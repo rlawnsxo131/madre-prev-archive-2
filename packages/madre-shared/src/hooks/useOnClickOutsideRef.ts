@@ -9,7 +9,7 @@ import { useRefEffect } from './useRefEffect';
  * @returns EffectRef<E>
  */
 export function useOnClickOutsideRef<E extends HTMLElement = HTMLElement>(
-  event: () => void,
+  event: (e: MouseEvent) => void,
 ) {
   const ref = useRefEffect<E>(
     (el) => {
@@ -17,7 +17,7 @@ export function useOnClickOutsideRef<E extends HTMLElement = HTMLElement>(
         if (e.target && el.contains(e.target as Node)) {
           return;
         }
-        event();
+        event(e);
       };
 
       /**

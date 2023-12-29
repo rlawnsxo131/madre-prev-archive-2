@@ -25,6 +25,16 @@ type DropdownMenuContentProps = PropsWithChildren<{
 /**
  * @TODO focus 랑 key event 작업하기
  */
+
+// const keydownHander = (e: KeyboardEvent) => {
+//   if (e.target && el.contains(e.target as Node)) {
+//     return;
+//   }
+//   if (e.key !== 'Enter') return;
+//   event();
+// };
+
+// document.removeEventListener('keydown', keydownHander);
 export function DropdownMenuContent({
   children,
   visible,

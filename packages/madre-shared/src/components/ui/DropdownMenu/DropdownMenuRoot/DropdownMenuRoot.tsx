@@ -6,7 +6,7 @@ import styles from './DropdownMenuRoot.module.scss';
 
 type DropdownMenuRootProps = HTMLAttributes<HTMLDivElement> &
   PropsWithChildren<{
-    onClickOutside: () => void;
+    onClickOutside: (e: MouseEvent) => void;
   }>;
 
 export function DropdownMenuRoot({
