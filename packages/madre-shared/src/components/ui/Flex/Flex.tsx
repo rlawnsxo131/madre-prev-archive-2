@@ -16,7 +16,7 @@ export type FlexProps<E extends ElementType> = ComponentPropsWithoutRef<E> & {
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   align?: 'stretch' | 'start' | 'center' | 'end';
   alignSelf?: 'auto' | 'start' | 'center' | 'end';
-  wrap?: 'no' | 'wrap' | 'wrap-reverse';
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
   gap?: string | number;
   fullWidth?: boolean;
 };
@@ -33,7 +33,7 @@ export const Flex: FlexComponent = forwardRef(function <E extends ElementType>(
     justify = 'start',
     align = 'stretch',
     alignSelf = 'auto',
-    wrap = 'no',
+    wrap = 'nowrap',
     gap = 0,
     fullWidth = false,
     className,
