@@ -7,6 +7,7 @@ import {
   type PropsWithoutRef,
 } from 'react';
 
+import { Portal } from '../../utility/Portal';
 import styles from './Overlay.module.scss';
 
 export type OverlayProps = PropsWithoutRef<
@@ -22,21 +23,23 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
   ref,
 ) {
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          ref={ref}
-          className={classNames(styles.Overlay, className)}
-          onClick={onClick}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration,
-            ease: 'easeIn',
-          }}
-        />
-      )}
-    </AnimatePresence>
+    <Portal>
+      <AnimatePresence>
+        {visible && (
+          <motion.div
+            ref={ref}
+            className={classNames(styles.Overlay, className)}
+            onClick={onClick}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{
+              duration,
+              ease: 'easeIn',
+            }}
+          />
+        )}
+      </AnimatePresence>
+    </Portal>
   );
 });

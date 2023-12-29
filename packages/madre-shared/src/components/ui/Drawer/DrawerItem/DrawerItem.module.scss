@@ -1,8 +1,15 @@
+@use '../../../../styles/variables';
+
 .DrawerItem {
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: var(variables.$color-bg-hover-element1);
+  }
 
   & > * {
     padding: 0.5rem;

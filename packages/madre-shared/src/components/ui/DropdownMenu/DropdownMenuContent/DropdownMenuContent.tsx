@@ -1,6 +1,11 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { type HTMLAttributes, type PropsWithChildren } from 'react';
+import {
+  Children,
+  cloneElement,
+  type HTMLAttributes,
+  type PropsWithChildren,
+} from 'react';
 
 import {
   Portal,
@@ -17,6 +22,9 @@ type DropdownMenuContentProps = PropsWithChildren<{
   className?: HTMLAttributes<HTMLUListElement>['className'];
 }>;
 
+/**
+ * @TODO focus 랑 key event 작업하기
+ */
 export function DropdownMenuContent({
   children,
   visible,
@@ -26,6 +34,12 @@ export function DropdownMenuContent({
   portalProps,
   className,
 }: DropdownMenuContentProps) {
+  const childrens = Children.map(children, (child: any, _) => {
+    return cloneElement(child, {
+      tabIndex: 0,
+    });
+  });
+
   const Component = (
     <AnimatePresence>
       {visible && (
@@ -49,7 +63,7 @@ export function DropdownMenuContent({
               ease: 'easeIn',
             }}
           >
-            {children}
+            {childrens}
           </motion.ul>
         </div>
       )}

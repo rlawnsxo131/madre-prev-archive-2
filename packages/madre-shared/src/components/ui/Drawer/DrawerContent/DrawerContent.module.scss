@@ -1,4 +1,5 @@
 @use '../../../../styles/mixins';
+@use '../../../../styles/variables';
 
 .DrawerContent {
   @include mixins.reset-ul;
@@ -11,5 +12,7 @@
   flex-direction: column;
   list-style: none;
   padding: 1rem;
-  border: 1px solid black;
+  color: var(variables.$color-font2);
+  background-color: var(variables.$color-bg-element1);
+  z-index: variables.$zIndex-drawer;
 }

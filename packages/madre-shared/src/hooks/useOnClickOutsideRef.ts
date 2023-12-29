@@ -1,5 +1,13 @@
 import { useRefEffect } from './useRefEffect';
 
+/**
+ * @description 클릭 이벤트 발생시, ref 에 해당하는 Element 요소의
+ * 바깥에서 이벤트가 발생되었다면, parameter 로 넘어온 event 를 실행힙니다.
+ *
+ * @param event
+ *
+ * @returns EffectRef<E>
+ */
 export function useOnClickOutsideRef<E extends HTMLElement = HTMLElement>(
   event: () => void,
 ) {
