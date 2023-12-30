@@ -1,11 +1,6 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import {
-  Children,
-  cloneElement,
-  type HTMLAttributes,
-  type PropsWithChildren,
-} from 'react';
+import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import {
