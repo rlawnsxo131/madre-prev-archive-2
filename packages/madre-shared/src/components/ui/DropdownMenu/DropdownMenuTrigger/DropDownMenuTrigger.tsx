@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { cloneElement } from 'react';
+import { Children, cloneElement } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import styles from './DropdownMenuTrigger.module.scss';
@@ -7,24 +7,17 @@ import styles from './DropdownMenuTrigger.module.scss';
 type Props = {
   children: JSX.Element;
   className?: string;
-  onClick?: () => void | Promise<void>;
 };
 
-export function DropdownMenuTrigger({ children, className, onClick }: Props) {
+export function DropdownMenuTrigger({ children, className }: Props) {
+  const child = Children.only(children);
   const { toggle } = useVisibleContext();
 
   return (
     <div className={classNames(styles.DropdownMenuTrigger, className)}>
       {cloneElement(children, {
         onClick: () =>
-          new Promise((resolve) => {
-            if (onClick) {
-              resolve(onClick());
-            }
-            resolve(true);
-          })
-            .then(() => children.props.onClick?.())
-            .then(() => toggle()),
+          Promise.resolve(child.props.onClick?.()).then(() => toggle()),
       })}
     </div>
   );

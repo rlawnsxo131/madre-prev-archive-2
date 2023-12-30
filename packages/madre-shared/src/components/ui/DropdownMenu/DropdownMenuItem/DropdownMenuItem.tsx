@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { cloneElement } from 'react';
+import { Children, cloneElement } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import styles from './DropdownMenuItem.module.scss';
@@ -7,10 +7,10 @@ import styles from './DropdownMenuItem.module.scss';
 type Props = {
   children: JSX.Element;
   className?: string;
-  onClick?: () => void | Promise<void>;
 };
 
-export function DropdownMenuItem({ children, className, onClick }: Props) {
+export function DropdownMenuItem({ children, className }: Props) {
+  const child = Children.only(children);
   const { close } = useVisibleContext();
 
   return (
@@ -18,14 +18,7 @@ export function DropdownMenuItem({ children, className, onClick }: Props) {
       {cloneElement(children, {
         ['data-john']: '',
         onClick: () =>
-          new Promise((resolve) => {
-            if (onClick) {
-              resolve(onClick());
-            }
-            resolve(true);
-          })
-            .then(() => children.props.onClick?.())
-            .then(() => close()),
+          Promise.resolve(child.props.onClick?.()).then(() => close()),
       })}
     </li>
   );
