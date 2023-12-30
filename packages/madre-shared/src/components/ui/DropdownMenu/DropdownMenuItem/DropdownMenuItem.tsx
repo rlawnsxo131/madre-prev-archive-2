@@ -10,16 +10,11 @@ type Props = {
   onClick?: () => void | Promise<void>;
 };
 
-export function DropdownMenuItem({
-  children,
-  className,
-  onClick,
-  ...props
-}: Props) {
+export function DropdownMenuItem({ children, className, onClick }: Props) {
   const { close } = useVisibleContext();
 
   return (
-    <li className={classNames(styles.DropdownMenuItem, className)} {...props}>
+    <li className={classNames(styles.DropdownMenuItem, className)}>
       {cloneElement(children, {
         ['data-john']: '',
         onClick: () =>
