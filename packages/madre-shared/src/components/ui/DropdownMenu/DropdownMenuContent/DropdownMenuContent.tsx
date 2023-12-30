@@ -9,7 +9,7 @@ import {
 } from '../../../utility/Portal';
 import styles from './DropdownMenuContent.module.scss';
 
-type DropdownMenuContentProps = PropsWithChildren<{
+type Props = PropsWithChildren<{
   align?: 'left' | 'right';
   duration?: number;
   isPortal?: boolean;
@@ -33,7 +33,7 @@ export function DropdownMenuContent({
   isPortal,
   portalProps,
   className,
-}: DropdownMenuContentProps) {
+}: Props) {
   const { visible } = useVisibleContext();
 
   const Component = (

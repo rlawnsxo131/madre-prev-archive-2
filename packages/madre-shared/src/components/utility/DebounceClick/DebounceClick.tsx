@@ -1,6 +1,6 @@
 import { Children, cloneElement, type ReactElement } from 'react';
 
-import { useDebounce } from '../../hooks/useDebounce';
+import { useDebounce } from '../../../hooks/useDebounce';
 
 /** @tossdocs-ignore */
 export type DebounceClickProps = {

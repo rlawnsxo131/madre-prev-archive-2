@@ -4,7 +4,7 @@ import { cloneElement } from 'react';
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import styles from './DropdownMenuItem.module.scss';
 
-type DropdownMenuItemProps = {
+type Props = {
   children: JSX.Element;
   className?: string;
   onClick?: () => void | Promise<void>;
@@ -15,7 +15,7 @@ export function DropdownMenuItem({
   className,
   onClick,
   ...props
-}: DropdownMenuItemProps) {
+}: Props) {
   const { close } = useVisibleContext();
 
   return (

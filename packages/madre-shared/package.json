@@ -31,11 +31,13 @@
     "@storybook/test": "^7.6.6",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
+    "@types/lodash-es": "^4.17.12",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.16",
     "jsdom": "^23.0.1",
+    "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.69.5",
@@ -47,6 +49,7 @@
   },
   "peerDependencies": {
     "framer-motion": ">=10.16.4",
+    "lodash-es": ">=4.17.21",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0"
   }

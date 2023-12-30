@@ -7,16 +7,12 @@ import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
 
-export type DrawerContentProps = PropsWithChildren<{
+export type Props = PropsWithChildren<{
   duration?: number;
   className?: HTMLAttributes<HTMLUListElement>['className'];
 }>;
 
-export function DrawerContent({
-  children,
-  duration = 0.15,
-  className,
-}: DrawerContentProps) {
+export function DrawerContent({ children, duration = 0.15, className }: Props) {
   const { visible } = useVisibleContext();
 
   return (

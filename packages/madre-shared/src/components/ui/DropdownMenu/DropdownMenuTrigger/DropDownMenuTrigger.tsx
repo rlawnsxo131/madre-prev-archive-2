@@ -4,17 +4,13 @@ import { cloneElement } from 'react';
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import styles from './DropdownMenuTrigger.module.scss';
 
-type DropdownMenuTriggerProps = {
+type Props = {
   children: JSX.Element;
   className?: string;
   onClick?: () => void | Promise<void>;
 };
 
-export function DropdownMenuTrigger({
-  children,
-  className,
-  onClick,
-}: DropdownMenuTriggerProps) {
+export function DropdownMenuTrigger({ children, className, onClick }: Props) {
   const { toggle } = useVisibleContext();
 
   return (
