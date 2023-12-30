@@ -4,7 +4,15 @@ import { useEffect, useMemo } from 'react';
 import { usePreservedCallback } from './usePreservedCallback';
 import { usePreservedReference } from './usePreservedReference';
 
-/** @tossdocs-ignore */
+/**
+ * @description lodash debounce 를 조금더 편하게 사용하기 위한 hook 입니다.
+ *
+ * @param callback
+ * @param wait
+ * @param options
+ *
+ * @returns DebouncedFunc<Callback>
+ */
 export function useDebounce<F extends (...args: any[]) => any>(
   callback: F,
   wait: number,
