@@ -1,8 +1,7 @@
 import classNames from 'classnames';
-import { cloneElement, type HTMLAttributes } from 'react';
+import { cloneElement } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
-import { Slot } from '../../../utility/Slot';
 import styles from './DropdownMenuItem.module.scss';
 
 type DropdownMenuItemProps = {
