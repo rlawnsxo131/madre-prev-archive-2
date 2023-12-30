@@ -10,8 +10,8 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 
-import { RootHeaderMenu } from './components/root/RootHeaderMenu/RootHeaderMenu';
-import { RootLayout } from './components/root/RootLayout/RootLayout';
+import { RootHeaderMenu } from './components/root/RootHeaderMenu';
+import { RootLayout } from './components/root/RootLayout';
 
 export const links: LinksFunction = () => {
   return [

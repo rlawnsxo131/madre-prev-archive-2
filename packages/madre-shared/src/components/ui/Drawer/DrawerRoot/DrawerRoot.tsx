@@ -1,21 +1,17 @@
 import classNames from 'classnames';
-import { type HTMLAttributes, type PropsWithChildren } from 'react';
+import { type HTMLAttributes } from 'react';
 
-import { useOnClickOutsideRef } from '../../../../hooks/useOnClickOutsideRef';
+import { useVisibleContext } from '../../../../contexts/VisibleContext';
+import { useOutsideClickAndEscape } from '../../../../hooks/useOutsideClickAndEscape';
 import styles from './DrawerRoot.module.scss';
-
-type DrawerRootProps = HTMLAttributes<HTMLDivElement> &
-  PropsWithChildren<{
-    onClickOutside: () => void;
-  }>;
 
 export function DrawerRoot({
   children,
-  onClickOutside,
   className,
   ...props
-}: DrawerRootProps) {
-  const ref = useOnClickOutsideRef<HTMLDivElement>(onClickOutside);
+}: HTMLAttributes<HTMLDivElement>) {
+  const { close } = useVisibleContext();
+  const ref = useOutsideClickAndEscape(close);
 
   return (
     <div

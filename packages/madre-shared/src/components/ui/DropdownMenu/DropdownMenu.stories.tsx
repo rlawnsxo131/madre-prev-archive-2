@@ -19,37 +19,34 @@ export const Default: Story = {
   render: () => (
     <>
       <DropdownMenu>
-        {({ visible, close, toggle }) => (
-          <DropdownMenu.Root onClickOutside={close}>
-            <DropdownMenu.Trigger>
-              <button onClick={toggle}>메뉴열기</button>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content
-              visible={visible}
-              align="left"
-              isPortal
-              portalProps={{
-                container: () => document.querySelector('.dropdown-menu'),
-              }}
-            >
-              <DropdownMenu.Item>
-                <span>item1</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>item2</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>item3</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>item4</span>
-              </DropdownMenu.Item>
-              <DropdownMenu.Item>
-                <span>item5</span>
-              </DropdownMenu.Item>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-        )}
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            <button>메뉴열기</button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content
+            align="left"
+            isPortal
+            portalProps={{
+              container: () => document.querySelector('.dropdown-menu'),
+            }}
+          >
+            <DropdownMenu.Item>
+              <a href="/">item1</a>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <a href="/">item2</a>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <a href="/">item3</a>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <a href="/">item4</a>
+            </DropdownMenu.Item>
+            <DropdownMenu.Item>
+              <a href="/">item5</a>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
       </DropdownMenu>
       <div className="dropdown-menu" />
     </>

@@ -1,10 +1,16 @@
-import { createVisibleContextProvider } from '../../../contexts/visibleContext';
-import { DropdownMenuContent } from './DropdownMenuContent/DropdownMenuContent';
-import { DropdownMenuItem } from './DropdownMenuItem/DropdownMenuItem';
-import { DropdownMenuRoot } from './DropdownMenuRoot/DropdownMenuRoot';
-import { DropdownMenuTrigger } from './DropdownMenuTrigger/DropDownMenuTrigger';
+import { type ReactNode } from 'react';
 
-export const DropdownMenu = Object.assign(createVisibleContextProvider(), {
+import { VisibleContextProvider } from '../../../contexts/VisibleContext';
+import { DropdownMenuContent } from './DropdownMenuContent';
+import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownMenuRoot } from './DropdownMenuRoot';
+import { DropdownMenuTrigger } from './DropdownMenuTrigger';
+
+function Container({ children }: { children: ReactNode }) {
+  return <VisibleContextProvider>{children}</VisibleContextProvider>;
+}
+
+export const DropdownMenu = Object.assign(Container, {
   Root: DropdownMenuRoot,
   Trigger: DropdownMenuTrigger,
   Content: DropdownMenuContent,

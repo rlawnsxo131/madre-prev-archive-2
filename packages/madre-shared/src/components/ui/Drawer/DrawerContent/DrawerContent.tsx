@@ -2,22 +2,23 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
+import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
 
 export type DrawerContentProps = PropsWithChildren<{
-  visible: boolean;
   duration?: number;
   className?: HTMLAttributes<HTMLUListElement>['className'];
 }>;
 
 export function DrawerContent({
   children,
-  visible,
   duration = 0.15,
   className,
 }: DrawerContentProps) {
+  const { visible } = useVisibleContext();
+
   return (
     <>
       <Overlay visible={visible} />

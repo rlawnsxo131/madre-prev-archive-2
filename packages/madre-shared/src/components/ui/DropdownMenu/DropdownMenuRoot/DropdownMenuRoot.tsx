@@ -1,21 +1,17 @@
 import classNames from 'classnames';
-import { type HTMLAttributes, type PropsWithChildren } from 'react';
+import { type HTMLAttributes } from 'react';
 
-import { useOnClickOutsideRef } from '../../../../hooks/useOnClickOutsideRef';
+import { useVisibleContext } from '../../../../contexts/VisibleContext';
+import { useOutsideClickAndEscape } from '../../../../hooks/useOutsideClickAndEscape';
 import styles from './DropdownMenuRoot.module.scss';
-
-type DropdownMenuRootProps = HTMLAttributes<HTMLDivElement> &
-  PropsWithChildren<{
-    onClickOutside: (e: MouseEvent) => void;
-  }>;
 
 export function DropdownMenuRoot({
   children,
-  onClickOutside,
   className,
   ...props
-}: DropdownMenuRootProps) {
-  const ref = useOnClickOutsideRef<HTMLDivElement>(onClickOutside);
+}: HTMLAttributes<HTMLDivElement>) {
+  const { close } = useVisibleContext();
+  const ref = useOutsideClickAndEscape<HTMLDivElement>(close);
 
   return (
     <div

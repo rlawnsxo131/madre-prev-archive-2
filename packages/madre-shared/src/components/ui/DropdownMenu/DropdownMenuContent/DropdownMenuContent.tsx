@@ -7,6 +7,7 @@ import {
   type PropsWithChildren,
 } from 'react';
 
+import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import {
   Portal,
   type PortalProps as _PortalProps,
@@ -14,7 +15,6 @@ import {
 import styles from './DropdownMenuContent.module.scss';
 
 type DropdownMenuContentProps = PropsWithChildren<{
-  visible: boolean;
   align?: 'left' | 'right';
   duration?: number;
   isPortal?: boolean;
@@ -25,35 +25,26 @@ type DropdownMenuContentProps = PropsWithChildren<{
 /**
  * @TODO focus 랑 key event 작업하기
  */
+// const childrens = Children.map(children, (child: any, _) => {
+//   return cloneElement(child, {
+//     tabIndex: 0,
+//   });
+// });
 
-// const keydownHander = (e: KeyboardEvent) => {
-//   if (e.target && el.contains(e.target as Node)) {
-//     return;
-//   }
-//   if (e.key !== 'Enter') return;
-//   event();
-// };
-
-// document.removeEventListener('keydown', keydownHander);
 export function DropdownMenuContent({
   children,
-  visible,
   align = 'left',
   duration = 0.15,
   isPortal,
   portalProps,
   className,
 }: DropdownMenuContentProps) {
-  const childrens = Children.map(children, (child: any, _) => {
-    return cloneElement(child, {
-      tabIndex: 0,
-    });
-  });
+  const { visible } = useVisibleContext();
 
   const Component = (
     <AnimatePresence>
       {visible && (
-        <div className={styles.DropdownMenuContent}>
+        <div className={styles.DropdownMenuContent} role="menu">
           <motion.ul
             className={classNames(styles.items, styles[align], className)}
             initial={{
@@ -73,7 +64,7 @@ export function DropdownMenuContent({
               ease: 'easeIn',
             }}
           >
-            {childrens}
+            {children}
           </motion.ul>
         </div>
       )}

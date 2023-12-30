@@ -1,8 +1,8 @@
 import { type MetaFunction } from '@remix-run/node';
 
-import { IndexProductPreviewSection } from './components/IndexProductPreviewSection/IndexProductPreviewSection';
-import { IndexThinkResultSection } from './components/IndexThinkResultSection/IndexThinkResultSection';
-import { IndexThinkStartSection } from './components/IndexThinkStartSection/IndexThinkStartSection';
+import { IndexProductPreviewSection } from './components/IndexProductPreviewSection';
+import { IndexThinkResultSection } from './components/IndexThinkResultSection';
+import { IndexThinkStartSection } from './components/IndexThinkStartSection';
 import styles from './route.module.scss';
 
 export const meta: MetaFunction = () => {
