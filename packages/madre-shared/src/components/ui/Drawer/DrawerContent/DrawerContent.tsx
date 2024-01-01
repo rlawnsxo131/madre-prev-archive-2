@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { type HTMLAttributes, type PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import { Portal } from '../../../utility/Portal';
@@ -9,7 +9,7 @@ import styles from './DrawerContent.module.scss';
 
 export type Props = PropsWithChildren<{
   duration?: number;
-  className?: HTMLAttributes<HTMLUListElement>['className'];
+  className?: string;
 }>;
 
 export function DrawerContent({ children, duration = 0.15, className }: Props) {

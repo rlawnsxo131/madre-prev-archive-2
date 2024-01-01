@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 
+import { $ } from '../../../lib/utils/dom';
 import { DropdownMenu } from './DropdownMenu';
 
 const meta = {
@@ -21,13 +22,19 @@ export const Default: Story = {
       <DropdownMenu>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <button>메뉴열기</button>
+            <button
+              onClick={() =>
+                new Promise((resolve) => setTimeout(() => resolve(1), 150))
+              }
+            >
+              메뉴열기
+            </button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content
             align="left"
             isPortal
             portalProps={{
-              container: () => document.querySelector('.dropdown-menu'),
+              container: () => $('.dropdown-menu'),
             }}
           >
             <DropdownMenu.Item>

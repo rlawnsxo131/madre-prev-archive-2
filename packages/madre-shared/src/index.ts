@@ -42,5 +42,6 @@ export * from './features/theme';
  * lib
  */
 export * from './lib/storage/safeStorage';
+export * from './lib/utils/dom';
 export * from './lib/utils/isClient';
 export * from './lib/utils/isServer';

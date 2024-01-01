@@ -14,7 +14,7 @@ type Props = PropsWithChildren<{
   duration?: number;
   isPortal?: boolean;
   portalProps?: Omit<_PortalProps, 'children'>;
-  className?: HTMLAttributes<HTMLUListElement>['className'];
+  className?: string;
 }>;
 
 /**

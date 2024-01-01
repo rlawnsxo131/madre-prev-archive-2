@@ -40,11 +40,11 @@ export type WithPortalProps<T> = PortalProps & {
 export function withPortal<
   ComponentProps extends Record<string, unknown> = Record<string, never>,
 >({ Component, ...props }: WithPortalProps<ComponentProps>) {
-  const Wrapped = (componentProps: ComponentProps) => (
-    <Portal {...props}>
-      <Component {...componentProps} />
-    </Portal>
-  );
-
-  return Wrapped;
+  return function (componentProps: ComponentProps) {
+    return (
+      <Portal {...props}>
+        <Component {...componentProps} />
+      </Portal>
+    );
+  };
 }

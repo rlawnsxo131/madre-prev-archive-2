@@ -15,7 +15,7 @@ export function VisibleContextProvider({ children }: { children: ReactNode }) {
     <VisibleContext.Provider
       value={{
         visible: bool,
-        setVisible: (value: boolean) => setBool(value),
+        setVisible: setBool,
         open: () => setBool(true),
         close: () => setBool(false),
         toggle: () => setBool((prev) => !prev),
