@@ -14,12 +14,14 @@ import {
  *
  * @param State
  *
- * @returns  {
+ * @returns
+ * {
  *   getState: () => State;
  *   getServerState: () => State;
  *   set: (update: Partial<State> | ((state: State) => State) | ((state: State) => Partial<State>)) => void;
  *   subscribe: (callback: () => void) => () => boolean;
  * }
+ *
  */
 export function useInitContextStore<
   State extends Record<string, unknown> = Record<string, never>,
@@ -63,8 +65,9 @@ export function useInitContextStore<
  * @param selectStore: Context<ContextStore<Store> | null>
  * @param selector: (store: Store) => { [k in keyof Store]: Store[k] }
  *
- * @returns [
- *   state: { [k in keyof Store]: Store[k]; }
+ * @returns
+ * [
+ *   state: { [k in keyof Store]: Store[k]; },
  *   set: (update: Partial<Store> | ((state: Store) => Store) | ((state: Store) => Partial<Store>)) => void
  * ]
  */
