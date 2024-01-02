@@ -16,6 +16,7 @@ class ThemeService {
 
   setRoot(theme: Theme) {
     this.#setRoot(theme);
+    return this;
   }
 
   setPriority(theme: Theme) {
