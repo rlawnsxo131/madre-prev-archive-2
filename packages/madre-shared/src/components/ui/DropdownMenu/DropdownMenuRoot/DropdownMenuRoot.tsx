@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { type HTMLAttributes } from 'react';
+import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
 
 import { useVisibleContext } from '../../../../contexts/VisibleContext';
 import { useOutsideClickAndEscape } from '../../../../hooks/useOutsideClickAndEscape';
@@ -9,7 +9,7 @@ export function DropdownMenuRoot({
   children,
   className,
   ...props
-}: HTMLAttributes<HTMLDivElement>) {
+}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
   const { close } = useVisibleContext();
   const ref = useOutsideClickAndEscape<HTMLDivElement>(close);
 

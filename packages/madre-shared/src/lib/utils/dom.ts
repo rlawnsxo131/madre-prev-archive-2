@@ -5,3 +5,7 @@ export function $(selector: string) {
 export function matchMedia(mediaQuery: string) {
   return window.matchMedia(mediaQuery);
 }
+
+export function matchPreferseColorSchemeDark() {
+  return window.matchMedia('(prefers-color-scheme: dark)');
+}

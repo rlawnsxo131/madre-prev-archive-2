@@ -7,7 +7,7 @@ import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
 
-export type Props = PropsWithChildren<{
+type Props = PropsWithChildren<{
   duration?: number;
   className?: string;
 }>;

@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import { Icons, type IconsProps } from '../../../../components/ui/Icons';
-import { useThemeService } from '../../services';
+import { useTheme } from '../../contexts/ThemeContext';
 import styles from './ThemeButton.module.scss';
 
 const iconMap = {
@@ -21,14 +21,13 @@ export type ThemeButtonProps = PropsWithoutRef<
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function ({ iconTheme = 'default', ...props }, ref) {
-    const { theme, actions } = useThemeService();
-    console.log(theme);
+    const { theme, toggle } = useTheme();
 
     return (
       <button
         ref={ref}
         className={styles.ThemeButton}
-        onClick={actions.toggle}
+        onClick={toggle}
         {...props}
       >
         <Icons theme={iconTheme} type={iconMap[theme]} />

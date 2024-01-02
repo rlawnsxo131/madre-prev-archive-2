@@ -1,5 +1,6 @@
 import '@madre/shared/main.scss';
 
+import { ThemeProvider } from '@madre/shared';
 import { type LinksFunction } from '@remix-run/node';
 import {
   Links,
@@ -36,12 +37,14 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <RootLayout>
-          <RootLayout.Header Menu={<RootHeaderMenu />} />
-          <RootLayout.Main>
-            <Outlet />
-          </RootLayout.Main>
-        </RootLayout>
+        <ThemeProvider>
+          <RootLayout>
+            <RootLayout.Header Menu={<RootHeaderMenu />} />
+            <RootLayout.Main>
+              <Outlet />
+            </RootLayout.Main>
+          </RootLayout>
+        </ThemeProvider>
         <ScrollRestoration />
         <LiveReload />
         <Scripts />

@@ -2,7 +2,6 @@ import { Children, cloneElement, type ReactElement } from 'react';
 
 import { useDebounce } from '../../../hooks/useDebounce';
 
-/** @tossdocs-ignore */
 export type DebounceClickProps = {
   /**
    * @description 이벤트를 묶어서 한번에 보낼 시간으로 ms 단위

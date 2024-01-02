@@ -1,25 +1,22 @@
-import { createContext, type ReactNode, useContext, useState } from 'react';
+import { createContext, type ReactNode } from 'react';
 
-const VisibleContext = createContext<{
-  visible: boolean;
-  setVisible: (value: boolean) => void;
-  open: () => void;
-  close: () => void;
-  toggle: () => void;
-} | null>(null);
+import {
+  type ContextStore,
+  useContextStore,
+  useInitContextStore,
+} from './hooks/useContextStore';
+
+export type VisibleContextValue = { visible: boolean };
+
+const VisibleContext = createContext<ContextStore<VisibleContextValue> | null>(
+  null,
+);
+VisibleContext.displayName = 'VisibleContext';
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
-  const [bool, setBool] = useState(false);
-
   return (
     <VisibleContext.Provider
-      value={{
-        visible: bool,
-        setVisible: setBool,
-        open: () => setBool(true),
-        close: () => setBool(false),
-        toggle: () => setBool((prev) => !prev),
-      }}
+      value={useInitContextStore<VisibleContextValue>({ visible: false })}
     >
       {children}
     </VisibleContext.Provider>
@@ -27,13 +24,19 @@ export function VisibleContextProvider({ children }: { children: ReactNode }) {
 }
 
 export function useVisibleContext() {
-  const context = useContext(VisibleContext);
+  const [{ visible }, set] =
+    useContextStore<VisibleContextValue>(VisibleContext);
 
-  if (!context) {
-    throw new Error(
-      'useVisibleContext should be used within VisibleContextProvider',
-    );
-  }
+  const setVisible = (visible: boolean) => set({ visible });
+  const open = () => set({ visible: false });
+  const close = () => set({ visible: false });
+  const toggle = () => set((prev) => ({ visible: !prev.visible }));
 
-  return context;
+  return {
+    visible,
+    setVisible,
+    open,
+    close,
+    toggle,
+  };
 }
