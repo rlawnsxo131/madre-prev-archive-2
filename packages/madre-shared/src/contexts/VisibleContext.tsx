@@ -6,18 +6,14 @@ import {
   useInitContextStore,
 } from './hooks/useContextStore';
 
-export type VisibleContextValue = { visible: boolean };
-
-const VisibleContext = createContext<ContextStore<VisibleContextValue> | null>(
-  null,
-);
+export const VisibleContext = createContext<ContextStore<{
+  visible: boolean;
+}> | null>(null);
 VisibleContext.displayName = 'VisibleContext';
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
   return (
-    <VisibleContext.Provider
-      value={useInitContextStore<VisibleContextValue>({ visible: false })}
-    >
+    <VisibleContext.Provider value={useInitContextStore({ visible: false })}>
       {children}
     </VisibleContext.Provider>
   );

@@ -8,7 +8,7 @@ import {
 
 export function useInitContextStore<
   State extends Record<string, unknown> = Record<string, never>,
->(initialState: State) {
+>(initialState: { [k in keyof State]: State[k] }) {
   const store = useRef<State>({ ...initialState });
   const subscribers = useRef<Set<() => void>>(new Set());
 
