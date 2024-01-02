@@ -4,7 +4,7 @@ import {
   type ContextStore,
   useContextStore,
   useInitContextStore,
-} from '../../../contexts/hooks/useContextStore';
+} from '../../../hooks/useContextStore';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
 import { matchPreferseColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';

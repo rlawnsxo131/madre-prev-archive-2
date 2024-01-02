@@ -4,7 +4,7 @@ import {
   type ContextStore,
   useContextStore,
   useInitContextStore,
-} from './hooks/useContextStore';
+} from '../hooks/useContextStore';
 
 export const VisibleContext = createContext<ContextStore<{
   visible: boolean;
