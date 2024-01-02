@@ -18,14 +18,8 @@ func NewUserService(conn persist.Conn) *UserService {
 }
 
 func (svc *UserService) IsExistsUsername(username string) (bool, error) {
-	exsits, err := svc.userRepo.ExistsByUsername(
+	return svc.userRepo.ExistsByUsername(
 		svc.conn,
 		username,
 	)
-
-	if err != nil {
-		return false, err
-	}
-
-	return exsits, nil
 }
