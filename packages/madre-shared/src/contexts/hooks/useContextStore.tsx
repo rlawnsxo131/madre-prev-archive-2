@@ -7,9 +7,9 @@ import {
 } from 'react';
 
 export function useInitContextStore<
-  ContextData extends Record<string, unknown> = Record<string, never>,
->(initialState: ContextData) {
-  const store = useRef<ContextData>({ ...initialState });
+  State extends Record<string, unknown> = Record<string, never>,
+>(initialState: State) {
+  const store = useRef<State>({ ...initialState });
   const subscribers = useRef<Set<() => void>>(new Set());
 
   return useMemo(
@@ -18,9 +18,9 @@ export function useInitContextStore<
       getServerState: () => store.current,
       set: (
         update:
-          | ((state: ContextData) => ContextData)
-          | ((state: ContextData) => Partial<ContextData>)
-          | Partial<ContextData>,
+          | ((state: State) => State)
+          | ((state: State) => Partial<State>)
+          | Partial<State>,
       ) => {
         const newState =
           typeof update === 'function' ? update(store.current) : update;
