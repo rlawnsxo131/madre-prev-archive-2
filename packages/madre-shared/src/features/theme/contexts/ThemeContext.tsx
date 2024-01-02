@@ -6,7 +6,7 @@ import {
   useInitContextStore,
 } from '../../../hooks/useContextStore';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
-import { matchPreferseColorSchemeDark } from '../../../lib/utils/dom';
+import { matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';
 import { themeService } from '../services';
 
@@ -39,10 +39,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       themeService.setPriority(theme);
     };
 
-    matchPreferseColorSchemeDark().addEventListener('change', handler);
+    matchPrefersColorSchemeDark().addEventListener('change', handler);
 
     return () => {
-      matchPreferseColorSchemeDark().removeEventListener('change', handler);
+      matchPrefersColorSchemeDark().removeEventListener('change', handler);
     };
   }, [store]);
 

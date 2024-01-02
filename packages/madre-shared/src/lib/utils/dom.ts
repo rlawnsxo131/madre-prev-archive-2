@@ -6,6 +6,6 @@ export function matchMedia(mediaQuery: string) {
   return window.matchMedia(mediaQuery);
 }
 
-export function matchPreferseColorSchemeDark() {
+export function matchPrefersColorSchemeDark() {
   return window.matchMedia('(prefers-color-scheme: dark)');
 }
