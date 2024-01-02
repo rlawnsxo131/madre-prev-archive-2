@@ -4,6 +4,7 @@
   "description": "madre-client monorepo",
   "scripts": {
     "list": "pnpm list",
+    "install:frozen-lockfile": "pnpm i --frozen-lockfile",
     "shared": "pnpm --filter @madre/shared",
     "brandsite": "pnpm --filter @madre/brandsite",
     "test": "echo \"Error: no test specified\" && exit 1"
