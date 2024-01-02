@@ -1,4 +1,4 @@
-import { createContext, type ReactNode } from 'react';
+import { createContext, type ReactNode, useEffect } from 'react';
 
 import {
   type ContextStore,
@@ -27,12 +27,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const theme = themeService.getPriority();
     store.set({ theme });
     themeService.setPriority(theme);
-  }, []);
+  }, [store]);
 
   /**
    * preferseColorScheme change 이벤트 동기화
    */
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     const handler = (e: MediaQueryListEvent) => {
       const theme = e.matches ? THEME.dark : THEME.light;
       store.set({ theme });
@@ -44,7 +44,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     return () => {
       matchPreferseColorSchemeDark().removeEventListener('change', handler);
     };
-  }, []);
+  }, [store]);
 
   return (
     <ThemeContext.Provider value={store}>{children}</ThemeContext.Provider>
