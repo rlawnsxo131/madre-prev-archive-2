@@ -7,7 +7,6 @@ export const THEME = {
 export const THEME_SELECTOR = {
   root: ':root',
   dataTheme: 'data-theme',
-  preferseColorSchemeDark: '(prefers-color-scheme: dark)',
 };
 
 export const ROOT = ':root';

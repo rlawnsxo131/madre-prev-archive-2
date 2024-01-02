@@ -1,5 +1,5 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
-import { $, matchMedia } from '../../../lib/utils/dom';
+import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme, THEME_SELECTOR } from '../models';
 
 class ThemeService {
@@ -56,9 +56,7 @@ class ThemeService {
   }
 
   #getMedia() {
-    return matchMedia(THEME_SELECTOR.preferseColorSchemeDark).matches
-      ? THEME.dark
-      : THEME.light;
+    return matchPrefersColorSchemeDark().matches ? THEME.dark : THEME.light;
   }
 }
 
