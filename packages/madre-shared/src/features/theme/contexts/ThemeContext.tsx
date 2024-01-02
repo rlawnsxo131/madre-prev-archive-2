@@ -10,15 +10,14 @@ import { matchPreferseColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';
 import { themeService } from '../services';
 
-type ThemeContextValue = { theme: Theme };
-
-export const ThemeContext =
-  createContext<ContextStore<ThemeContextValue> | null>(null);
+export const ThemeContext = createContext<ContextStore<{
+  theme: Theme;
+}> | null>(null);
 ThemeContext.displayName = 'ThemeContext';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const store = useInitContextStore<ThemeContextValue>({
-    theme: THEME.light,
+  const store = useInitContextStore({
+    theme: THEME.light as Theme,
   });
 
   /**
