@@ -61,5 +61,6 @@ export function useContextStore<
   return [state, store.set] as const;
 }
 
-export type ContextStore<ContextData extends Record<string, unknown>> =
-  ReturnType<typeof useInitContextStore<ContextData>>;
+export type ContextStore<
+  ContextData extends Record<string, unknown> = Record<string, never>,
+> = ReturnType<typeof useInitContextStore<ContextData>>;
