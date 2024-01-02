@@ -1,6 +1,6 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
 import { $, matchMedia } from '../../../lib/utils/dom';
-import { THEME, type Theme } from '../models';
+import { THEME, type Theme, THEME_SELECTOR } from '../models';
 
 class ThemeService {
   constructor() {}
@@ -35,6 +35,10 @@ class ThemeService {
     return this.#getStorage() || this.#getMedia();
   }
 
+  getToggle(theme: Theme) {
+    return theme === THEME.dark ? THEME.light : THEME.dark;
+  }
+
   #getStorage() {
     return safeLocalStorage.get(THEME.key) as Theme | null;
   }
@@ -44,16 +48,16 @@ class ThemeService {
   }
 
   #setRoot(theme: Theme) {
-    return $(THEME.selectors.root)?.setAttribute(
-      THEME.selectors.dataTheme,
+    return $(THEME_SELECTOR.root)?.setAttribute(
+      THEME_SELECTOR.dataTheme,
       theme,
     );
   }
 
   #getMedia() {
-    return matchMedia(THEME.selectors.preferseColorSchemeDark).matches
-      ? THEME.themes.dark
-      : THEME.themes.light;
+    return matchMedia(THEME_SELECTOR.preferseColorSchemeDark).matches
+      ? THEME.dark
+      : THEME.light;
   }
 }
 

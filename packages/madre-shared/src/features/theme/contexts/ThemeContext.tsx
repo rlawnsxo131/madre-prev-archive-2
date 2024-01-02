@@ -19,7 +19,7 @@ ThemeContext.displayName = 'ThemeContext';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const store = useInitContextStore<ThemeContextValue>({
-    theme: THEME.themes.light,
+    theme: THEME.light,
   });
 
   /**
@@ -36,7 +36,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    */
   useIsomorphicLayoutEffect(() => {
     const handler = (e: MediaQueryListEvent) => {
-      const theme = e.matches ? THEME.themes.dark : THEME.themes.light;
+      const theme = e.matches ? THEME.dark : THEME.light;
       store.set({ theme });
       themeService.setPriority(theme);
     };
@@ -54,15 +54,17 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTheme() {
-  const [{ theme }, set] = useContextStore<ThemeContextValue>(ThemeContext);
+  const [{ theme }, set] = useContextStore(ThemeContext);
 
-  const toggle = () => {
-    const newTheme =
-      theme === THEME.themes.light ? THEME.themes.dark : THEME.themes.light;
-    set({ theme: newTheme });
-    themeService.setStorage(newTheme);
-    themeService.setRoot(newTheme);
-  };
+  const toggle = () =>
+    set(({ theme }) => {
+      const newTheme = themeService.getToggle(theme);
+      themeService.setStorage(newTheme);
+      themeService.setRoot(newTheme);
+      return {
+        theme: newTheme,
+      };
+    });
 
   return {
     theme,

@@ -24,8 +24,7 @@ export function VisibleContextProvider({ children }: { children: ReactNode }) {
 }
 
 export function useVisibleContext() {
-  const [{ visible }, set] =
-    useContextStore<VisibleContextValue>(VisibleContext);
+  const [{ visible }, set] = useContextStore(VisibleContext);
 
   const setVisible = (visible: boolean) => set({ visible });
   const open = () => set({ visible: false });
