@@ -1,4 +1,4 @@
 export * from './components/ThemeButton';
-export * from './contexts/ThemeContext';
+export * from './contexts';
 export * from './models';
-export * from './services/themeService';
+export * from './services';

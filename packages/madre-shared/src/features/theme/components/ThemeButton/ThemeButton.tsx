@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import { Icons, type IconsProps } from '../../../../components/ui/Icons';
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../contexts';
 import styles from './ThemeButton.module.scss';
 
 const iconMap = {

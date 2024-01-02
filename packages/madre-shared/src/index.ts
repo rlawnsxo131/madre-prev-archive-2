@@ -30,7 +30,6 @@ export * from './hooks/useRefEffect';
 /**
  * context
  */
-export * from './contexts/CollectionContext';
 export * from './contexts/VisibleContext';
 
 /**
