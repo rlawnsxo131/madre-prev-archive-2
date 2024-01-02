@@ -14,7 +14,8 @@ export function useInitContextStore<
 
   return useMemo(
     () => ({
-      get: () => store.current,
+      getState: () => store.current,
+      getServerState: () => store.current,
       set: (
         update:
           | ((state: ContextData) => ContextData)
@@ -53,8 +54,8 @@ export function useContextStore<
 
   const state = useSyncExternalStore(
     store.subscribe,
-    () => selector(store.get()),
-    () => selector(store.get()),
+    () => selector(store.getState()),
+    () => selector(store.getServerState()),
   );
 
   return [state, store.set] as const;
