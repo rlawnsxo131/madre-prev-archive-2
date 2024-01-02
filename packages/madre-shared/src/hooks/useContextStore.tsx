@@ -21,7 +21,6 @@ import {
  *   set: (update: Partial<State> | ((state: State) => State) | ((state: State) => Partial<State>)) => void;
  *   subscribe: (callback: () => void) => () => boolean;
  * }
- *
  */
 export function useInitContextStore<
   State extends Record<string, unknown> = Record<string, never>,
