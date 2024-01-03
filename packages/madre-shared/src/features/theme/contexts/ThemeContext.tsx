@@ -1,8 +1,8 @@
 import { createContext, type ReactNode, useEffect } from 'react';
 
 import {
-  type ContextStore,
   createExternalStoreContext,
+  type ExternalStoreContext,
   useExternalStoreContext,
 } from '../../../hooks/useExternalStoreContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
@@ -10,7 +10,7 @@ import { matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';
 import { themeService } from '../services';
 
-export const ThemeContext = createContext<ContextStore<{
+export const ThemeContext = createContext<ExternalStoreContext<{
   theme: Theme;
 }> | null>(null);
 ThemeContext.displayName = 'ThemeContext';
@@ -57,16 +57,15 @@ export function useTheme() {
   return [
     theme,
     {
-      toggle() {
-        return set(({ theme }) => {
+      toggle: () =>
+        set(({ theme }) => {
           const newTheme = themeService.getToggle(theme);
           themeService.setStorage(newTheme);
           themeService.setRoot(newTheme);
           return {
             theme: newTheme,
           };
-        });
-      },
+        }),
     },
   ] as const;
 }

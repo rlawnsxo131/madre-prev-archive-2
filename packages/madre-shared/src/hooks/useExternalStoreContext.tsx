@@ -6,7 +6,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  * context 를 주입받아, useSyncExternalStore 와 연결해 줍니다.
  * 이때 주입받을 context 의 값은 createExternalStoreContext 사용해 만듦니다.
  *
- * @param selectStore: Context<ContextStore<Store> | null>
+ * @param selectStore: Context<ExternalStoreContext<Store> | null>
  * @param selector: (store: Store) => { [k in keyof Store]: Store[k] }
  *
  * @returns
@@ -18,7 +18,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
 export function useExternalStoreContext<
   StoreContext extends Record<string, unknown> = Record<string, never>,
 >(
-  storeContext: Context<ContextStore<StoreContext> | null>,
+  storeContext: Context<ExternalStoreContext<StoreContext> | null>,
   selector: (store: StoreContext) => {
     [k in keyof StoreContext]: StoreContext[k];
   } = (store) => store,
@@ -55,24 +55,27 @@ export function useExternalStoreContext<
  */
 export function createExternalStoreContext<
   State extends Record<string, unknown> = Record<string, never>,
->(state: { [k in keyof State]: State[k] }) {
-  let store = { ...state };
+>(initialState: { [k in keyof State]: State[k] }) {
+  let state = { ...initialState };
   const subscribers = new Set<() => void>(new Set());
 
   return {
-    getState: () => store,
-    getServerState: () => store,
+    getState: () => state,
+    getServerState: () => state,
     set: (
-      update:
+      partial:
         | ((state: State) => State)
         | ((state: State) => Partial<State>)
         | Partial<State>,
     ) => {
-      const newState = typeof update === 'function' ? update(store) : update;
-      store = {
-        ...store,
-        ...newState,
-      };
+      const nextState =
+        typeof partial === 'function' ? partial(state) : partial;
+      if (!Object.is(nextState, state)) {
+        state =
+          typeof nextState !== 'object' && nextState === null
+            ? state
+            : Object.assign({}, state, nextState);
+      }
       return subscribers.forEach((callback) => callback());
     },
     subscribe: (callback: () => void) => {
@@ -82,6 +85,6 @@ export function createExternalStoreContext<
   };
 }
 
-export type ContextStore<
-  ContextData extends Record<string, unknown> = Record<string, never>,
-> = ReturnType<typeof createExternalStoreContext<ContextData>>;
+export type ExternalStoreContext<
+  State extends Record<string, unknown> = Record<string, never>,
+> = ReturnType<typeof createExternalStoreContext<State>>;

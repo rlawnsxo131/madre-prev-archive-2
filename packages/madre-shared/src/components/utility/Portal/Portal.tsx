@@ -49,5 +49,8 @@ export function withPortal<
     </Portal>
   );
 
+  const displayName = Component.displayName || Component.name || 'Component';
+  WithPortal.displayName = displayName;
+
   return WithPortal;
 }
