@@ -11,8 +11,8 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  *
  * @returns
  * [
- *   state: { [k in keyof Store]: Store[k]; },
- *   set: (update: Partial<Store> | ((state: Store) => Store) | ((state: Store) => Partial<Store>)) => void
+ *   state: { [k in keyof StoreContext]: StoreContext[k]; },
+ *   set: (update: Partial<StoreContext> | ((state: StoreContext) => StoreContext) | ((state: StoreContext) => Partial<StoreContext>)) => void
  * ]
  */
 export function useExternalStoreContext<
@@ -51,7 +51,7 @@ export function useExternalStoreContext<
  * {
  *   getState: () => State;
  *   getServerState: () => State;
- *   set: (update: Partial<State> | ((state: State) => State) | ((state: State) => Partial<State>)) => void;
+ *   set: (partial: Partial<State> | ((state: State) => State) | ((state: State) => Partial<State>)) => void;
  *   subscribe: (callback: () => void) => () => boolean;
  * }
  */
