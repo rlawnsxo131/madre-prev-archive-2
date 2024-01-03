@@ -1,6 +1,30 @@
 import { type Context, useContext, useSyncExternalStore } from 'react';
 
 /**
+ * @example
+ * const ExampleContext = createContext<ExternalStoreContext<{
+ *   bool: boolean;
+ * }> | null>(null);
+ *
+ * function ExampleProvider({ children }: { children: ReactNode }) {
+ *   return (
+ *     <ExampleContext.Provider value={createExternalStoreContext({ bool: false })}>
+ *       {children}
+ *     </ExampleContext.Provider>
+ *   );
+ * }
+ *
+ * function useTestContext() {
+ *   const [{ bool }, set] = useExternalStoreContext(ExampleContext);
+ *
+ *   return [bool, {
+ *     setTrue: () => set({ bool: true }),
+ *     setFalse: () => set({ bool: false }),
+ *     ...
+ *   }]
+ */
+
+/**
  * @description createExternalStoreContext 와 함께 사용합니다.
  * @description useSyncExternalStore 에 인자로 충족하는 값을 가지고 있는
  * context 를 주입받아, useSyncExternalStore 와 연결해 줍니다.
