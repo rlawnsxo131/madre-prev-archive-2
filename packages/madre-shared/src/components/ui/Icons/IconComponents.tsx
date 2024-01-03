@@ -1,6 +1,9 @@
-import { type SVGProps } from 'react';
+import { type DetailedHTMLProps, type SVGProps } from 'react';
 
-type IconComponentsProps = SVGProps<SVGSVGElement>;
+type IconComponentsProps = DetailedHTMLProps<
+  SVGProps<SVGSVGElement>,
+  SVGSVGElement
+>;
 
 export function SunIcon(props: IconComponentsProps) {
   return (

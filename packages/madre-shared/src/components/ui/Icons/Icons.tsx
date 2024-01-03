@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { type SVGProps } from 'react';
+import { type DetailedHTMLProps, type SVGProps } from 'react';
 
 import { CrescentMoonIcon, MenuIcon, SunIcon } from './IconComponents';
 import styles from './Icons.module.scss';
@@ -10,10 +10,10 @@ const iconMap = {
   menu: MenuIcon,
 } as const;
 
-export type IconsProps = SVGProps<SVGSVGElement> & {
+export type IconsProps = {
   type: 'sun' | 'crescent-moon' | 'menu';
   theme?: 'default' | 'primary' | 'warn';
-};
+} & DetailedHTMLProps<SVGProps<SVGSVGElement>, SVGSVGElement>;
 
 export function Icons({
   type,
