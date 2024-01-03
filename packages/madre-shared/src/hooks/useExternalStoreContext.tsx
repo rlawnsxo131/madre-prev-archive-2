@@ -14,7 +14,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  *   );
  * }
  *
- * function useTestContext() {
+ * function useExampleContext() {
  *   const [{ bool }, set] = useExternalStoreContext(ExampleContext);
  *
  *   return [bool, {
