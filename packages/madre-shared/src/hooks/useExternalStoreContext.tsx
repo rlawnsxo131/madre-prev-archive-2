@@ -16,16 +16,17 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  * ]
  */
 export function useExternalStoreContext<
-  Store extends Record<string, unknown> = Record<string, never>,
+  StoreContext extends Record<string, unknown> = Record<string, never>,
 >(
-  selectStore: Context<ContextStore<Store> | null>,
-  selector: (store: Store) => { [k in keyof Store]: Store[k] } = (store) =>
-    store,
+  storeContext: Context<ContextStore<StoreContext> | null>,
+  selector: (store: StoreContext) => {
+    [k in keyof StoreContext]: StoreContext[k];
+  } = (store) => store,
 ) {
-  const store = useContext(selectStore);
+  const store = useContext(storeContext);
 
   if (!store) {
-    throw new Error(`not found ${selectStore.displayName}`);
+    throw new Error(`not found ${storeContext.displayName}`);
   }
 
   const state = useSyncExternalStore(
