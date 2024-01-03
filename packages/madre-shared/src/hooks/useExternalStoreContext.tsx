@@ -4,18 +4,18 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
 /**
  * @example
  * // 전역 상태로 사용하고 싶다면, 여러번 호출되지 않게 하기 위해 컴포넌트 밖에 선언해야 합니다.
- * const store = createExternalStoreContext({ bool: false });
+ * const store = createExternalStore({ bool: false });
  *
- * const ExampleContext = createContext<ExternalStoreContext<{
+ * const ExampleContext = createContext<ExternalStore<{
  *   bool: boolean;
  * }> | null>(null);
  *
  * function ExampleProvider({ children }: { children: ReactNode }) {
  *   // Provider 별로 상태가 달라야 한다면 ref 를 사용해 주세요.
- *   const store = useRef(createExternalStoreContext({ bool: false }));
+ *   const store = useRef(createExternalStore({ bool: false }));
  *
  *   return (
- *     <ExampleContext.Provider value={}>
+ *     <ExampleContext.Provider value={store}>
  *       {children}
  *     </ExampleContext.Provider>
  *   );
@@ -33,12 +33,12 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  */
 
 /**
- * @description createExternalStoreContext 와 함께 사용합니다.
+ * @description createExternalStore 와 함께 사용합니다.
  * @description useSyncExternalStore 에 인자로 충족하는 값을 가지고 있는
  * context 를 주입받아, useSyncExternalStore 와 연결해 줍니다.
- * 이때 주입받을 context 의 값은 createExternalStoreContext 사용해 만듭니다.
+ * 이때 주입받을 context 의 값은 createExternalStore 사용해 만듭니다.
  *
- * @param storeContext: Context<ExternalStoreContext<StoreContext> | null>
+ * @param storeContext: Context<ExternalStore<StoreContext> | null>
  * @param selector: (store: StoreContext) => { [k in keyof StoreContext]: Store[k] }
  *
  * @returns
@@ -50,7 +50,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
 export function useExternalStoreContext<
   StoreContext extends Record<string, unknown> = Record<string, never>,
 >(
-  storeContext: Context<ExternalStoreContext<StoreContext> | null>,
+  storeContext: Context<ExternalStore<StoreContext> | null>,
   selector: (store: StoreContext) => Partial<{
     [k in keyof StoreContext]: StoreContext[k];
   }> = (store) => store,
@@ -93,7 +93,7 @@ export function useExternalStoreContext<
  *   subscribe: (callback: () => void) => () => boolean;
  * }
  */
-export function createExternalStoreContext<
+export function createExternalStore<
   State extends Record<string, unknown> = Record<string, never>,
 >(initialState: { [k in keyof State]: State[k] }) {
   let state = { ...initialState };
@@ -125,6 +125,6 @@ export function createExternalStoreContext<
   };
 }
 
-export type ExternalStoreContext<
+export type ExternalStore<
   State extends Record<string, unknown> = Record<string, never>,
-> = ReturnType<typeof createExternalStoreContext<State>>;
+> = ReturnType<typeof createExternalStore<State>>;

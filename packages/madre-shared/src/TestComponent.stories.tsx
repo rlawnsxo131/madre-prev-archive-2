@@ -10,28 +10,28 @@ import {
 } from 'react';
 
 import {
-  createExternalStoreContext,
-  type ExternalStoreContext,
+  createExternalStore,
+  type ExternalStore,
   //   useCreateExternalStoreContext,
   useExternalStoreContext,
 } from './hooks/useExternalStoreContext';
 
-const Ctx = createContext<ExternalStoreContext<{
+const Ctx = createContext<ExternalStore<{
   name1: string;
   name2: string;
 }> | null>(null);
 
-const store = createExternalStoreContext({ name1: '', name2: '' });
+const store = createExternalStore({ name1: '', name2: '' });
 
 function TestProvider({ children }: { children: ReactNode }) {
   //     const store = useRef(useCreateExternalStoreContext({ name1: '', name2: '' }));
-  //   const store = useRef(createExternalStoreContext({ name1: '', name2: '' }));
+  //   const store = useRef(createExternalStore({ name1: '', name2: '' }));
 
   //   return <Ctx.Provider value={store.current}>{children}</Ctx.Provider>;
   return <Ctx.Provider value={store}>{children}</Ctx.Provider>;
 
   //   return (
-  //     <Ctx.Provider value={createExternalStoreContext({ name1: '', name2: '' })}>
+  //     <Ctx.Provider value={createExternalStore({ name1: '', name2: '' })}>
   //       {children}
   //     </Ctx.Provider>
   //   );

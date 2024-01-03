@@ -1,18 +1,18 @@
 import { createContext, type ReactNode, useRef } from 'react';
 
 import {
-  createExternalStoreContext,
-  type ExternalStoreContext,
+  createExternalStore,
+  type ExternalStore,
   useExternalStoreContext,
 } from '../hooks/useExternalStoreContext';
 
-export const VisibleContext = createContext<ExternalStoreContext<{
+export const VisibleContext = createContext<ExternalStore<{
   visible: boolean;
 }> | null>(null);
 VisibleContext.displayName = 'VisibleContext';
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
-  const store = useRef(createExternalStoreContext({ visible: false }));
+  const store = useRef(createExternalStore({ visible: false }));
 
   return (
     <VisibleContext.Provider value={store.current}>

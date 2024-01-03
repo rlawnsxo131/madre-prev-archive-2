@@ -1,8 +1,8 @@
 import { createContext, type ReactNode, useEffect } from 'react';
 
 import {
-  createExternalStoreContext,
-  type ExternalStoreContext,
+  createExternalStore,
+  type ExternalStore,
   useExternalStoreContext,
 } from '../../../hooks/useExternalStoreContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
@@ -10,11 +10,11 @@ import { matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';
 import { themeService } from '../services';
 
-const store = createExternalStoreContext({
+const store = createExternalStore({
   theme: THEME.light as Theme,
 });
 
-export const ThemeContext = createContext<ExternalStoreContext<{
+export const ThemeContext = createContext<ExternalStore<{
   theme: Theme;
 }> | null>(null);
 ThemeContext.displayName = 'ThemeContext';
