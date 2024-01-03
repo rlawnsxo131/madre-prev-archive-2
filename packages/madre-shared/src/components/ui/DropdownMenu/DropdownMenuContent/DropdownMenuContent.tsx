@@ -34,7 +34,7 @@ export function DropdownMenuContent({
   portalProps,
   className,
 }: Props) {
-  const { visible } = useVisibleContext();
+  const [visible] = useVisibleContext();
 
   const Component = (
     <AnimatePresence>

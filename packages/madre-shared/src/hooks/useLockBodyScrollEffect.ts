@@ -7,7 +7,7 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
  *
  * @param isLock
  */
-export function useLockBodyScroll(isLock = false) {
+export function useLockBodyScrollEffect(isLock = false) {
   useIsomorphicLayoutEffect(() => {
     const originalStyle = window.getComputedStyle(document.body).overflow;
 

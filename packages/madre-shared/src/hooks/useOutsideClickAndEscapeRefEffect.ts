@@ -10,9 +10,9 @@ import { useRefEffect } from './useRefEffect';
  *
  * @returns EffectRef<E>
  */
-export function useOutsideClickAndEscape<E extends HTMLElement = HTMLElement>(
-  event: (e: MouseEvent | KeyboardEvent) => void,
-) {
+export function useOutsideClickAndEscapeRefEffect<
+  E extends HTMLElement = HTMLElement,
+>(event: (e: MouseEvent | KeyboardEvent) => void) {
   const ref = useRefEffect<E>(
     (el) => {
       const clickHandler = (e: MouseEvent) => {

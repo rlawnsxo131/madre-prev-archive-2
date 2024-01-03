@@ -2,9 +2,9 @@ import { createContext, type ReactNode, useEffect } from 'react';
 
 import {
   type ContextStore,
-  useContextStore,
-  useInitContextStore,
-} from '../../../hooks/useContextStore';
+  createExternalStoreContext,
+  useExternalStoreContext,
+} from '../../../hooks/useExternalStoreContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
 import { matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
 import { THEME, type Theme } from '../models';
@@ -16,7 +16,7 @@ export const ThemeContext = createContext<ContextStore<{
 ThemeContext.displayName = 'ThemeContext';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const store = useInitContextStore({
+  const store = createExternalStoreContext({
     theme: THEME.light as Theme,
   });
 
@@ -52,20 +52,21 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTheme() {
-  const [{ theme }, set] = useContextStore(ThemeContext);
+  const [{ theme }, set] = useExternalStoreContext(ThemeContext);
 
-  const toggle = () =>
-    set(({ theme }) => {
-      const newTheme = themeService.getToggle(theme);
-      themeService.setStorage(newTheme);
-      themeService.setRoot(newTheme);
-      return {
-        theme: newTheme,
-      };
-    });
-
-  return {
+  return [
     theme,
-    toggle,
-  };
+    {
+      toggle() {
+        return set(({ theme }) => {
+          const newTheme = themeService.getToggle(theme);
+          themeService.setStorage(newTheme);
+          themeService.setRoot(newTheme);
+          return {
+            theme: newTheme,
+          };
+        });
+      },
+    },
+  ] as const;
 }

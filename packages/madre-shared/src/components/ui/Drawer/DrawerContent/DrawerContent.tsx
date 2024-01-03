@@ -13,7 +13,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export function DrawerContent({ children, duration = 0.15, className }: Props) {
-  const { visible } = useVisibleContext();
+  const [visible] = useVisibleContext();
 
   return (
     <>

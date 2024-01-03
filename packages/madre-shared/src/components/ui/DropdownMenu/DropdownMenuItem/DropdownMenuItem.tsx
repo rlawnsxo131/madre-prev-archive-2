@@ -11,7 +11,7 @@ type Props = {
 
 export function DropdownMenuItem({ children, className }: Props) {
   const child = Children.only(children);
-  const { close } = useVisibleContext();
+  const [, { close }] = useVisibleContext();
 
   return (
     <li className={classNames(styles.DropdownMenuItem, className)}>

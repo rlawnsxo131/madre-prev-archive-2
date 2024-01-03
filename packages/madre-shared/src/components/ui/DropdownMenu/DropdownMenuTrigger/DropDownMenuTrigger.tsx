@@ -11,7 +11,7 @@ type Props = {
 
 export function DropdownMenuTrigger({ children, className }: Props) {
   const child = Children.only(children);
-  const { toggle } = useVisibleContext();
+  const [, { toggle }] = useVisibleContext();
 
   return (
     <div className={classNames(styles.DropdownMenuTrigger, className)}>

@@ -1,5 +1,6 @@
 import {
   type ComponentType,
+  type DetailedHTMLProps,
   forwardRef,
   type HTMLAttributes,
   type PropsWithoutRef,
@@ -11,7 +12,9 @@ function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;
 }
 
-export type PortalProps = HTMLAttributes<HTMLDivElement> &
+export type PortalProps = PropsWithoutRef<
+  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> &
   PropsWithoutRef<{
     children?: ReactNode;
     container?: Element | (() => Element | null) | null;
@@ -40,11 +43,11 @@ export type WithPortalProps<T> = PortalProps & {
 export function withPortal<
   ComponentProps extends Record<string, unknown> = Record<string, never>,
 >({ Component, ...props }: WithPortalProps<ComponentProps>) {
-  return function (componentProps: ComponentProps) {
-    return (
-      <Portal {...props}>
-        <Component {...componentProps} />
-      </Portal>
-    );
-  };
+  const WithPortal = (componentProps: ComponentProps) => (
+    <Portal {...props}>
+      <Component {...componentProps} />
+    </Portal>
+  );
+
+  return WithPortal;
 }

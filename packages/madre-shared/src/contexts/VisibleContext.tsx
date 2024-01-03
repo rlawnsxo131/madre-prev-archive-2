@@ -2,9 +2,9 @@ import { createContext, type ReactNode } from 'react';
 
 import {
   type ContextStore,
-  useContextStore,
-  useInitContextStore,
-} from '../hooks/useContextStore';
+  createExternalStoreContext,
+  useExternalStoreContext,
+} from '../hooks/useExternalStoreContext';
 
 export const VisibleContext = createContext<ContextStore<{
   visible: boolean;
@@ -13,25 +13,32 @@ VisibleContext.displayName = 'VisibleContext';
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
   return (
-    <VisibleContext.Provider value={useInitContextStore({ visible: false })}>
+    <VisibleContext.Provider
+      value={createExternalStoreContext({ visible: false })}
+    >
       {children}
     </VisibleContext.Provider>
   );
 }
 
 export function useVisibleContext() {
-  const [{ visible }, set] = useContextStore(VisibleContext);
+  const [{ visible }, set] = useExternalStoreContext(VisibleContext);
 
-  const setVisible = (visible: boolean) => set({ visible });
-  const open = () => set({ visible: false });
-  const close = () => set({ visible: false });
-  const toggle = () => set((prev) => ({ visible: !prev.visible }));
-
-  return {
+  return [
     visible,
-    setVisible,
-    open,
-    close,
-    toggle,
-  };
+    {
+      setVisible(visible: boolean) {
+        return set({ visible });
+      },
+      open() {
+        return set({ visible: false });
+      },
+      close() {
+        return set({ visible: false });
+      },
+      toggle() {
+        return set((prev) => ({ visible: !prev.visible }));
+      },
+    },
+  ] as const;
 }

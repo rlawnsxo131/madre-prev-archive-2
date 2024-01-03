@@ -10,7 +10,7 @@ export function DrawerTrigger({
   onClick,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
-  const { toggle } = useVisibleContext();
+  const [, { toggle }] = useVisibleContext();
 
   return (
     <div
