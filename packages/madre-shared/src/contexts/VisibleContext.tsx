@@ -1,4 +1,4 @@
-import { createContext, type ReactNode } from 'react';
+import { createContext, type ReactNode, useRef } from 'react';
 
 import {
   createExternalStoreContext,
@@ -12,10 +12,10 @@ export const VisibleContext = createContext<ExternalStoreContext<{
 VisibleContext.displayName = 'VisibleContext';
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
+  const store = useRef(createExternalStoreContext({ visible: false }));
+
   return (
-    <VisibleContext.Provider
-      value={createExternalStoreContext({ visible: false })}
-    >
+    <VisibleContext.Provider value={store.current}>
       {children}
     </VisibleContext.Provider>
   );

@@ -1,14 +1,21 @@
 import { type Context, useContext, useSyncExternalStore } from 'react';
+// import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector';
 
 /**
  * @example
+ * // 전역 상태로 사용하고 싶다면, 여러번 호출되지 않게 하기 위해 컴포넌트 밖에 선언해야 합니다.
+ * const store = createExternalStoreContext({ bool: false });
+ *
  * const ExampleContext = createContext<ExternalStoreContext<{
  *   bool: boolean;
  * }> | null>(null);
  *
  * function ExampleProvider({ children }: { children: ReactNode }) {
+ *   // Provider 별로 상태가 달라야 한다면 ref 를 사용해 주세요.
+ *   const store = useRef(createExternalStoreContext({ bool: false }));
+ *
  *   return (
- *     <ExampleContext.Provider value={createExternalStoreContext({ bool: false })}>
+ *     <ExampleContext.Provider value={}>
  *       {children}
  *     </ExampleContext.Provider>
  *   );
@@ -22,6 +29,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  *     setFalse: () => set({ bool: false }),
  *     ...
  *   }]
+ * }
  */
 
 /**
@@ -43,20 +51,26 @@ export function useExternalStoreContext<
   StoreContext extends Record<string, unknown> = Record<string, never>,
 >(
   storeContext: Context<ExternalStoreContext<StoreContext> | null>,
-  selector: (store: StoreContext) => {
+  selector: (store: StoreContext) => Partial<{
     [k in keyof StoreContext]: StoreContext[k];
-  } = (store) => store,
+  }> = (store) => store,
 ) {
   const store = useContext(storeContext);
 
   if (!store) {
     throw new Error(`not found ${storeContext.displayName}`);
   }
+  // const state = useSyncExternalStoreWithSelector(
+  //   store.subscribe,
+  //   store.getSnapshot,
+  //   store.getServerSnapshot,
+  //   selector,
+  // );
 
   const state = useSyncExternalStore(
     store.subscribe,
-    () => selector(store.getState()),
-    () => selector(store.getServerState()),
+    () => selector(store.getSnapshot()),
+    () => selector(store.getServerSnapshot()),
   );
 
   return [state, store.set] as const;
@@ -83,11 +97,11 @@ export function createExternalStoreContext<
   State extends Record<string, unknown> = Record<string, never>,
 >(initialState: { [k in keyof State]: State[k] }) {
   let state = { ...initialState };
-  const subscribers = new Set<() => void>(new Set());
+  const subscribers = new Set<() => void>();
 
   return {
-    getState: () => state,
-    getServerState: () => state,
+    getSnapshot: () => state,
+    getServerSnapshot: () => state,
     set: (
       partial:
         | ((state: State) => State)
@@ -102,11 +116,11 @@ export function createExternalStoreContext<
             ? state
             : Object.assign({}, state, nextState);
       }
-      return subscribers.forEach((callback) => callback());
+      return subscribers.forEach((subscriber) => subscriber());
     },
-    subscribe: (callback: () => void) => {
-      subscribers.add(callback);
-      return () => subscribers.delete(callback);
+    subscribe: (subscriber: () => void) => {
+      subscribers.add(subscriber);
+      return () => subscribers.delete(subscriber);
     },
   };
 }

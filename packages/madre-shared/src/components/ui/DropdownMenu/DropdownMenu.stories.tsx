@@ -55,6 +55,30 @@ export const Default: Story = {
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </DropdownMenu>
+      <DropdownMenu>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger>
+            <button
+              onClick={() =>
+                new Promise((resolve) => setTimeout(() => resolve(1), 150))
+              }
+            >
+              메뉴열기
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content
+            align="left"
+            isPortal
+            portalProps={{
+              container: () => $('.dropdown-menu'),
+            }}
+          >
+            <DropdownMenu.Item>
+              <a href="/">ㅁ;니아럼;니ㅏ얾;ㅣ나얼;미나얼;미나얼</a>
+            </DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+      </DropdownMenu>
       <div className="dropdown-menu" />
     </>
   ),

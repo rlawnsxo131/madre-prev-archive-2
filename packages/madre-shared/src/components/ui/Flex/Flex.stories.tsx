@@ -21,7 +21,7 @@ export const Default: Story = {
     justify: 'start',
     align: 'start',
     alignSelf: 'auto',
-    wrap: 'no',
+    wrap: 'nowrap',
     gap: 0,
   },
   render: (args) => (
