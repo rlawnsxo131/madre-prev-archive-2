@@ -4,7 +4,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  * @description createExternalStoreContext 와 함께 사용합니다.
  * @description useSyncExternalStore 에 인자로 충족하는 값을 가지고 있는
  * context 를 주입받아, useSyncExternalStore 와 연결해 줍니다.
- * 이때 주입받을 context 의 값은 createExternalStoreContext 사용해 만듦니다.
+ * 이때 주입받을 context 의 값은 createExternalStoreContext 사용해 만듭니다.
  *
  * @param selectStore: Context<ExternalStoreContext<Store> | null>
  * @param selector: (store: Store) => { [k in keyof Store]: Store[k] }
