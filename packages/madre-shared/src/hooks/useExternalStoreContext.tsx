@@ -36,7 +36,7 @@ import { type Context, useContext, useSyncExternalStore } from 'react';
  * @returns
  * [
  *   state: { [k in keyof StoreContext]: StoreContext[k]; },
- *   set: (update: Partial<StoreContext> | ((state: StoreContext) => StoreContext) | ((state: StoreContext) => Partial<StoreContext>)) => void
+ *   set: (partial: Partial<StoreContext> | ((state: StoreContext) => StoreContext) | ((state: StoreContext) => Partial<StoreContext>)) => void
  * ]
  */
 export function useExternalStoreContext<
