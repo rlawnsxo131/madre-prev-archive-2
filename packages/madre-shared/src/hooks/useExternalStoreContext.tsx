@@ -41,7 +41,9 @@ export function useExternalStoreContext<
 /**
  * @description useExternalStoreContext 와 함께 사용합니다.
  * @description context api 를 사용할때, value 로 사용되는 값을 만드는 hook 입니다.
- * 리렌더 최적화를 위한 방법으로 외부 store 를 사용하기 위해 useSyncExternalStore 사용하며, 이때 주입할 interface 를 구현합니다.
+ * 리렌더 최적화를 위한 방법으로 react가 제공하는 기본적인 state 관련 기능을 사용하지 않습니다.
+ * useExternalStoreContext 는 useSyncExternalStore 로 상태를 동기화 하며,
+ * 이때 useSyncExternalStore 에 interface를 충족시키는 기능을 구현합니다.
  *
  * @param State
  *
