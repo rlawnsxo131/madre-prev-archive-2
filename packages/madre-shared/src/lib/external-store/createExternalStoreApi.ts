@@ -1,9 +1,4 @@
-import {
-  type CreateState,
-  type ExternalStoreApi,
-  type StoreApi,
-  type TState,
-} from './types';
+import { type CreateState, type ExternalStoreApi, type TState } from './types';
 
 export function createExternalStoreApi<State extends TState<State>>(
   createState: CreateState<State>,
@@ -12,11 +7,11 @@ export function createExternalStoreApi<State extends TState<State>>(
   let state: State;
   const listeners = new Set<Listener>();
 
-  const getState: StoreApi<State>['getState'] = () => state;
+  const getState: ExternalStoreApi<State>['getState'] = () => state;
 
-  const getServerState: StoreApi<State>['getServerState'] = () => state;
+  const getServerState: ExternalStoreApi<State>['getServerState'] = () => state;
 
-  const setState: StoreApi<State>['setState'] = (partial) => {
+  const setState: ExternalStoreApi<State>['setState'] = (partial) => {
     const nextState = typeof partial === 'function' ? partial(state) : partial;
     if (!Object.is(nextState, state)) {
       const previousState = state;
@@ -28,7 +23,7 @@ export function createExternalStoreApi<State extends TState<State>>(
     }
   };
 
-  const subscribe: StoreApi<State>['subscribe'] = (listener) => {
+  const subscribe: ExternalStoreApi<State>['subscribe'] = (listener) => {
     listeners.add(listener);
     return () => listeners.delete(listener);
   };
