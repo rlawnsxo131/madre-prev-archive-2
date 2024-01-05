@@ -12,7 +12,7 @@ const { Provider, useStoreContext } = createStoreContext<{
   };
 }>('VisibleContext');
 
-export function VisibleContextProvider({ children }: { children: ReactNode }) {
+export function VisibleProvider({ children }: { children: ReactNode }) {
   return (
     <Provider
       createState={(set) => ({
@@ -30,9 +30,8 @@ export function VisibleContextProvider({ children }: { children: ReactNode }) {
   );
 }
 
-export function useVisibleContext() {
+export function useVisible() {
   const { visible, actions } = useStoreContext();
-
   return [visible, actions] as const;
 }
 
