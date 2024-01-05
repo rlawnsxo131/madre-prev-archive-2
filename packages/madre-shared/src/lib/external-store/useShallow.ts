@@ -10,7 +10,7 @@ export function useShallow<S, U>(selector: (state: S) => U): (state: S) => U {
   };
 }
 
-function shallow<T>(objA: T, objB: T) {
+export function shallow<T>(objA: T, objB: T) {
   if (Object.is(objA, objB)) {
     return true;
   }
