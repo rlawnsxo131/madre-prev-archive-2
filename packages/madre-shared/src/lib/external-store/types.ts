@@ -21,7 +21,12 @@ export type CreateState<S> = (
 ) => S;
 
 export type ExternalStoreApi<S> = {
-  setState: (partial: (state: S) => S) => void;
+  setState: (
+    partial:
+      | ((state: S) => S)
+      | ((state: Partial<S>) => Partial<S>)
+      | Partial<S>,
+  ) => void;
   getState: () => S;
   getServerState: () => S;
   subscribe: (listener: (state: S, prevState: S) => void) => () => boolean;
