@@ -5,7 +5,7 @@ import { type ExternalStoreApi, type TState } from './types';
 
 export function useExternalStore<State extends TState<State>, ExtractState>(
   api: ExternalStoreApi<State>,
-  selector: (state: State) => ExtractState = api.getState as any,
+  selector: (state: State) => ExtractState = api.getState,
   isEqual?: (a: ExtractState, b: ExtractState) => boolean,
 ) {
   const state = useSyncExternalStoreWithSelector(
