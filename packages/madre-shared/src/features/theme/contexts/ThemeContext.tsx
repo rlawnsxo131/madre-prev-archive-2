@@ -19,6 +19,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const {
       actions: { set },
     } = useStoreContext();
+
     /**
      * 첫 로드시 theme 상태와 동기화
      */
