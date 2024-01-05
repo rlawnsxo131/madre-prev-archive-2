@@ -21,7 +21,10 @@ export type ThemeButtonProps = PropsWithoutRef<
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function ({ iconTheme = 'default', ...props }, ref) {
-    const [theme, { toggle }] = useTheme();
+    const {
+      theme,
+      actions: { toggle },
+    } = useTheme();
 
     return (
       <button

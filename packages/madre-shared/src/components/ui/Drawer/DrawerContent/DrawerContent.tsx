@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { useVisible } from '../../../../contexts/VisibleContext';
+import { useVisibleState } from '../../../../contexts/VisibleContext';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
@@ -13,7 +13,7 @@ type Props = PropsWithChildren<{
 }>;
 
 export function DrawerContent({ children, duration = 0.15, className }: Props) {
-  const [visible] = useVisible();
+  const visible = useVisibleState();
 
   return (
     <>

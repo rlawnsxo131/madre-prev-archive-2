@@ -31,8 +31,7 @@ export function VisibleProvider({ children }: { children: ReactNode }) {
 }
 
 export function useVisible() {
-  const { visible, actions } = useStoreContext();
-  return [visible, actions] as const;
+  return useStoreContext();
 }
 
 export function useVisibleState() {

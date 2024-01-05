@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
 
-import { useVisible } from '../../../../contexts/VisibleContext';
+import { useVisibleActions } from '../../../../contexts/VisibleContext';
 import styles from './DrawerTrigger.module.scss';
 
 export function DrawerTrigger({
@@ -10,7 +10,7 @@ export function DrawerTrigger({
   onClick,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
-  const [, { toggle }] = useVisible();
+  const { toggle } = useVisibleActions();
 
   return (
     <div

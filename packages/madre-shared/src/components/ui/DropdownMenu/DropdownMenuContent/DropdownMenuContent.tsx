@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { useVisible } from '../../../../contexts/VisibleContext';
+import { useVisibleState } from '../../../../contexts/VisibleContext';
 import {
   Portal,
   type PortalProps as _PortalProps,
@@ -34,7 +34,7 @@ export function DropdownMenuContent({
   portalProps,
   className,
 }: Props) {
-  const [visible] = useVisible();
+  const visible = useVisibleState();
 
   const Component = (
     <AnimatePresence>

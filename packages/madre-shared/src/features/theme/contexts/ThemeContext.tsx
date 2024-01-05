@@ -73,8 +73,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTheme() {
-  const { theme, actions } = useStoreContext();
-  return [theme, actions] as const;
+  return useStoreContext();
 }
 
 export function useThemeState() {
