@@ -1,6 +1,6 @@
 export type TState<S> = { [K in keyof S]: S[K] };
 
-export type StateSelector<T, U> = (state: T) => U;
+export type StateSelector<S, U> = (state: S) => U;
 
 export type StoreApi<S> = {
   setState: (
