@@ -1,30 +1,28 @@
 export type TState<S> = { [K in keyof S]: S[K] };
 
-export type ExtractStateSelector<T, U> = (state: T) => U;
+export type StateSelector<T, U> = (state: T) => U;
 
-export type StoreApi<T> = {
+export type StoreApi<S> = {
   setState: (
     partial:
-      | ((state: T) => T)
-      | ((state: Partial<T>) => Partial<T>)
-      | Partial<T>,
+      | ((state: S) => S)
+      | ((state: Partial<S>) => Partial<S>)
+      | Partial<S>,
   ) => void;
-  getState: () => T;
-  getServerState: () => T;
-  subscribe: (listener: (state: T, prevState: T) => void) => () => boolean;
+  getState: () => S;
+  getServerState: () => S;
+  subscribe: (listener: (state: S, prevState: S) => void) => () => boolean;
 };
 
-export type CreateState<U> = (
-  setState: StoreApi<U>['setState'],
-  getState: StoreApi<U>['getState'],
-  subscribe: StoreApi<U>['subscribe'],
-) => U;
+export type CreateState<S> = (
+  setState: StoreApi<S>['setState'],
+  getState: StoreApi<S>['getState'],
+  subscribe: StoreApi<S>['subscribe'],
+) => S;
 
-export type ExternalStoreApi<State> = {
-  setState: (partial: (state: State) => State) => void;
-  getState: () => State;
-  getServerState: () => State;
-  subscribe: (
-    listener: (state: State, prevState: State) => void,
-  ) => () => boolean;
+export type ExternalStoreApi<S> = {
+  setState: (partial: (state: S) => S) => void;
+  getState: () => S;
+  getServerState: () => S;
+  subscribe: (listener: (state: S, prevState: S) => void) => () => boolean;
 };

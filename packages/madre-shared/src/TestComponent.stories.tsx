@@ -32,7 +32,10 @@
 // }));
 
 // function Input1() {
-//   const { name1, setName1 } = useStore();
+//   const { name1, setName1 } = useStore((state) => ({
+//     name1: state.name1,
+//     setName1: state.setName1,
+//   }));
 
 //   return (
 //     <input
@@ -44,13 +47,13 @@
 // }
 
 // function Input2() {
-//   const { name2, setName2 } = useStore();
+//   const name2 = useStore((state) => state.name2);
 
 //   return (
 //     <input
 //       name="name2"
-//       value={name2 as any}
-//       onChange={(e: ChangeEvent<HTMLInputElement>) => setName2(e.target.value)}
+//       value={name2}
+//       // onChange={(e: ChangeEvent<HTMLInputElement>) => setName2(e.target.value)}
 //     />
 //   );
 // }
