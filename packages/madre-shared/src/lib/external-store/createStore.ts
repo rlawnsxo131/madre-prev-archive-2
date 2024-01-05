@@ -7,6 +7,8 @@ export function createStore<State extends TState<State>>(
 ) {
   const api = createExternalStoreApi(createState);
 
-  return <T = State>(selector?: StateSelector<State, T>) =>
-    useExternalStore(api, selector);
+  return <T = State>(
+    selector?: StateSelector<State, T>,
+    isEqual?: (a: T, b: T) => boolean,
+  ) => useExternalStore(api, selector, isEqual);
 }

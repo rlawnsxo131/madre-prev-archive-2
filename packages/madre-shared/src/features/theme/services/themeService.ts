@@ -1,5 +1,6 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
 import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/dom';
+import { isServer } from '../../../lib/utils/isServer';
 import { THEME, type Theme, THEME_SELECTOR } from '../models';
 
 class ThemeService {
@@ -14,9 +15,8 @@ class ThemeService {
     return this;
   }
 
-  setRoot(theme: Theme) {
-    this.#setRoot(theme);
-    return this;
+  getPriority() {
+    return this.#getStorage() || this.#getMedia();
   }
 
   setPriority(theme: Theme) {
@@ -28,12 +28,13 @@ class ThemeService {
     return this;
   }
 
-  getMedia() {
-    return this.#getMedia();
+  setRoot(theme: Theme) {
+    this.#setRoot(theme);
+    return this;
   }
 
-  getPriority() {
-    return this.#getStorage() || this.#getMedia();
+  getMedia() {
+    return this.#getMedia();
   }
 
   getToggle(theme: Theme) {
@@ -56,6 +57,7 @@ class ThemeService {
   }
 
   #getMedia() {
+    if (isServer()) return THEME.light;
     return matchPrefersColorSchemeDark().matches ? THEME.dark : THEME.light;
   }
 }

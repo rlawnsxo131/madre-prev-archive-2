@@ -74,7 +74,7 @@ export const Default: Story = {
             }}
           >
             <DropdownMenu.Item>
-              <a href="/">ㅁ;니아럼;니ㅏ얾;ㅣ나얼;미나얼;미나얼</a>
+              <a href="/">가나다라마바사아자차카타파하</a>
             </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>

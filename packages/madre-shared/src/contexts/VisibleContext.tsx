@@ -1,36 +1,45 @@
-import { createContext, type ReactNode, useRef } from 'react';
+import { type ReactNode } from 'react';
 
-import {
-  createExternalStore,
-  type ExternalStore,
-  useExternalStoreContext,
-} from '../hooks/useExternalStoreContext';
+import { createStoreContext } from '../lib/external-store';
 
-export const VisibleContext = createContext<ExternalStore<{
+const { Provider, useStoreContext } = createStoreContext<{
   visible: boolean;
-}> | null>(null);
-VisibleContext.displayName = 'VisibleContext';
+  actions: {
+    set: (visible: boolean) => void;
+    show: () => void;
+    hide: () => void;
+    toggle: () => void;
+  };
+}>('VisibleContext');
 
 export function VisibleContextProvider({ children }: { children: ReactNode }) {
-  const store = useRef(createExternalStore({ visible: false }));
-
   return (
-    <VisibleContext.Provider value={store.current}>
+    <Provider
+      createState={(set) => ({
+        visible: false,
+        actions: {
+          set: (visible: boolean) => set({ visible }),
+          show: () => set({ visible: true }),
+          hide: () => set({ visible: false }),
+          toggle: () => set((state) => ({ visible: !state.visible })),
+        },
+      })}
+    >
       {children}
-    </VisibleContext.Provider>
+    </Provider>
   );
 }
 
 export function useVisibleContext() {
-  const [{ visible }, set] = useExternalStoreContext(VisibleContext);
+  const { visible, actions } = useStoreContext();
 
-  return [
-    visible,
-    {
-      setVisible: (visible: boolean) => set({ visible }),
-      open: () => set({ visible: false }),
-      close: () => set({ visible: false }),
-      toggle: () => set((prev) => ({ visible: !prev.visible })),
-    },
-  ] as const;
+  return [visible, actions] as const;
+}
+
+export function useVisibleState() {
+  return useStoreContext((state) => state.visible);
+}
+
+export function useVisibleActions() {
+  return useStoreContext((state) => state.actions);
 }

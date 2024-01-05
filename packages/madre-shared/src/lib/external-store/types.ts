@@ -4,10 +4,7 @@ export type StateSelector<S, U> = (state: S) => U;
 
 export type ExternalStoreApi<S> = {
   setState: (
-    partial:
-      | ((state: S) => S)
-      | ((state: Partial<S>) => Partial<S>)
-      | Partial<S>,
+    partial: S | Partial<S> | { _(state: S): S | Partial<S> }['_'],
   ) => void;
   getState: () => S;
   getServerState: () => S;
