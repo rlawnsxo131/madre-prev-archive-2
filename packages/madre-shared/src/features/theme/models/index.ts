@@ -9,8 +9,4 @@ export const THEME_SELECTOR = {
   dataTheme: 'data-theme',
 };
 
-export const ROOT = ':root';
-export const DATA_THEME = 'data-theme';
-export const PREFERSE_COLOR_SCHEME_DARK = '(prefers-color-scheme: dark)';
-
 export type Theme = keyof Pick<typeof THEME, 'light' | 'dark'>;
