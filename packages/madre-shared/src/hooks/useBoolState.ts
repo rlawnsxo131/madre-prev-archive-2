@@ -15,7 +15,7 @@ export function useBoolState() {
         setFalse: () => setBool(false),
         toggle: () => setBool((prev) => !prev),
       }),
-      [setBool],
+      [],
     ),
   ] as const;
 }

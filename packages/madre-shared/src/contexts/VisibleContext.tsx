@@ -1,8 +1,8 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 
-import { createStoreContext } from '../lib/external-store';
+import { makeContext } from './makeContext';
 
-const { Provider, useStoreContext } = createStoreContext<{
+const { Provider, useContext } = makeContext<{
   visible: boolean;
   actions: {
     set: (visible: boolean) => void;
@@ -13,17 +13,19 @@ const { Provider, useStoreContext } = createStoreContext<{
 }>('VisibleContext');
 
 export function VisibleProvider({ children }: { children: ReactNode }) {
+  const [visible, setVisible] = useState(false);
+
   return (
     <Provider
-      createState={(set) => ({
-        visible: false,
+      value={{
+        visible,
         actions: {
-          set: (visible: boolean) => set({ visible }),
-          show: () => set({ visible: true }),
-          hide: () => set({ visible: false }),
-          toggle: () => set((state) => ({ visible: !state.visible })),
+          set: setVisible,
+          show: () => setVisible(true),
+          hide: () => setVisible(false),
+          toggle: () => setVisible((prev) => !prev),
         },
-      })}
+      }}
     >
       {children}
     </Provider>
@@ -31,13 +33,5 @@ export function VisibleProvider({ children }: { children: ReactNode }) {
 }
 
 export function useVisible() {
-  return useStoreContext();
-}
-
-export function useVisibleState() {
-  return useStoreContext((state) => state.visible);
-}
-
-export function useVisibleActions() {
-  return useStoreContext((state) => state.actions);
+  return useContext();
 }

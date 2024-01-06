@@ -22,7 +22,7 @@ export type ThemeButtonProps = PropsWithoutRef<
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function ({ iconTheme = 'default', ...props }, ref) {
     const {
-      theme,
+      state: { theme, isPending },
       actions: { toggle },
     } = useTheme();
 
@@ -33,7 +33,7 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
         onClick={toggle}
         {...props}
       >
-        <Icons theme={iconTheme} type={iconMap[theme]} />
+        {isPending ? '...' : <Icons theme={iconTheme} type={iconMap[theme]} />}
       </button>
     );
   },
