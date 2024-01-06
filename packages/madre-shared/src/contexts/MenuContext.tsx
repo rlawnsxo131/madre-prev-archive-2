@@ -1,7 +1,13 @@
-import { createContext, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-const MenuContext = createContext<{} | null>(null);
+import { makeContext } from './makeContext';
 
-export function MenuContextProvider({ children }: { children: ReactNode }) {
-  return <MenuContext.Provider value={null}>{children}</MenuContext.Provider>;
+const { Provider, useContext } = makeContext('MenuContext');
+
+export function MenuProvider({ children }: { children: ReactNode }) {
+  return <Provider value={{}}>{children}</Provider>;
+}
+
+export function useMenu() {
+  return useContext();
 }

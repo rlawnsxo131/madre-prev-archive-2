@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 
-import { $ } from '../../../lib/utils/dom';
+import { $ } from '../../../lib/utils/browser';
 import { DropdownMenu } from './DropdownMenu';
 
 const meta = {
