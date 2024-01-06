@@ -5,6 +5,7 @@ import {
 } from 'react';
 
 import { Icons, type IconsProps } from '../../../../components/ui/Icons';
+import { If } from '../../../../components/utility/If';
 import { useTheme } from '../../contexts';
 import styles from './ThemeButton.module.scss';
 
@@ -22,7 +23,7 @@ export type ThemeButtonProps = PropsWithoutRef<
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   function ({ iconTheme = 'default', ...props }, ref) {
     const {
-      state: { theme, isPending },
+      state: { theme, isSynced },
       actions: { toggle },
     } = useTheme();
 
@@ -33,7 +34,9 @@ export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
         onClick={toggle}
         {...props}
       >
-        {isPending ? '...' : <Icons theme={iconTheme} type={iconMap[theme]} />}
+        <If predicate={isSynced}>
+          <Icons theme={iconTheme} type={iconMap[theme]} />
+        </If>
       </button>
     );
   },

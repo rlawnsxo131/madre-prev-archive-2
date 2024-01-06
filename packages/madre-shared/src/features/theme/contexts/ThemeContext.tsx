@@ -1,9 +1,9 @@
 import {
   type ReactNode,
+  startTransition,
   useEffect,
   useMemo,
   useState,
-  useTransition,
 } from 'react';
 
 import { makeContext } from '../../../contexts/makeContext';
@@ -14,7 +14,7 @@ import { themeService } from '../services';
 
 const { Provider: StateProvider, useContext: useStateContext } = makeContext<{
   theme: Theme;
-  isPending: boolean;
+  isSynced: boolean;
 }>('ThemeStateContext');
 
 const { Provider: ActionProvider, useContext: useActionContext } = makeContext<{
@@ -23,7 +23,7 @@ const { Provider: ActionProvider, useContext: useActionContext } = makeContext<{
 }>('ThemeActionContext');
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isPending, startTransition] = useTransition();
+  const [isSynced, setIsSynced] = useState(false);
   const [theme, setTheme] = useState<Theme>(THEME.light);
 
   const actions = useMemo(
@@ -44,10 +44,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    * 첫 로드시 theme 상태와 동기화
    */
   useIsomorphicLayoutEffect(() => {
+    const theme = themeService.getPriority();
+    themeService.setPriority(theme);
     startTransition(() => {
-      const theme = themeService.getPriority();
       setTheme(theme);
-      themeService.setPriority(theme);
+      setIsSynced(true);
     });
   }, []);
 
@@ -69,7 +70,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <StateProvider value={{ theme, isPending }}>
+    <StateProvider value={{ theme, isSynced }}>
       <ActionProvider value={{ ...actions }}>{children}</ActionProvider>
     </StateProvider>
   );
