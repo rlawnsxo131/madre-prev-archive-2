@@ -1,5 +1,6 @@
 import {
   type ButtonHTMLAttributes,
+  type DetailedHTMLProps,
   forwardRef,
   type PropsWithoutRef,
 } from 'react';
@@ -15,7 +16,13 @@ const iconMap = {
 } as const;
 
 export type ThemeButtonProps = PropsWithoutRef<
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>
+  Omit<
+    DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    'onClick'
+  >
 > & {
   iconTheme?: IconsProps['theme'];
 };
