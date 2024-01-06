@@ -23,12 +23,16 @@ const { Provider: ActionProvider, useContext: useActionContext } = makeContext<{
 }>('ThemeActionContext');
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [isSynced, setIsSynced] = useState(false);
   const [theme, setTheme] = useState<Theme>(THEME.light);
+  const [isSynced, setIsSynced] = useState(false);
 
   const actions = useMemo(
     () => ({
-      set: setTheme,
+      set: (theme: Theme) => {
+        themeService.setStorage(theme);
+        themeService.setRoot(theme);
+        setTheme(theme);
+      },
       toggle: () =>
         setTheme((theme) => {
           const newTheme = themeService.getToggle(theme);
@@ -71,7 +75,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <StateProvider value={{ theme, isSynced }}>
-      <ActionProvider value={{ ...actions }}>{children}</ActionProvider>
+      <ActionProvider value={actions}>{children}</ActionProvider>
     </StateProvider>
   );
 }
