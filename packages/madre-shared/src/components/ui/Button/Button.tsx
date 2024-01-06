@@ -23,41 +23,41 @@ export type ButtonComponent = <E extends ElementType = 'button'>(
   props: ButtonProps<E> & { ref?: ComponentPropsWithRef<E>['ref'] },
 ) => ReactNode;
 
-export const Button: ButtonComponent = forwardRef(function <
-  E extends ElementType,
->(
-  {
-    as,
-    children,
-    variant = 'solid',
-    theme = 'primary',
-    radius = 'medium',
-    size = 'medium',
-    fullWidth = false,
-    className,
-    ...props
-  }: ButtonProps<E>,
-  ref?: ComponentPropsWithRef<E>['ref'],
-) {
-  const Element = as ?? 'button';
+export const Button: ButtonComponent = forwardRef(
+  <E extends ElementType>(
+    {
+      as,
+      children,
+      variant = 'solid',
+      theme = 'primary',
+      radius = 'medium',
+      size = 'medium',
+      fullWidth = false,
+      className,
+      ...props
+    }: ButtonProps<E>,
+    ref?: ComponentPropsWithRef<E>['ref'],
+  ) => {
+    const Element = as ?? 'button';
 
-  return (
-    <Element
-      ref={ref}
-      className={classNames(
-        styles.Button,
-        styles[size],
-        styles[`radius-${radius}`],
-        styles[variant],
-        styles[theme],
-        {
-          [styles['full-width']]: fullWidth,
-        },
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </Element>
-  );
-});
+    return (
+      <Element
+        ref={ref}
+        className={classNames(
+          styles.Button,
+          styles[size],
+          styles[`radius-${radius}`],
+          styles[variant],
+          styles[theme],
+          {
+            [styles['full-width']]: fullWidth,
+          },
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </Element>
+    );
+  },
+);

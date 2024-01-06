@@ -18,11 +18,8 @@ export type OverlayProps = PropsWithoutRef<
   }
 >;
 
-export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
-  { visible, onClick, duration = 0.15, className },
-  ref,
-) {
-  return (
+export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(
+  ({ visible, onClick, duration = 0.15, className }, ref) => (
     <Portal>
       <AnimatePresence>
         {visible && (
@@ -41,5 +38,5 @@ export const Overlay = forwardRef<HTMLDivElement, OverlayProps>(function (
         )}
       </AnimatePresence>
     </Portal>
-  );
-});
+  ),
+);

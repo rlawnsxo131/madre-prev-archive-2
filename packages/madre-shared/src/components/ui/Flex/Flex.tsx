@@ -25,44 +25,46 @@ export type FlexComponent = <E extends ElementType = 'div'>(
   Props: FlexProps<E> & { ref?: ComponentPropsWithRef<E>['ref'] },
 ) => ReactNode;
 
-export const Flex: FlexComponent = forwardRef(function <E extends ElementType>(
-  {
-    as,
-    children,
-    direction = 'row',
-    justify = 'start',
-    align = 'stretch',
-    alignSelf = 'auto',
-    wrap = 'nowrap',
-    gap = 0,
-    fullWidth = false,
-    className,
-    style,
-    ...props
-  }: FlexProps<E>,
-  ref?: ComponentPropsWithRef<E>['ref'],
-) {
-  const Element = as ?? 'div';
+export const Flex: FlexComponent = forwardRef(
+  <E extends ElementType>(
+    {
+      as,
+      children,
+      direction = 'row',
+      justify = 'start',
+      align = 'stretch',
+      alignSelf = 'auto',
+      wrap = 'nowrap',
+      gap = 0,
+      fullWidth = false,
+      className,
+      style,
+      ...props
+    }: FlexProps<E>,
+    ref?: ComponentPropsWithRef<E>['ref'],
+  ) => {
+    const Element = as ?? 'div';
 
-  return (
-    <Element
-      ref={ref}
-      className={classNames(
-        styles.Flex,
-        styles[direction],
-        styles[`justify-${justify}`],
-        styles[`align-${align}`],
-        styles[`align-self-${alignSelf}`],
-        styles[wrap],
-        {
-          [styles['full-width']]: fullWidth,
-        },
-        className,
-      )}
-      style={Object.assign({ gap }, style)}
-      {...props}
-    >
-      {children}
-    </Element>
-  );
-});
+    return (
+      <Element
+        ref={ref}
+        className={classNames(
+          styles.Flex,
+          styles[direction],
+          styles[`justify-${justify}`],
+          styles[`align-${align}`],
+          styles[`align-self-${alignSelf}`],
+          styles[wrap],
+          {
+            [styles['full-width']]: fullWidth,
+          },
+          className,
+        )}
+        style={Object.assign({ gap }, style)}
+        {...props}
+      >
+        {children}
+      </Element>
+    );
+  },
+);

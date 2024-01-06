@@ -21,7 +21,7 @@ export type ThemeButtonProps = PropsWithoutRef<
 };
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
-  function ({ iconTheme = 'default', ...props }, ref) {
+  ({ iconTheme = 'default', ...props }, ref) => {
     const {
       state: { theme, isSynced },
       actions: { toggle },

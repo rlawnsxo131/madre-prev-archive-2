@@ -21,20 +21,19 @@ export type PortalProps = PropsWithoutRef<
     key?: string | null;
   }>;
 
-export const Portal = forwardRef<HTMLDivElement, PortalProps>(function (
-  { children, key, container, ...props },
-  ref,
-) {
-  const mountNode = getContainer(container) || document.body;
+export const Portal = forwardRef<HTMLDivElement, PortalProps>(
+  ({ children, key, container, ...props }, ref) => {
+    const mountNode = getContainer(container) || document.body;
 
-  return createPortal(
-    <div ref={ref} {...props}>
-      {children}
-    </div>,
-    mountNode,
-    key,
-  );
-});
+    return createPortal(
+      <div ref={ref} {...props}>
+        {children}
+      </div>,
+      mountNode,
+      key,
+    );
+  },
+);
 
 export type WithPortalProps<T> = PortalProps & {
   Component: ComponentType<T>;
