@@ -8,7 +8,7 @@ import {
 
 import { makeContext } from '../../../contexts/makeContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
-import { matchPrefersColorSchemeDark } from '../../../lib/utils/browser';
+import { matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
 import { THEME, type Theme } from '../models';
 import { themeService } from '../services';
 

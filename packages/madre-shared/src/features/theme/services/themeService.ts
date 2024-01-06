@@ -1,5 +1,5 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
-import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/browser';
+import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
 import { THEME, type Theme, THEME_SELECTOR } from '../models';
 
 class ThemeService {
