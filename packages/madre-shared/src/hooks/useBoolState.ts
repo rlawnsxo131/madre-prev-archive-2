@@ -10,7 +10,7 @@ export function useBoolState() {
     bool,
     useMemo(
       () => ({
-        setValue: setBool,
+        set: setBool,
         setTrue: () => setBool(true),
         setFalse: () => setBool(false),
         toggle: () => setBool((prev) => !prev),
