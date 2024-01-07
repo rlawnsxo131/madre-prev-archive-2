@@ -66,13 +66,7 @@ export const Default: Story = {
               메뉴열기
             </button>
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content
-            align="left"
-            isPortal
-            portalProps={{
-              container: () => $('.dropdown-menu'),
-            }}
-          >
+          <DropdownMenu.Content align="left">
             <DropdownMenu.Item>
               <a href="/">가나다라마바사아자차카타파하</a>
             </DropdownMenu.Item>

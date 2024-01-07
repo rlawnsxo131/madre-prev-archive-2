@@ -5,9 +5,6 @@
   @include mixins.reset-ul;
 
   position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -15,4 +12,30 @@
   color: var(variables.$color-font2);
   background-color: var(variables.$color-bg-element1);
   z-index: variables.$zIndex-drawer;
+
+  &.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &.right {
+    top: 0;
+    right: 0;
+    width: 18.75rem;
+    height: 100%;
+  }
+
+  &.bottom {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &.left {
+    top: 0;
+    left: 0;
+    width: 18.75rem;
+    height: 100%;
+  }
 }
