@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react';
 
-import { isClient } from '../lib/utils/isClient';
+import { isClient } from '../lib/utils';
 
 /**
  * @description client 에서는 useLayoutEffect 방식을 쓰고, server 에서는 useEffect 방식을 쓰도록 합니다.

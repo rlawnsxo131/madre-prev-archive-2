@@ -8,7 +8,7 @@ import {
 
 import { makeContext } from '../../../contexts/makeContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
-import { matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
+import { matchPrefersColorSchemeDark } from '../../../lib/utils';
 import { THEME, type Theme, THEME_MODE, type ThemeMode } from '../models';
 import { themeService } from '../services';
 
@@ -20,6 +20,7 @@ type State = {
 
 type Actions = {
   set: (theme: Theme) => void;
+  reset: () => void;
   toggle: () => void;
 };
 
@@ -37,8 +38,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const actions = useMemo<Actions>(
     () => ({
       set: (theme: Theme) => {
-        themeService.set(theme);
+        const mode = themeService.set(theme).getMode();
         setTheme(theme);
+        setMode(mode);
+      },
+      reset: () => {
+        const theme = themeService.reset().getMedia();
+        const mode = themeService.getMode();
+        setTheme(theme);
+        setMode(mode);
       },
       toggle: () =>
         setTheme((theme) => {
@@ -63,11 +71,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       setIsSynced(true);
     });
   }, []);
-
-  /**
-   * storage 에서 THEME 제거시 system colorScheme 과 동기화
-   */
-  useEffect(() => {}, []);
 
   /**
    * preferseColorScheme change 이벤트 동기화

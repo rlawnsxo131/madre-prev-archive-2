@@ -7,8 +7,6 @@ import { useRefEffect } from './useRefEffect';
  * keydown 이벤트 발생시, Escape 를 입력해따면, paramter 로 넘어온 event 를 실행합니다.
  *
  * @param event
- *
- * @returns EffectRef<E>
  */
 export function useOutsideClickAndEscapeRefEffect<
   E extends HTMLElement = HTMLElement,

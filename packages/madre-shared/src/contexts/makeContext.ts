@@ -1,5 +1,11 @@
 import * as React from 'react';
 
+/**
+ * @description React context api 를 조금더 편하게 사용하기 위한 함수입니다.
+ *
+ * @param displayName - Context 의 displayName 으로 사용될 값.
+ *
+ */
 export function makeContext<Value extends { [K in keyof Value]: Value[K] }>(
   displayName?: string,
 ) {

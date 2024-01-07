@@ -1,17 +1,18 @@
-import { debounce } from 'lodash-es';
+import debounce from 'lodash.debounce';
 import { useEffect, useMemo } from 'react';
 
 import { usePreservedCallback } from './usePreservedCallback';
 import { usePreservedReference } from './usePreservedReference';
 
 /**
+ * @link https://lodash.com/docs/4.17.15#debounce
+ *
  * @description lodash debounce 를 조금더 편하게 사용하기 위한 hook 입니다.
+ * @description leading 과 trailing 이 true 라면 throttle 처럼 사용
  *
  * @param callback
  * @param wait
- * @param options
- *
- * @returns DebouncedFunc<Callback>
+ * @param options - leading, trailing, maxWait
  */
 export function useDebounce<F extends (...args: any[]) => any>(
   callback: F,

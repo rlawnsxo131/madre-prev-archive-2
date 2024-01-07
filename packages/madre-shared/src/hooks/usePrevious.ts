@@ -5,8 +5,6 @@ import { useEffect, useRef } from 'react';
  * 이전 값이 없을 경우 인자로 주어진 값을 그대로 반환합니다.
  *
  * @param value
- *
- * @returns T
  */
 export function usePrevious<T>(value: T): T {
   const ref = useRef<T>(value);

@@ -5,9 +5,7 @@ type CallbackRef<T> = (ref: T | null) => void;
 /**
  * @description 여러개의 ref 를 하나로 합치고 싶을때 사용합니다.
  *
- * @param Array<Ref<T> | CallbackRef<T>>
- *
- * @returns Ref<T>
+ * @param refs
  */
 export function useCombinedRefs<T>(
   ...refs: Array<Ref<T> | CallbackRef<T>>

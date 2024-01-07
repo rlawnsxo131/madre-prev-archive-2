@@ -1,5 +1,5 @@
-import { safeLocalStorage } from '../../../lib/storage/safeStorage';
-import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
+import { safeLocalStorage } from '../../../lib/storage';
+import { $, matchPrefersColorSchemeDark } from '../../../lib/utils';
 import { THEME, type Theme, THEME_MODE, THEME_SELECTOR } from '../models';
 
 class ThemeService {
@@ -9,6 +9,16 @@ class ThemeService {
     this.#setStorage(theme);
     this.#setRoot(theme);
     return this;
+  }
+
+  public reset() {
+    safeLocalStorage.remove(THEME.key);
+    this.#setRoot(this.#getMedia());
+    return this;
+  }
+
+  public getMedia() {
+    return this.#getMedia();
   }
 
   public getPriority() {
