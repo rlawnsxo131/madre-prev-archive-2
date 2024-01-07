@@ -4,11 +4,11 @@ import { useRefEffect } from './useRefEffect';
  * @description click 이벤트 발생시, ref 에 해당하는 Element 요소의
  * 바깥에서 이벤트가 발생되었다면, parameter 로 넘어온 event 를 실행합니다.
  *
- * keydown 이벤트 발생시, Escape 를 입력해따면, paramter 로 넘어온 event 를 실행합니다.
+ * keydown 이벤트 발생시, Escape 를 입력했다면, paramter 로 넘어온 event 를 실행합니다.
  *
  * @param event
  */
-export function useOutsideClickAndEscapeRefEffect<
+export function useOutsideClickAndEscapeEventRef<
   E extends HTMLElement = HTMLElement,
 >(event: (e: MouseEvent | KeyboardEvent) => void) {
   const ref = useRefEffect<E>(

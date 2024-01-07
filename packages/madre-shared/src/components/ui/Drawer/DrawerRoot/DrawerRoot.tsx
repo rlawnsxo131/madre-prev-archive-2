@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
 
 import { useVisibleActions } from '../../../../contexts/VisibleContext';
-import { useOutsideClickAndEscapeRefEffect } from '../../../../hooks/useOutsideClickAndEscapeRefEffect';
+import { useOutsideClickAndEscapeEventRef } from '../../../../hooks/useOutsideClickAndEscapeEventRef';
 import styles from './DrawerRoot.module.scss';
 
 export function DrawerRoot({
@@ -11,7 +11,7 @@ export function DrawerRoot({
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
   const { hide } = useVisibleActions();
-  const ref = useOutsideClickAndEscapeRefEffect(hide);
+  const ref = useOutsideClickAndEscapeEventRef(hide);
 
   return (
     <div
