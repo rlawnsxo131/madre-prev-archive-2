@@ -38,17 +38,17 @@ export function createEventEmitter<
 >(): EventEmitter<Events> {
   return {
     events: {},
-    emit(event, ...args) {
-      if (this.events[event]) return;
-      for (const callback of this.events[event]!) {
-        callback(...args);
-      }
-    },
     on(event, cb) {
       (this.events[event] ??= new Set()).add(cb);
       return () => {
         this.events[event]?.delete(cb);
       };
+    },
+    emit(event, ...args) {
+      if (!this.events[event]) return;
+      for (const callback of this.events[event]!) {
+        callback(...args);
+      }
     },
   };
 }
