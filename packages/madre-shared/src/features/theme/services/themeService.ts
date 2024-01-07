@@ -5,12 +5,9 @@ import { THEME, type Theme, THEME_MODE, THEME_SELECTOR } from '../models';
 class ThemeService {
   constructor() {}
 
-  public getStorage() {
-    return this.#getStorage();
-  }
-
-  public setStorage(theme: Theme) {
+  public set(theme: Theme) {
     this.#setStorage(theme);
+    this.#setRoot(theme);
     return this;
   }
 
@@ -25,15 +22,6 @@ class ThemeService {
     this.#setRoot(theme);
 
     return this;
-  }
-
-  public setRoot(theme: Theme) {
-    this.#setRoot(theme);
-    return this;
-  }
-
-  public getMedia() {
-    return this.#getMedia();
   }
 
   public getToggle(theme: Theme) {

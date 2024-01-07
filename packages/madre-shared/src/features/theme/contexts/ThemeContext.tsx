@@ -37,13 +37,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const actions = useMemo<Actions>(
     () => ({
       set: (theme: Theme) => {
-        themeService.setStorage(theme).setRoot(theme);
+        themeService.set(theme);
         setTheme(theme);
       },
       toggle: () =>
         setTheme((theme) => {
           const nextTheme = themeService.getToggle(theme);
-          themeService.setStorage(nextTheme).setRoot(nextTheme);
+          themeService.set(nextTheme);
           return nextTheme;
         }),
     }),
