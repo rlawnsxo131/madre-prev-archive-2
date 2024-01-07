@@ -7,7 +7,7 @@ import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
 
-const motionMap = {
+const animationMap = {
   top: {
     initial: {
       translateY: '-100%',
@@ -79,6 +79,7 @@ export function DrawerContent({
   className,
 }: Props) {
   const { visible } = useVisibleState();
+  const animation = animationMap[position];
 
   return (
     <>
@@ -92,9 +93,9 @@ export function DrawerContent({
                 styles[position],
                 className,
               )}
-              initial={motionMap[position].initial}
-              animate={motionMap[position].animate}
-              exit={motionMap[position].exit}
+              initial={animation.initial}
+              animate={animation.animate}
+              exit={animation.exit}
               transition={{
                 duration,
                 ease: 'easeIn',
