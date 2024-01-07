@@ -12,7 +12,7 @@ export const THEME_MODE = {
 export const THEME_SELECTOR = {
   root: ':root',
   dataTheme: 'data-theme',
-};
+} as const;
 
 export type Theme = keyof Pick<typeof THEME, 'light' | 'dark'>;
 export type ThemeMode = keyof typeof THEME_MODE;
