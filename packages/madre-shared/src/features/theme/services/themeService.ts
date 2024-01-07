@@ -16,7 +16,7 @@ class ThemeService {
   }
 
   public setPriority(theme: Theme) {
-    if (this.#getMode() === 'custom') {
+    if (this.#getMode() === THEME_MODE.custom) {
       this.#setStorage(theme);
     }
     this.#setRoot(theme);
