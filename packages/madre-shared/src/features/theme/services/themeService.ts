@@ -1,25 +1,25 @@
 import { safeLocalStorage } from '../../../lib/storage/safeStorage';
 import { $, matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
-import { THEME, type Theme, THEME_SELECTOR } from '../models';
+import { THEME, type Theme, THEME_MODE, THEME_SELECTOR } from '../models';
 
 class ThemeService {
   constructor() {}
 
-  getStorage() {
+  public getStorage() {
     return this.#getStorage();
   }
 
-  setStorage(theme: Theme) {
+  public setStorage(theme: Theme) {
     this.#setStorage(theme);
     return this;
   }
 
-  getPriority() {
-    return this.#getStorage() || this.#getMedia();
+  public getPriority() {
+    return this.#getStorage() || this.#getMedia() || THEME.light;
   }
 
-  setPriority(theme: Theme) {
-    if (this.#getStorage()) {
+  public setPriority(theme: Theme) {
+    if (this.#getMode() === 'custom') {
       this.#setStorage(theme);
     }
     this.#setRoot(theme);
@@ -27,17 +27,21 @@ class ThemeService {
     return this;
   }
 
-  setRoot(theme: Theme) {
+  public setRoot(theme: Theme) {
     this.#setRoot(theme);
     return this;
   }
 
-  getMedia() {
+  public getMedia() {
     return this.#getMedia();
   }
 
-  getToggle(theme: Theme) {
+  public getToggle(theme: Theme) {
     return theme === THEME.dark ? THEME.light : THEME.dark;
+  }
+
+  public getMode() {
+    return this.#getMode();
   }
 
   #getStorage() {
@@ -57,6 +61,12 @@ class ThemeService {
 
   #getMedia() {
     return matchPrefersColorSchemeDark().matches ? THEME.dark : THEME.light;
+  }
+
+  #getMode() {
+    return safeLocalStorage.get(THEME.key)
+      ? THEME_MODE.custom
+      : THEME_MODE.system;
   }
 }
 

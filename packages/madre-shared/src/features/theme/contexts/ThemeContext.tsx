@@ -9,36 +9,42 @@ import {
 import { makeContext } from '../../../contexts/makeContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
 import { matchPrefersColorSchemeDark } from '../../../lib/utils/selectors';
-import { THEME, type Theme } from '../models';
+import { THEME, type Theme, THEME_MODE, type ThemeMode } from '../models';
 import { themeService } from '../services';
 
-const { Provider: StateProvider, useContext: useStateContext } = makeContext<{
+type State = {
   theme: Theme;
+  mode: ThemeMode;
   isSynced: boolean;
-}>('ThemeStateContext');
+};
 
-const { Provider: ActionProvider, useContext: useActionContext } = makeContext<{
+type Actions = {
   set: (theme: Theme) => void;
   toggle: () => void;
-}>('ThemeActionContext');
+};
+
+const { Provider: StateProvider, useContext: useStateContext } =
+  makeContext<State>('ThemeStateContext');
+
+const { Provider: ActionsProvider, useContext: useActionsContext } =
+  makeContext<Actions>('ThemeActionContext');
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(THEME.light);
+  const [mode, setMode] = useState<ThemeMode>(THEME_MODE.system);
   const [isSynced, setIsSynced] = useState(false);
 
-  const actions = useMemo(
+  const actions = useMemo<Actions>(
     () => ({
       set: (theme: Theme) => {
-        themeService.setStorage(theme);
-        themeService.setRoot(theme);
+        themeService.setStorage(theme).setRoot(theme);
         setTheme(theme);
       },
       toggle: () =>
         setTheme((theme) => {
-          const newTheme = themeService.getToggle(theme);
-          themeService.setStorage(newTheme);
-          themeService.setRoot(newTheme);
-          return newTheme;
+          const nextTheme = themeService.getToggle(theme);
+          themeService.setStorage(nextTheme).setRoot(nextTheme);
+          return nextTheme;
         }),
     }),
     [],
@@ -49,9 +55,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    */
   useIsomorphicLayoutEffect(() => {
     const theme = themeService.getPriority();
+    const mode = themeService.getMode();
     themeService.setPriority(theme);
     startTransition(() => {
       setTheme(theme);
+      setMode(mode);
       setIsSynced(true);
     });
   }, []);
@@ -61,6 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    */
   useEffect(() => {
     const handler = (e: MediaQueryListEvent) => {
+      if (themeService.getMode() === 'custom') return;
       const theme = e.matches ? THEME.dark : THEME.light;
       setTheme(theme);
       themeService.setPriority(theme);
@@ -74,15 +83,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <StateProvider value={{ theme, isSynced }}>
-      <ActionProvider value={actions}>{children}</ActionProvider>
+    <StateProvider value={{ theme, mode, isSynced }}>
+      <ActionsProvider value={actions}>{children}</ActionsProvider>
     </StateProvider>
   );
 }
 
 export function useTheme() {
   const state = useStateContext();
-  const actions = useActionContext();
+  const actions = useActionsContext();
   return { state, actions };
 }
 
@@ -91,5 +100,5 @@ export function useThemeState() {
 }
 
 export function useThemeActions() {
-  return useActionContext();
+  return useActionsContext();
 }

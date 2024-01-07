@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react';
 
 import { VisibleProvider } from '../../../contexts/VisibleContext';
-import { DrawerContent } from './DrawerContent/DrawerContent';
-import { DrawerItem } from './DrawerItem/DrawerItem';
-import { DrawerRoot } from './DrawerRoot/DrawerRoot';
-import { DrawerTrigger } from './DrawerTrigger/DrawerTrigger';
+import { DrawerContent } from './DrawerContent';
+import { DrawerItem } from './DrawerItem';
+import { DrawerRoot } from './DrawerRoot';
+import { DrawerTrigger } from './DrawerTrigger';
 
 function Container({ children }: { children: ReactNode }) {
   return <VisibleProvider>{children}</VisibleProvider>;

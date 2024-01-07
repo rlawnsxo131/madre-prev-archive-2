@@ -7,18 +7,18 @@ export interface Storage {
 }
 
 class MemoStorage implements Storage {
-  private storage = new Map<string, string>();
+  #storage = new Map<string, string>();
 
   public get(key: string) {
-    return this.storage.get(key) || null;
+    return this.#storage.get(key) || null;
   }
 
   public set(key: string, value: string) {
-    this.storage.set(key, value);
+    this.#storage.set(key, value);
   }
 
   public remove(key: string) {
-    this.storage.delete(key);
+    this.#storage.delete(key);
   }
 }
 
