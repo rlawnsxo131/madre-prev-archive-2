@@ -4,7 +4,7 @@ export type DefaultEvents = {
 };
 
 export interface EventEmitter<Events extends EventsMap = DefaultEvents> {
-  events: Partial<{ [E in keyof Events]: Events[E][] }>;
+  events: Partial<{ [E in keyof Events]: Set<Events[E]> }>;
   emit: <K extends keyof Events>(
     this: this,
     event: K,
@@ -39,18 +39,15 @@ export function createEventEmitter<
   return {
     events: {},
     emit(event, ...args) {
-      for (
-        let i = 0, callbacks = this.events[event] || [];
-        i < callbacks.length;
-        i++
-      ) {
-        callbacks[i](...args);
+      if (this.events[event]) return;
+      for (const callback of this.events[event]!) {
+        callback(...args);
       }
     },
     on(event, cb) {
-      (this.events[event] ??= []).push(cb);
+      (this.events[event] ??= new Set()).add(cb);
       return () => {
-        this.events[event] = this.events[event]?.filter((i) => cb !== i);
+        this.events[event]?.delete(cb);
       };
     },
   };
