@@ -65,18 +65,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   /**
+   * storage 에서 THEME 제거시 system colorScheme 과 동기화
+   */
+  useEffect(() => {}, []);
+
+  /**
    * preferseColorScheme change 이벤트 동기화
    */
   useEffect(() => {
     const handler = (e: MediaQueryListEvent) => {
-      if (themeService.getMode() === 'custom') return;
+      if (themeService.getMode() === THEME_MODE.custom) return;
       const theme = e.matches ? THEME.dark : THEME.light;
       setTheme(theme);
       themeService.setPriority(theme);
     };
 
     matchPrefersColorSchemeDark().addEventListener('change', handler);
-
     return () => {
       matchPrefersColorSchemeDark().removeEventListener('change', handler);
     };
