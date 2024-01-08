@@ -34,7 +34,6 @@ export function useOutsideClickAndEscapeEventRef<
         document.addEventListener('click', clickHandler, true);
         document.addEventListener('keydown', keydownHandler);
       }, 0);
-
       return () => {
         clearTimeout(timeoutId);
         document.removeEventListener('click', clickHandler, true);

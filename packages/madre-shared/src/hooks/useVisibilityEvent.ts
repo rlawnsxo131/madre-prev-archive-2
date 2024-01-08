@@ -16,7 +16,6 @@ export function useVisibilityEvent(
 
   useEffect(() => {
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
     return () => {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
