@@ -8,7 +8,7 @@ import {
 } from '../../../providers/VisibleProvider';
 import { type PortalProps } from '../../utility/Portal';
 
-type Props = {
+export type DropdownMenuProps = {
   children: ReactNode;
   align?: 'left' | 'right';
   duration?: number;
@@ -17,10 +17,10 @@ type Props = {
 };
 
 const DropdownMenuContext = createContext<{
-  align: NonNullable<Props['align']>;
-  duration: NonNullable<Props['duration']>;
-  isPortal: Props['isPortal'];
-  portalProps: Props['portalProps'];
+  align: NonNullable<DropdownMenuProps['align']>;
+  duration: NonNullable<DropdownMenuProps['duration']>;
+  isPortal: DropdownMenuProps['isPortal'];
+  portalProps: DropdownMenuProps['portalProps'];
 } | null>(null);
 
 export function DropdownMenuProvider({
@@ -29,7 +29,7 @@ export function DropdownMenuProvider({
   duration = 0.15,
   isPortal,
   portalProps,
-}: Props) {
+}: DropdownMenuProps) {
   const options = useMemo(
     () => ({
       align,

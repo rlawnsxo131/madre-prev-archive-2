@@ -7,7 +7,7 @@ import {
   VisibleProvider,
 } from '../../../providers/VisibleProvider';
 
-type Props = {
+export type DrawerProps = {
   children: ReactNode;
   position?: 'top' | 'right' | 'bottom' | 'left';
   rootMargin?: string | number;
@@ -15,9 +15,9 @@ type Props = {
 };
 
 const DrawerContext = createContext<{
-  position: NonNullable<Props['position']>;
-  rootMargin: NonNullable<Props['rootMargin']>;
-  duration: NonNullable<Props['duration']>;
+  position: NonNullable<DrawerProps['position']>;
+  rootMargin: NonNullable<DrawerProps['rootMargin']>;
+  duration: NonNullable<DrawerProps['duration']>;
 } | null>(null);
 
 export function DrawerProvider({
@@ -25,7 +25,7 @@ export function DrawerProvider({
   position = 'bottom',
   rootMargin = 0,
   duration = 0.15,
-}: Props) {
+}: DrawerProps) {
   const options = useMemo(
     () => ({
       position,
