@@ -14,6 +14,7 @@ VisibleActionsContext.displayName = 'VisibleActionsContext';
 
 export function VisibleProvider({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(false);
+
   const actions = useMemo(
     () => ({
       set: setVisible,

@@ -61,7 +61,7 @@
   "ScssUseCurrentProjectVariables": {
     "prefix": "pvar",
     "body": [
-      "@use '@/styles/variables.scss'; as projectVariables"
+      "@use '@/styles/variables.scss' as projectVariables;"
     ]
   },
   "ScssUseMixins": {

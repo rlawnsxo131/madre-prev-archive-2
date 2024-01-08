@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { capitalize } from '../../../../lib/utils';
+import { useLockBodyScroll } from '../../../../hooks/useLockBodyScroll';
+import { If } from '../../../utility/If';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import { useDrawerOptions, useDrawerState } from '../DrawerProvider';
@@ -67,21 +68,25 @@ const animationMap = {
   },
 };
 
-const margin = (position: 'top' | 'right' | 'bottom' | 'left') =>
-  `margin${capitalize(position)}`;
-
 type Props = PropsWithChildren<{
   className?: string;
+  withOverlay?: boolean;
+  withScrollLock?: boolean;
 }>;
 
 export function DrawerContent({ children, className }: Props) {
   const { visible } = useDrawerState();
-  const { position, rootMargin, duration } = useDrawerOptions();
+  const { position, duration, withOverlay, withScrollLock } =
+    useDrawerOptions();
   const animation = animationMap[position];
+
+  useLockBodyScroll(visible && withScrollLock);
 
   return (
     <>
-      <Overlay visible={visible} />
+      <If predicate={withOverlay}>
+        <Overlay visible={visible} />
+      </If>
       <Portal>
         <AnimatePresence>
           {visible && (
@@ -91,9 +96,6 @@ export function DrawerContent({ children, className }: Props) {
                 styles[position],
                 className,
               )}
-              style={{
-                [margin(position)]: rootMargin,
-              }}
               initial={animation.initial}
               animate={animation.animate}
               exit={animation.exit}

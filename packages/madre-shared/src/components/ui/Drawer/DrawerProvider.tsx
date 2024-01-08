@@ -10,21 +10,24 @@ import {
 export type DrawerProps = {
   children: ReactNode;
   position?: 'top' | 'right' | 'bottom' | 'left';
-  rootMargin?: string | number;
   duration?: number;
+  withOverlay?: boolean;
+  withScrollLock?: boolean;
 };
 
 const DrawerContext = createContext<{
   position: NonNullable<DrawerProps['position']>;
-  rootMargin: NonNullable<DrawerProps['rootMargin']>;
   duration: NonNullable<DrawerProps['duration']>;
+  withOverlay: NonNullable<DrawerProps['withOverlay']>;
+  withScrollLock: NonNullable<DrawerProps['withScrollLock']>;
 } | null>(null);
 
 export function DrawerProvider({
   children,
   position = 'bottom',
-  rootMargin = 0,
   duration = 0.15,
+  withOverlay = false,
+  withScrollLock = false,
 }: DrawerProps) {
   /**
    * 현재 useDrawerOptions hook 을 통해, DrawerContent 에서만 사용됩니다.
@@ -32,10 +35,11 @@ export function DrawerProvider({
   const options = useMemo(
     () => ({
       position,
-      rootMargin,
       duration,
+      withOverlay,
+      withScrollLock,
     }),
-    [position, rootMargin, duration],
+    [position, duration, withOverlay, withScrollLock],
   );
 
   return (

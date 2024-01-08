@@ -1,3 +1,4 @@
+import { useIsomorphicLayoutEffect } from 'framer-motion';
 import {
   type ComponentType,
   type DetailedHTMLProps,
@@ -5,6 +6,7 @@ import {
   type HTMLAttributes,
   type PropsWithoutRef,
   type ReactNode,
+  useState,
 } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -23,13 +25,19 @@ export type PortalProps = PropsWithoutRef<
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(
   ({ children, key, container, ...props }, ref) => {
-    const mountNode = getContainer(container) || document.body;
+    const [node, setNode] = useState<Element | null>(null);
+
+    useIsomorphicLayoutEffect(() => {
+      setNode(getContainer(container) || document.body);
+    }, [container]);
+
+    if (!node) return null;
 
     return createPortal(
       <div ref={ref} {...props}>
         {children}
       </div>,
-      mountNode,
+      node,
       key,
     );
   },
