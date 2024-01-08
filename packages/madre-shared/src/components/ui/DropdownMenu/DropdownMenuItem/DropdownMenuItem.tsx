@@ -16,7 +16,6 @@ export function DropdownMenuItem({ children, className }: Props) {
   return (
     <li className={classNames(styles.DropdownMenuItem, className)}>
       {cloneElement(children, {
-        ['data-john']: '',
         onClick: () =>
           Promise.resolve(child.props.onClick?.()).then(() => hide()),
       })}

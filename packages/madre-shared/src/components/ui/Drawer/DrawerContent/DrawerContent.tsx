@@ -66,14 +66,19 @@ const animationMap = {
   },
 };
 
+const margin = (position: 'top' | 'right' | 'bottom' | 'left') =>
+  `margin${position.charAt(0).toUpperCase()}${position.slice(1)}`;
+
 type Props = PropsWithChildren<{
   position?: 'top' | 'right' | 'bottom' | 'left';
+  rootMargin?: string | number;
   duration?: number;
   className?: string;
 }>;
 
 export function DrawerContent({
   children,
+  rootMargin = 0,
   position = 'bottom',
   duration = 0.15,
   className,
@@ -93,6 +98,9 @@ export function DrawerContent({
                 styles[position],
                 className,
               )}
+              style={{
+                [margin(position)]: rootMargin,
+              }}
               initial={animation.initial}
               animate={animation.animate}
               exit={animation.exit}

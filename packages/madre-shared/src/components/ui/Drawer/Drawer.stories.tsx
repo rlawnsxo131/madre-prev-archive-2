@@ -27,11 +27,17 @@ export const Default: Story = {
         <Drawer.Root>
           <Drawer.Trigger>
             <button onClick={() => setPosition('top')}>위</button>
+          </Drawer.Trigger>
+          <Drawer.Trigger>
             <button onClick={() => setPosition('right')}>오른쪽</button>
+          </Drawer.Trigger>
+          <Drawer.Trigger>
             <button onClick={() => setPosition('bottom')}>아래</button>
+          </Drawer.Trigger>
+          <Drawer.Trigger>
             <button onClick={() => setPosition('left')}>왼쪽</button>
           </Drawer.Trigger>
-          <Drawer.Content position={position}>
+          <Drawer.Content position={position} rootMargin={'100px'}>
             <Drawer.Item>
               <span>1</span>
             </Drawer.Item>

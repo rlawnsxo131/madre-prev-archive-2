@@ -1,27 +1,24 @@
 import classNames from 'classnames';
-import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
+import { Children, cloneElement } from 'react';
 
 import { useVisibleActions } from '../../../../contexts/VisibleContext';
 import styles from './DrawerTrigger.module.scss';
 
-export function DrawerTrigger({
-  children,
-  className,
-  onClick,
-  ...props
-}: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
+type Props = {
+  children: JSX.Element;
+  className?: string;
+};
+
+export function DrawerTrigger({ children, className }: Props) {
+  const child = Children.only(children);
   const { toggle } = useVisibleActions();
 
   return (
-    <div
-      className={classNames(styles.DrawerTrigger, className)}
-      onClick={(e) => {
-        toggle();
-        onClick?.(e);
-      }}
-      {...props}
-    >
-      {children}
+    <div className={classNames(styles.DrawerTrigger, className)}>
+      {cloneElement(children, {
+        onClick: () =>
+          Promise.resolve(child.props.onClick?.()).then(() => toggle()),
+      })}
     </div>
   );
 }
