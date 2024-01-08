@@ -37,21 +37,11 @@ export const Default: Story = {
             </button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
-            <DropdownMenu.Item>
-              <a href="/">item1</a>
-            </DropdownMenu.Item>
-            <DropdownMenu.Item>
-              <a href="/">item2</a>
-            </DropdownMenu.Item>
-            <DropdownMenu.Item>
-              <a href="/">item3</a>
-            </DropdownMenu.Item>
-            <DropdownMenu.Item>
-              <a href="/">item4</a>
-            </DropdownMenu.Item>
-            <DropdownMenu.Item>
-              <a href="/">item5</a>
-            </DropdownMenu.Item>
+            {[1, 2, 3, 4, 5].map((v) => (
+              <DropdownMenu.Item key={v}>
+                <a href="/">item{v}</a>
+              </DropdownMenu.Item>
+            ))}
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </DropdownMenu>

@@ -38,21 +38,11 @@ export const Default: Story = {
             <button onClick={() => setPosition('left')}>왼쪽</button>
           </Drawer.Trigger>
           <Drawer.Content>
-            <Drawer.Item>
-              <span>1</span>
-            </Drawer.Item>
-            <Drawer.Item>
-              <span>2</span>
-            </Drawer.Item>
-            <Drawer.Item>
-              <span>3</span>
-            </Drawer.Item>
-            <Drawer.Item>
-              <span>4</span>
-            </Drawer.Item>
-            <Drawer.Item>
-              <span>5</span>
-            </Drawer.Item>
+            {[1, 2, 3, 4].map((v) => (
+              <Drawer.Item key={v}>
+                <span>item{v}</span>
+              </Drawer.Item>
+            ))}
           </Drawer.Content>
         </Drawer.Root>
       </Drawer>
