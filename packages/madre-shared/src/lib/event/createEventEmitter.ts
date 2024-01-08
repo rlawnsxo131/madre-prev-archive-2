@@ -1,7 +1,9 @@
 export type EventsMap = { [event: string]: any };
+
 export type DefaultEvents = {
   [event: string]: (...args: any[]) => void;
 };
+
 export type PartialEvents<Events> = Partial<{
   [E in keyof Events]: Set<Events[E]>;
 }>;
