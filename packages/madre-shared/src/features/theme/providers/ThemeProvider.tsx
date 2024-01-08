@@ -70,12 +70,12 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
    * preferseColorScheme change 이벤트 동기화
    */
   useEffect(() => {
-    const handler = (e: MediaQueryListEvent) => {
-      if (themeService.getMode() === THEME_MODE.custom) return;
-      const theme = e.matches ? THEME.dark : THEME.light;
-      setTheme(theme);
-      themeService.setPriority(theme);
-    };
+    const handler = (e: MediaQueryListEvent) =>
+      themeService.getMode() !== THEME_MODE.custom &&
+      ((theme) => {
+        setTheme(theme);
+        themeService.setPriority(theme);
+      })(e.matches ? THEME.dark : THEME.light);
 
     matchPrefersColorSchemeDark().addEventListener('change', handler);
     return () => {
