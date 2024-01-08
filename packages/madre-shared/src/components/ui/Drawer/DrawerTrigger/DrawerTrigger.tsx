@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Children, cloneElement } from 'react';
 
-import { useVisibleActions } from '../../../../providers/VisibleProvider';
+import { useDrawerActions } from '../DrawerProvider';
 import styles from './DrawerTrigger.module.scss';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export function DrawerTrigger({ children, className }: Props) {
   const child = Children.only(children);
-  const { toggle } = useVisibleActions();
+  const { toggle } = useDrawerActions();
 
   return (
     <div className={classNames(styles.DrawerTrigger, className)}>

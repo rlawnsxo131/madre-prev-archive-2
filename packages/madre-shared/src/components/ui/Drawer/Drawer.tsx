@@ -1,16 +1,10 @@
-import { type ReactNode } from 'react';
-
-import { VisibleProvider } from '../../../providers/VisibleProvider';
 import { DrawerContent } from './DrawerContent';
 import { DrawerItem } from './DrawerItem';
+import { DrawerProvider } from './DrawerProvider';
 import { DrawerRoot } from './DrawerRoot';
 import { DrawerTrigger } from './DrawerTrigger';
 
-function Container({ children }: { children: ReactNode }) {
-  return <VisibleProvider>{children}</VisibleProvider>;
-}
-
-export const Drawer = Object.assign(Container, {
+export const Drawer = Object.assign(DrawerProvider, {
   Root: DrawerRoot,
   Trigger: DrawerTrigger,
   Content: DrawerContent,

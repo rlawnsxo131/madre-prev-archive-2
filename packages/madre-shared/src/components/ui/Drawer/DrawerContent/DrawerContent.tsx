@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { useVisibleState } from '../../../../providers/VisibleProvider';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
+import { useDrawerOptions, useDrawerState } from '../DrawerProvider';
 import styles from './DrawerContent.module.scss';
 
 const animationMap = {
@@ -70,20 +70,12 @@ const margin = (position: 'top' | 'right' | 'bottom' | 'left') =>
   `margin${position.charAt(0).toUpperCase()}${position.slice(1)}`;
 
 type Props = PropsWithChildren<{
-  position?: 'top' | 'right' | 'bottom' | 'left';
-  rootMargin?: string | number;
-  duration?: number;
   className?: string;
 }>;
 
-export function DrawerContent({
-  children,
-  rootMargin = 0,
-  position = 'bottom',
-  duration = 0.15,
-  className,
-}: Props) {
-  const { visible } = useVisibleState();
+export function DrawerContent({ children, className }: Props) {
+  const { visible } = useDrawerState();
+  const { rootMargin, position, duration } = useDrawerOptions();
   const animation = animationMap[position];
 
   return (

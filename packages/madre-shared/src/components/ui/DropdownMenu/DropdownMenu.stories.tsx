@@ -58,13 +58,7 @@ export const Default: Story = {
       <DropdownMenu align="left">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
-            <button
-              onClick={() =>
-                new Promise((resolve) => setTimeout(() => resolve(1), 150))
-              }
-            >
-              메뉴열기
-            </button>
+            <button>메뉴열기</button>
           </DropdownMenu.Trigger>
           <DropdownMenu.Content>
             <DropdownMenu.Item>
