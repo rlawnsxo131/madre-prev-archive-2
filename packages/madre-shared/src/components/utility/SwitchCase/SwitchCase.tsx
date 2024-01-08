@@ -10,8 +10,6 @@ export type SwitchCaseProps<Case extends string> = {
  * @param value
  * @param caseBy
  * @param defaultComponent
- *
- * @returns JSX.Element | null
  */
 export function SwitchCase<Case extends string>({
   value,

@@ -27,8 +27,6 @@ export function useCombinedRefs<T>(
  * hook 규칙상 사용하기 힘든 부분에서 사용합니다.
  *
  * @param Array<Ref<T> | CallbackRef<T>>
- *
- * @returns Ref<T>
  */
 export function combinedRefs<T>(...refs: Array<Ref<T> | CallbackRef<T>>) {
   return (value: T) => {
