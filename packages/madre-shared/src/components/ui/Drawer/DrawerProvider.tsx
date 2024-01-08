@@ -26,6 +26,9 @@ export function DrawerProvider({
   rootMargin = 0,
   duration = 0.15,
 }: DrawerProps) {
+  /**
+   * 현재 useDrawerOptions hook 을 통해, DrawerContent 에서만 사용됩니다.
+   */
   const options = useMemo(
     () => ({
       position,

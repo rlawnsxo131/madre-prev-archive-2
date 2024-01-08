@@ -30,6 +30,9 @@ export function DropdownMenuProvider({
   isPortal,
   portalProps,
 }: DropdownMenuProps) {
+  /**
+   * 현재 useDropdownMenuOptions hook 을 통해, DropdownMenuContent 에서만 사용됩니다.
+   */
   const options = useMemo(
     () => ({
       align,
