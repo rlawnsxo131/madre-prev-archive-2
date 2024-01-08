@@ -54,7 +54,7 @@ export function createEventEmitter<
       }
     },
     get: () => events,
-    clear() {
+    clear: () => {
       events = {};
     },
   };
