@@ -19,7 +19,13 @@ type Story = Omit<StoryObj<typeof meta>, 'args'>;
 export const Default: Story = {
   render: () => (
     <>
-      <DropdownMenu>
+      <DropdownMenu
+        align="left"
+        isPortal
+        portalProps={{
+          container: () => $('.dropdown-menu'),
+        }}
+      >
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <button
@@ -30,13 +36,7 @@ export const Default: Story = {
               메뉴열기
             </button>
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content
-            align="left"
-            isPortal
-            portalProps={{
-              container: () => $('.dropdown-menu'),
-            }}
-          >
+          <DropdownMenu.Content>
             <DropdownMenu.Item>
               <a href="/">item1</a>
             </DropdownMenu.Item>
@@ -55,7 +55,7 @@ export const Default: Story = {
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </DropdownMenu>
-      <DropdownMenu>
+      <DropdownMenu align="left">
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <button
@@ -66,7 +66,7 @@ export const Default: Story = {
               메뉴열기
             </button>
           </DropdownMenu.Trigger>
-          <DropdownMenu.Content align="left">
+          <DropdownMenu.Content>
             <DropdownMenu.Item>
               <a href="/">가나다라마바사아자차카타파하</a>
             </DropdownMenu.Item>

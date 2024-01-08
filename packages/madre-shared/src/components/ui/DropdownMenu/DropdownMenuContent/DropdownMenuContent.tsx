@@ -2,39 +2,20 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { useVisibleState } from '../../../../contexts/VisibleContext';
+import { Portal } from '../../../utility/Portal';
 import {
-  Portal,
-  type PortalProps as _PortalProps,
-} from '../../../utility/Portal';
+  useDropdownMenuOptions,
+  useDropdownMenuState,
+} from '../DropdownMenuProvider';
 import styles from './DropdownMenuContent.module.scss';
 
 type Props = PropsWithChildren<{
-  align?: 'left' | 'right';
-  duration?: number;
-  isPortal?: boolean;
-  portalProps?: Omit<_PortalProps, 'children'>;
   className?: string;
 }>;
 
-/**
- * @TODO focus 랑 key event 작업하기
- */
-// const childrens = Children.map(children, (child: any, _) => {
-//   return cloneElement(child, {
-//     tabIndex: 0,
-//   });
-// });
-
-export function DropdownMenuContent({
-  children,
-  align = 'left',
-  duration = 0.15,
-  isPortal,
-  portalProps,
-  className,
-}: Props) {
-  const { visible } = useVisibleState();
+export function DropdownMenuContent({ children, className }: Props) {
+  const { visible } = useDropdownMenuState();
+  const { align, duration, isPortal, portalProps } = useDropdownMenuOptions();
 
   const Component = (
     <AnimatePresence>

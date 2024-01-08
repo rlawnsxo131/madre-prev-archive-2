@@ -26,13 +26,13 @@ export * from './hooks/usePreservedCallback';
 export * from './hooks/usePreservedReference';
 export * from './hooks/usePrevious';
 export * from './hooks/useRefEffect';
+export * from './hooks/useSafeContext';
 export * from './hooks/useVisibilityEvent';
 
 /**
- * context
+ * providers
  */
-export * from './contexts/makeContext';
-export * from './contexts/VisibleContext';
+export * from './providers/VisibleProvider';
 
 /**
  * features

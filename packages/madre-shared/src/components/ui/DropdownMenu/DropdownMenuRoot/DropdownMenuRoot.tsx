@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
 
-import { useVisibleActions } from '../../../../contexts/VisibleContext';
 import { useOutsideClickAndEscapeEventRef } from '../../../../hooks/useOutsideClickAndEscapeEventRef';
+import { useDropdownMenuActions } from '../DropdownMenuProvider';
 import styles from './DropdownMenuRoot.module.scss';
 
 export function DropdownMenuRoot({
@@ -10,7 +10,7 @@ export function DropdownMenuRoot({
   className,
   ...props
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
-  const { hide } = useVisibleActions();
+  const { hide } = useDropdownMenuActions();
   const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(hide);
 
   return (

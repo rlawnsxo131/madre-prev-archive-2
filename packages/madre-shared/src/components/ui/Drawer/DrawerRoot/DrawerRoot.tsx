@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { type DetailedHTMLProps, type HTMLAttributes } from 'react';
 
-import { useVisibleActions } from '../../../../contexts/VisibleContext';
 import { useOutsideClickAndEscapeEventRef } from '../../../../hooks/useOutsideClickAndEscapeEventRef';
+import { useVisibleActions } from '../../../../providers/VisibleProvider';
 import styles from './DrawerRoot.module.scss';
 
 export function DrawerRoot({

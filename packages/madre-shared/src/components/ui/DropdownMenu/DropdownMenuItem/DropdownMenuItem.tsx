@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Children, cloneElement } from 'react';
 
-import { useVisibleActions } from '../../../../contexts/VisibleContext';
+import { useDropdownMenuActions } from '../DropdownMenuProvider';
 import styles from './DropdownMenuItem.module.scss';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 
 export function DropdownMenuItem({ children, className }: Props) {
   const child = Children.only(children);
-  const { hide } = useVisibleActions();
+  const { hide } = useDropdownMenuActions();
 
   return (
     <li className={classNames(styles.DropdownMenuItem, className)}>

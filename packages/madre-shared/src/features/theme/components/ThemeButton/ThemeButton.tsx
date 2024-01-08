@@ -7,7 +7,7 @@ import {
 
 import { Icons, type IconsProps } from '../../../../components/ui/Icons';
 import { If } from '../../../../components/utility/If';
-import { useTheme } from '../../contexts';
+import { useTheme } from '../../providers';
 import styles from './ThemeButton.module.scss';
 
 const iconMap = {

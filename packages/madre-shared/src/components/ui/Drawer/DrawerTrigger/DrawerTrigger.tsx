@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Children, cloneElement } from 'react';
 
-import { useVisibleActions } from '../../../../contexts/VisibleContext';
+import { useVisibleActions } from '../../../../providers/VisibleProvider';
 import styles from './DrawerTrigger.module.scss';
 
 type Props = {

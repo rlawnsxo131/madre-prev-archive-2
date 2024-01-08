@@ -1,4 +1,5 @@
 import {
+  createContext,
   type ReactNode,
   startTransition,
   useEffect,
@@ -6,36 +7,29 @@ import {
   useState,
 } from 'react';
 
-import { makeContext } from '../../../contexts/makeContext';
 import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
+import { useSafeContext } from '../../../hooks/useSafeContext';
 import { matchPrefersColorSchemeDark } from '../../../lib/utils';
 import { THEME, type Theme, THEME_MODE, type ThemeMode } from '../models';
 import { themeService } from '../services';
 
-type State = {
+const ThemeStateContext = createContext<{
   theme: Theme;
   mode: ThemeMode;
   isSynced: boolean;
-};
-
-type Actions = {
+} | null>(null);
+const ThemeActionsContext = createContext<{
   set: (theme: Theme) => void;
   reset: () => void;
   toggle: () => void;
-};
-
-const { Provider: StateProvider, useContext: useStateContext } =
-  makeContext<State>('ThemeStateContext');
-
-const { Provider: ActionsProvider, useContext: useActionsContext } =
-  makeContext<Actions>('ThemeActionContext');
+} | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(THEME.light);
   const [mode, setMode] = useState<ThemeMode>(THEME_MODE.system);
   const [isSynced, setIsSynced] = useState(false);
 
-  const actions = useMemo<Actions>(
+  const actions = useMemo(
     () => ({
       set: (theme: Theme) => {
         const mode = themeService.set(theme).getMode();
@@ -90,22 +84,25 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <StateProvider value={{ theme, mode, isSynced }}>
-      <ActionsProvider value={actions}>{children}</ActionsProvider>
-    </StateProvider>
+    <ThemeStateContext.Provider value={{ theme, mode, isSynced }}>
+      <ThemeActionsContext.Provider value={actions}>
+        {children}
+      </ThemeActionsContext.Provider>
+    </ThemeStateContext.Provider>
   );
 }
 
 export function useTheme() {
-  const state = useStateContext();
-  const actions = useActionsContext();
-  return { state, actions };
+  return {
+    state: useSafeContext(ThemeStateContext),
+    actions: useSafeContext(ThemeActionsContext),
+  };
 }
 
 export function useThemeState() {
-  return useStateContext();
+  return useSafeContext(ThemeStateContext);
 }
 
 export function useThemeActions() {
-  return useActionsContext();
+  return useSafeContext(ThemeActionsContext);
 }

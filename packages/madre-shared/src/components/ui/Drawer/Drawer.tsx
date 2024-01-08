@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { VisibleProvider } from '../../../contexts/VisibleContext';
+import { VisibleProvider } from '../../../providers/VisibleProvider';
 import { DrawerContent } from './DrawerContent';
 import { DrawerItem } from './DrawerItem';
 import { DrawerRoot } from './DrawerRoot';

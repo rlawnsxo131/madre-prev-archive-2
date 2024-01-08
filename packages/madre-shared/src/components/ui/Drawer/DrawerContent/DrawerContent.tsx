@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
-import { useVisibleState } from '../../../../contexts/VisibleContext';
+import { useVisibleState } from '../../../../providers/VisibleProvider';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import styles from './DrawerContent.module.scss';
