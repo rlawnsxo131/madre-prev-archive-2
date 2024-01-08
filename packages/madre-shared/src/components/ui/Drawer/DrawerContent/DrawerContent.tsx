@@ -76,7 +76,7 @@ type Props = PropsWithChildren<{
 
 export function DrawerContent({ children, className }: Props) {
   const { visible } = useDrawerState();
-  const { rootMargin, position, duration } = useDrawerOptions();
+  const { position, rootMargin, duration } = useDrawerOptions();
   const animation = animationMap[position];
 
   return (
