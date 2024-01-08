@@ -6,6 +6,7 @@ import {
   useVisibleState,
   VisibleProvider,
 } from '../../../providers/VisibleProvider';
+import { type NonNullableProperties } from '../../../types/types';
 
 export type DrawerProps = {
   children: ReactNode;
@@ -15,12 +16,12 @@ export type DrawerProps = {
   withScrollLock?: boolean;
 };
 
-const DrawerContext = createContext<{
-  position: NonNullable<DrawerProps['position']>;
-  duration: NonNullable<DrawerProps['duration']>;
-  withOverlay: NonNullable<DrawerProps['withOverlay']>;
-  withScrollLock: NonNullable<DrawerProps['withScrollLock']>;
-} | null>(null);
+const DrawerContext = createContext<NonNullableProperties<{
+  position: DrawerProps['position'];
+  duration: DrawerProps['duration'];
+  withOverlay: DrawerProps['withOverlay'];
+  withScrollLock: DrawerProps['withScrollLock'];
+}> | null>(null);
 
 export function DrawerProvider({
   children,

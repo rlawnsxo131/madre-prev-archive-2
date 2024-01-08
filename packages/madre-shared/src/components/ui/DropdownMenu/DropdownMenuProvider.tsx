@@ -6,6 +6,7 @@ import {
   useVisibleState,
   VisibleProvider,
 } from '../../../providers/VisibleProvider';
+import { type NonNullableProperties } from '../../../types/types';
 import { type PortalProps } from '../../utility/Portal';
 
 export type DropdownMenuProps = {
@@ -16,12 +17,12 @@ export type DropdownMenuProps = {
   portalProps?: Omit<PortalProps, 'children'>;
 };
 
-const DropdownMenuContext = createContext<{
-  align: NonNullable<DropdownMenuProps['align']>;
-  duration: NonNullable<DropdownMenuProps['duration']>;
+const DropdownMenuContext = createContext<NonNullableProperties<{
+  align: DropdownMenuProps['align'];
+  duration: DropdownMenuProps['duration'];
   isPortal: DropdownMenuProps['isPortal'];
   portalProps: DropdownMenuProps['portalProps'];
-} | null>(null);
+}> | null>(null);
 
 export function DropdownMenuProvider({
   children,

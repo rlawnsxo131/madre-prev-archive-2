@@ -10,6 +10,7 @@ export * from './components/ui/Overlay';
 /**
  * utility components
  */
+export * from './components/utility/DebounceClick';
 export * from './components/utility/If';
 export * from './components/utility/Portal';
 export * from './components/utility/SwitchCase';
