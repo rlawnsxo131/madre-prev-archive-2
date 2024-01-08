@@ -6,16 +6,15 @@ import { useMemo, useState } from 'react';
 export function useBoolState() {
   const [bool, setBool] = useState(false);
 
-  return [
-    bool,
-    useMemo(
-      () => ({
-        set: setBool,
-        setTrue: () => setBool(true),
-        setFalse: () => setBool(false),
-        toggle: () => setBool((prev) => !prev),
-      }),
-      [],
-    ),
-  ] as const;
+  const actions = useMemo(
+    () => ({
+      set: setBool,
+      setTrue: () => setBool(true),
+      setFalse: () => setBool(false),
+      toggle: () => setBool((prev) => !prev),
+    }),
+    [],
+  );
+
+  return [bool, actions] as const;
 }
