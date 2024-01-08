@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { type PropsWithChildren } from 'react';
 
+import { firstUpperCase } from '../../../../lib/utils';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
 import { useDrawerOptions, useDrawerState } from '../DrawerProvider';
@@ -67,7 +68,7 @@ const animationMap = {
 };
 
 const margin = (position: 'top' | 'right' | 'bottom' | 'left') =>
-  `margin${position.charAt(0).toUpperCase()}${position.slice(1)}`;
+  `margin${firstUpperCase(position)}`;
 
 type Props = PropsWithChildren<{
   className?: string;
