@@ -74,7 +74,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       themeService.getMode() !== THEME_MODE.custom &&
       ((theme) => {
         setTheme(theme);
-        themeService.setPriority(theme);
+        themeService.setRoot(theme);
       })(e.matches ? THEME.dark : THEME.light);
 
     matchPrefersColorSchemeDark().addEventListener('change', handler);

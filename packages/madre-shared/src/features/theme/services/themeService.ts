@@ -11,6 +11,11 @@ class ThemeService {
     return this;
   }
 
+  public setRoot(theme: Theme) {
+    this.#setRoot(theme);
+    return this;
+  }
+
   public reset() {
     safeLocalStorage.remove(THEME.key);
     this.#setRoot(this.#getMedia());
