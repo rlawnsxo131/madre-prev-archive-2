@@ -2,7 +2,7 @@ import { useIsomorphicLayoutEffect } from 'framer-motion';
 
 /**
  * @description 특정 엘리먼트의 스크롤을 막기위해 사용합니다.
- * container 의 값이 없다면 document.body 의 스크롤을 막습니다.
+ * target 의 값이 없다면 document.body 의 스크롤을 막습니다.
  * isLock 이 true 인경우 body의 overflow가 hidden 이 됩니다.
  * isLock 이 false 인경우 body가 기존에 가지고 있던 overflow 값이 됩니다.
  *
@@ -11,13 +11,11 @@ import { useIsomorphicLayoutEffect } from 'framer-motion';
  */
 export function useLockBodyScroll(
   isLock = false,
-  container?: Element | (() => Element | null) | null,
+  target?: Element | (() => Element | null) | null,
 ) {
   useIsomorphicLayoutEffect(() => {
-    const target = typeof container === 'function' ? container() : container;
-    const originalStyle = window.getComputedStyle(
-      target ?? document.body,
-    ).overflow;
+    const el = typeof target === 'function' ? target() : target;
+    const originalStyle = window.getComputedStyle(el ?? document.body).overflow;
 
     if (isLock) {
       document.body.style.overflow = 'hidden';
@@ -26,5 +24,5 @@ export function useLockBodyScroll(
     return () => {
       document.body.style.overflow = originalStyle;
     };
-  }, [isLock, container]);
+  }, [isLock, target]);
 }
