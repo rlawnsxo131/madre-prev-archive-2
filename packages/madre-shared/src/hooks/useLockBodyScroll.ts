@@ -7,14 +7,14 @@ import { useIsomorphicLayoutEffect } from 'framer-motion';
  * isLock 이 false 인경우 body가 기존에 가지고 있던 overflow 값이 됩니다.
  *
  * @param isLock
- * @param container
+ * @param element
  */
 export function useLockBodyScroll(
   isLock = false,
-  target?: Element | (() => Element | null) | null,
+  element?: Element | (() => Element | null) | null,
 ) {
   useIsomorphicLayoutEffect(() => {
-    const el = typeof target === 'function' ? target() : target;
+    const el = typeof element === 'function' ? element() : element;
     const originalStyle = window.getComputedStyle(el ?? document.body).overflow;
 
     if (isLock) {
@@ -24,5 +24,5 @@ export function useLockBodyScroll(
     return () => {
       document.body.style.overflow = originalStyle;
     };
-  }, [isLock, target]);
+  }, [isLock, element]);
 }
