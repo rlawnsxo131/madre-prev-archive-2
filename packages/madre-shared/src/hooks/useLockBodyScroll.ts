@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from 'framer-motion';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 /**
  * @description 특정 엘리먼트의 스크롤을 막기위해 사용합니다.
