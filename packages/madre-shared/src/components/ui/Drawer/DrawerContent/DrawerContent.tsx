@@ -70,8 +70,6 @@ const animationMap = {
 
 type Props = PropsWithChildren<{
   className?: string;
-  withOverlay?: boolean;
-  withScrollLock?: boolean;
 }>;
 
 export function DrawerContent({ children, className }: Props) {
