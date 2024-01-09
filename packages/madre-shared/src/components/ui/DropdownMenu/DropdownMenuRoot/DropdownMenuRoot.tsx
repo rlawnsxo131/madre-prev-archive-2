@@ -31,22 +31,3 @@ export const DropdownMenuRoot = forwardRef<
     </div>
   );
 });
-
-// export function _DropdownMenuRoot({
-//   children,
-//   className,
-//   ...props
-// }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
-//   const { hide } = useDropdownMenuActions();
-//   const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(hide);
-
-//   return (
-//     <div
-//       ref={ref}
-//       className={classNames(styles.DropdownMenu, className)}
-//       {...props}
-//     >
-//       {children}
-//     </div>
-//   );
-// }

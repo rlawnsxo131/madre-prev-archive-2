@@ -30,13 +30,15 @@
   "SharedFunctionComponent": {
     "prefix": "sfc",
     "body": [
-      "import styles from './${TM_FILENAME_BASE}.module.scss';"
+      "import { forwardRef, type PropsWithoutRef } from 'react';",
       "",
-      "export type ${TM_FILENAME_BASE}Props = {};",
+      "import styles from './${TM_FILENAME_BASE}.module.scss';",
       "",
-      "export function ${TM_FILENAME_BASE}(props: ${TM_FILENAME_BASE}Props) {",
-      "  return <div className={styles.${TM_FILENAME_BASE}}></div>;",
-      "}"
+      "export type ${TM_FILENAME_BASE}Props = PropsWithoutRef<{}>;",
+      "",
+      "export const ${TM_FILENAME_BASE} = forwardRef<HTMLDivElement, ${TM_FILENAME_BASE}Props>((props, ref) => {",
+      "  return <div ref={ref} className={styles.${TM_FILENAME_BASE}}></div>;",
+      "});"
     ],
   },
   "FunctionPageComponent": {
