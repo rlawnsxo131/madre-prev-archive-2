@@ -1,4 +1,3 @@
-import { useIsomorphicLayoutEffect } from 'framer-motion';
 import {
   type ComponentType,
   type DetailedHTMLProps,
@@ -9,6 +8,8 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
+
+import { useIsomorphicLayoutEffect } from '../../../hooks/useIsomorphicLayoutEffect';
 
 function getContainer(container: PortalProps['container']) {
   return typeof container === 'function' ? container() : container;

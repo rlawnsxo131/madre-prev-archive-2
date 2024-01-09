@@ -24,13 +24,13 @@ export type EventEmitter<Events extends EventsMap = DefaultEvents> = {
  * @example
  * type Events = {
  *   set: (name: string, count: number) => void;
- *   tick: (volumn: number) => void;
+ *   tick: (value: number) => void;
  * }
  *
  * const emitter = createEventEmitter<Events>();
  *
- * const unbind = emitter.on('tick', volume => {
- *   console.log(volume)
+ * const unbind = emitter.on('tick', value => {
+ *   console.log(value)
  * });
  *
  * emitter.emit('set', 'prop', 1)

@@ -1,4 +1,5 @@
-import { ThemeButton } from '@madre/shared';
+import { Icons, ThemeButton } from '@madre/shared';
+import { motion } from 'framer-motion';
 
 // import { NavLink } from '@remix-run/react';
 // import classNames from 'classnames';
@@ -10,7 +11,10 @@ export function RootHeaderMobileMenu() {
   return (
     <div className={styles.RootHeaderMobileMenu}>
       <ThemeButton />
-      {/* @TODO HeaderNav */}
+      <button className={styles['menu-button']}>
+        <Icons type="menu" />
+      </button>
+      <motion.div role="menu-list"></motion.div>
     </div>
   );
 }

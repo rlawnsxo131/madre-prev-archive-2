@@ -18,11 +18,14 @@ const ThemeStateContext = createContext<{
   mode: ThemeMode;
   isSynced: boolean;
 } | null>(null);
+ThemeStateContext.displayName = 'ThemeStateContext';
+
 const ThemeActionsContext = createContext<{
   set: (theme: Theme) => void;
   reset: () => void;
   toggle: () => void;
 } | null>(null);
+ThemeActionsContext.displayName = 'ThemeActionsContext';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(THEME.light);

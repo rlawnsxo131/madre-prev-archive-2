@@ -3,13 +3,14 @@ import { createContext, type ReactNode, useMemo, useState } from 'react';
 import { useSafeContext } from '../hooks/useSafeContext';
 
 const VisibleStateContext = createContext<{ visible: boolean } | null>(null);
+VisibleStateContext.displayName = 'VisibleStateContext';
+
 const VisibleActionsContext = createContext<{
   set: (visible: boolean) => void;
   show: () => void;
   hide: () => void;
   toggle: () => void;
 } | null>(null);
-VisibleStateContext.displayName = 'VisibleStateContext';
 VisibleActionsContext.displayName = 'VisibleActionsContext';
 
 export function VisibleProvider({ children }: { children: ReactNode }) {

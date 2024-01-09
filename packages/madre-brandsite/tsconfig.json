@@ -1,29 +1,30 @@
 {
-  "include": ["remix.config.js", "env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "isolatedModules": true,
     "esModuleInterop": true,
-    "module": "ES2022",
     "jsx": "react-jsx",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "target": "ES2022",
-    "skipLibCheck": true,
     "strict": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/*"]
     },
-
-    // Remix takes care of building everything in `remix build`.
+    // Vite takes care of building everything, not tsc.
     "noEmit": true
+
+    // "references": [
+    //   {
+    //     "path": "../../packages/madre-shared"
+    //   }
+    // ]
   }
-  // "references": [
-  //   {
-  //     "path": "../../packages/madre-shared"
-  //   }
-  // ]
 }

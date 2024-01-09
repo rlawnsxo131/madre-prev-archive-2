@@ -16,6 +16,7 @@ export function DropdownMenuTrigger({ children, className }: Props) {
   return (
     <div className={classNames(styles.DropdownMenuTrigger, className)}>
       {cloneElement(children, {
+        ['aria-label']: '메뉴 열기',
         onClick: () =>
           Promise.resolve(child.props.onClick?.()).then(() => toggle()),
       })}

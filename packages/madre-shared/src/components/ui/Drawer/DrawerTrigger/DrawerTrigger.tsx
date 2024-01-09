@@ -16,6 +16,7 @@ export function DrawerTrigger({ children, className }: Props) {
   return (
     <div className={classNames(styles.DrawerTrigger, className)}>
       {cloneElement(children, {
+        ['aria-label']: '메뉴 열기',
         onClick: () =>
           Promise.resolve(child.props.onClick?.()).then(() => toggle()),
       })}

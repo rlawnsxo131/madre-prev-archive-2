@@ -1,7 +1,6 @@
 import '@madre/shared/main.scss';
 
 import { ThemeProvider } from '@madre/shared';
-import { type LinksFunction } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -14,22 +13,9 @@ import {
 import { RootHeaderMenu } from './components/root/RootHeaderMenu';
 import { RootLayout } from './components/root/RootLayout';
 
-export const links: LinksFunction = () => {
-  return [
-    {
-      rel: 'icon',
-      href: '/favicon.png',
-      type: 'image/png',
-    },
-  ];
-};
-
 export default function App() {
   return (
-    <html
-      lang="en"
-      // suppressContentEditableWarning
-    >
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,8 +32,8 @@ export default function App() {
           </RootLayout>
         </ThemeProvider>
         <ScrollRestoration />
-        <LiveReload />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );

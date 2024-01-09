@@ -22,12 +22,13 @@ const DrawerContext = createContext<NonNullableProperties<{
   withOverlay: DrawerProps['withOverlay'];
   withScrollLock: DrawerProps['withScrollLock'];
 }> | null>(null);
+DrawerContext.displayName = 'DrawerContext';
 
 export function DrawerProvider({
   children,
   position = 'bottom',
   duration = 0.15,
-  withOverlay = false,
+  withOverlay = true,
   withScrollLock = false,
 }: DrawerProps) {
   /**
