@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
+import { forwardRef, type PropsWithoutRef, type ReactNode } from 'react';
 
 import { Portal } from '../../../utility/Portal';
 import {
@@ -9,11 +9,10 @@ import {
 } from '../DropdownMenuProvider';
 import styles from './DropdownMenuContent.module.scss';
 
-type Props = PropsWithChildren<{
-  className?: string;
-}>;
-
-export function DropdownMenuContent({ children, className }: Props) {
+export const DropdownMenuContent = forwardRef<
+  HTMLUListElement,
+  PropsWithoutRef<{ children: ReactNode; className?: string }>
+>(({ children, className }, ref) => {
   const { visible } = useDropdownMenuState();
   const { align, duration, isPortal, portalProps } = useDropdownMenuOptions();
 
@@ -22,6 +21,7 @@ export function DropdownMenuContent({ children, className }: Props) {
       {visible && (
         <div className={styles.DropdownMenuContent} role="menu">
           <motion.ul
+            ref={ref}
             className={classNames(styles.items, styles[align], className)}
             initial={{
               translateY: 0,
@@ -52,4 +52,4 @@ export function DropdownMenuContent({ children, className }: Props) {
   }
 
   return Component;
-}
+});

@@ -1,14 +1,15 @@
 import classNames from 'classnames';
+import { forwardRef, type PropsWithoutRef } from 'react';
 
 import styles from './DrawerItem.module.scss';
 
-type Props = {
-  children: JSX.Element;
-  className?: string;
-};
-
-export function DrawerItem({ children, className }: Props) {
+export const DrawerItem = forwardRef<
+  HTMLDivElement,
+  PropsWithoutRef<{ children: JSX.Element; className?: string }>
+>(({ children, className }, ref) => {
   return (
-    <div className={classNames(styles.DrawerItem, className)}>{children}</div>
+    <div ref={ref} className={classNames(styles.DrawerItem, className)}>
+      {children}
+    </div>
   );
-}
+});

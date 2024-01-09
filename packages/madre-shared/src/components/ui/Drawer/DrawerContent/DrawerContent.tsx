@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { type PropsWithChildren } from 'react';
+import { forwardRef, type PropsWithoutRef, type ReactNode } from 'react';
 
 import { useLockBodyScroll } from '../../../../hooks/useLockBodyScroll';
 import { If } from '../../../utility/If';
@@ -68,11 +68,10 @@ const animationMap = {
   },
 };
 
-type Props = PropsWithChildren<{
-  className?: string;
-}>;
-
-export function DrawerContent({ children, className }: Props) {
+export const DrawerContent = forwardRef<
+  HTMLUListElement,
+  PropsWithoutRef<{ children: ReactNode; className?: string }>
+>(({ children, className }, ref) => {
   const { visible } = useDrawerState();
   const { position, duration, withOverlay, withScrollLock } =
     useDrawerOptions();
@@ -89,6 +88,7 @@ export function DrawerContent({ children, className }: Props) {
         <AnimatePresence>
           {visible && (
             <motion.ul
+              ref={ref}
               className={classNames(
                 styles.DrawerContent,
                 styles[position],
@@ -109,4 +109,4 @@ export function DrawerContent({ children, className }: Props) {
       </Portal>
     </>
   );
-}
+});

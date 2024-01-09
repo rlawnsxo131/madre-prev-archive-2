@@ -14,18 +14,21 @@ const meta = {
 } satisfies Meta<typeof DropdownMenu>;
 
 export default meta;
-type Story = Omit<StoryObj<typeof meta>, 'args'>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
+  args: {
+    align: 'left',
+    duration: 0.15,
+    isPortal: true,
+    portalProps: {
+      container: () => $('.dropdown-menu'),
+    },
+    children: null,
+  },
+  render: ({ children: _, ...args }) => (
     <>
-      <DropdownMenu
-        align="left"
-        isPortal
-        portalProps={{
-          container: () => $('.dropdown-menu'),
-        }}
-      >
+      <DropdownMenu {...args}>
         <DropdownMenu.Root>
           <DropdownMenu.Trigger>
             <button
@@ -42,18 +45,6 @@ export const Default: Story = {
                 <a href="/">item{v}</a>
               </DropdownMenu.Item>
             ))}
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
-      </DropdownMenu>
-      <DropdownMenu align="left">
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger>
-            <button>메뉴열기</button>
-          </DropdownMenu.Trigger>
-          <DropdownMenu.Content>
-            <DropdownMenu.Item>
-              <a href="/">가나다라마바사아자차카타파하</a>
-            </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </DropdownMenu>

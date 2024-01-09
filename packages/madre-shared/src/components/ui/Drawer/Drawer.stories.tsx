@@ -1,5 +1,4 @@
 import { type Meta, type StoryObj } from '@storybook/react';
-import { type ComponentProps, useState } from 'react';
 
 import { Drawer } from './Drawer';
 
