@@ -22,6 +22,7 @@ export const DropdownMenuItem = forwardRef<
   return (
     <li ref={ref} className={classNames(styles.DropdownMenuItem, className)}>
       {cloneElement(children, {
+        role: 'menuitem',
         onClick: () =>
           Promise.resolve(child.props.onClick?.()).then(() => hide()),
       })}
