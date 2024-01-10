@@ -88,7 +88,6 @@ export const DrawerContent = forwardRef<
         <AnimatePresence>
           {visible && (
             <motion.ul
-              role="menu"
               ref={ref}
               className={classNames(
                 styles.DrawerContent,

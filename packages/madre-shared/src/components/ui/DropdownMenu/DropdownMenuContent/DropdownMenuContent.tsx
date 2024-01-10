@@ -19,7 +19,7 @@ export const DropdownMenuContent = forwardRef<
   const Component = (
     <AnimatePresence>
       {visible && (
-        <div role="menu" className={styles.DropdownMenuContent}>
+        <div className={styles.DropdownMenuContent}>
           <motion.ul
             ref={ref}
             className={classNames(styles.items, styles[align], className)}
