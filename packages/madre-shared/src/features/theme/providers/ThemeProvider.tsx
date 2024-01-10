@@ -96,10 +96,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 }
 
 export function useTheme() {
-  return {
-    state: useSafeContext(ThemeStateContext),
-    actions: useSafeContext(ThemeActionsContext),
-  };
+  const state = useSafeContext(ThemeStateContext);
+  const actions = useSafeContext(ThemeActionsContext);
+  return [state, actions] as const;
 }
 
 export function useThemeState() {

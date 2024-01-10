@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { forwardRef, type PropsWithoutRef, type ReactNode } from 'react';
 
-import { useLockBodyScroll } from '../../../../hooks/useLockBodyScroll';
+import { useScrollLock } from '../../../../hooks/useScrollLock';
 import { If } from '../../../utility/If';
 import { Portal } from '../../../utility/Portal';
 import { Overlay } from '../../Overlay';
@@ -77,7 +77,7 @@ export const DrawerContent = forwardRef<
     useDrawerOptions();
   const animation = animationMap[position];
 
-  useLockBodyScroll(visible && withScrollLock);
+  useScrollLock(visible && withScrollLock);
 
   return (
     <>

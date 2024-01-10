@@ -20,8 +20,10 @@ export const DrawerItem = forwardRef<
     <li ref={ref} className={classNames(styles.DrawerItem, className)}>
       {cloneElement(children, {
         role: 'menuitem',
-        onClick: () =>
-          Promise.resolve(child.props.onClick?.()).then(() => hide()),
+        onClick: () => {
+          hide();
+          child.props.onClick?.();
+        },
       })}
     </li>
   );

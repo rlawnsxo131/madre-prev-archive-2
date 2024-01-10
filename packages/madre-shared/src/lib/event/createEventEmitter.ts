@@ -20,23 +20,6 @@ export type EventEmitter<Events extends EventsMap = DefaultEvents> = {
 
 /**
  * @description 간단한 event emitter 입니다.
- *
- * @example
- * type Events = {
- *   set: (name: string, count: number) => void;
- *   tick: (value: number) => void;
- * }
- *
- * const emitter = createEventEmitter<Events>();
- *
- * const unbind = emitter.on('tick', value => {
- *   console.log(value)
- * });
- *
- * emitter.emit('set', 'prop', 1)
- * emitter.emit('tick', 1) // print 1
- * unbind();
- * emitter.emit('tick', 1) // not work
  */
 export function createEventEmitter<
   Events extends EventsMap = DefaultEvents,

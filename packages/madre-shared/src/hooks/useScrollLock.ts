@@ -9,7 +9,7 @@ import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
  * @param isLock
  * @param element
  */
-export function useLockBodyScroll(
+export function useScrollLock(
   isLock = false,
   element?: Element | (() => Element | null) | null,
 ) {

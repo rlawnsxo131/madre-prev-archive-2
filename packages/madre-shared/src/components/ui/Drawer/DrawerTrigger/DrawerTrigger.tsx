@@ -21,8 +21,10 @@ export const DrawerTrigger = forwardRef<
       {cloneElement(children, {
         ['aria-label']: '메뉴 열기',
         ['aria-haspopup']: 'menu',
-        onClick: () =>
-          Promise.resolve(child.props.onClick?.()).then(() => toggle()),
+        onClick: () => {
+          toggle();
+          child.props.onClick?.();
+        },
       })}
     </div>
   );

@@ -36,10 +36,9 @@ export function VisibleProvider({ children }: { children: ReactNode }) {
 }
 
 export function useVisible() {
-  return {
-    state: useSafeContext(VisibleStateContext),
-    actions: useSafeContext(VisibleActionsContext),
-  };
+  const state = useSafeContext(VisibleStateContext);
+  const actions = useSafeContext(VisibleActionsContext);
+  return [state, actions] as const;
 }
 
 export function useVisibleState() {
