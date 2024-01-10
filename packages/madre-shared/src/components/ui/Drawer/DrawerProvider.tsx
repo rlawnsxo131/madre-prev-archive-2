@@ -16,12 +16,9 @@ export type DrawerProps = {
   withScrollLock?: boolean;
 };
 
-const DrawerContext = createContext<NonNullableProperties<{
-  position: DrawerProps['position'];
-  duration: DrawerProps['duration'];
-  withOverlay: DrawerProps['withOverlay'];
-  withScrollLock: DrawerProps['withScrollLock'];
-}> | null>(null);
+const DrawerContext = createContext<NonNullableProperties<
+  Omit<DrawerProps, 'children'>
+> | null>(null);
 DrawerContext.displayName = 'DrawerContext';
 
 export function DrawerProvider({
