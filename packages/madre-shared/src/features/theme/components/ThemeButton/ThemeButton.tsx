@@ -16,10 +16,13 @@ const iconMap = {
 } as const;
 
 export type ThemeButtonProps = PropsWithoutRef<
-  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-> & {
-  iconTheme?: IconsProps['theme'];
-};
+  DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > & {
+    iconTheme?: IconsProps['theme'];
+  }
+>;
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
   ({ iconTheme = 'default', onClick, ...props }, ref) => {
