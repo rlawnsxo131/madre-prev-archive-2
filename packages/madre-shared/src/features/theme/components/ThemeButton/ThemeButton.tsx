@@ -16,26 +16,23 @@ const iconMap = {
 } as const;
 
 export type ThemeButtonProps = PropsWithoutRef<
-  Omit<
-    DetailedHTMLProps<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    >,
-    'onClick'
-  >
+  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 > & {
   iconTheme?: IconsProps['theme'];
 };
 
 export const ThemeButton = forwardRef<HTMLButtonElement, ThemeButtonProps>(
-  ({ iconTheme = 'default', ...props }, ref) => {
+  ({ iconTheme = 'default', onClick, ...props }, ref) => {
     const [{ theme, isSynced }, { toggle }] = useTheme();
 
     return (
       <button
         ref={ref}
         className={styles.ThemeButton}
-        onClick={toggle}
+        onClick={(e) => {
+          toggle();
+          onClick?.(e);
+        }}
         {...props}
       >
         <If predicate={isSynced}>

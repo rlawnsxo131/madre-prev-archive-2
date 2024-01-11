@@ -3,6 +3,7 @@ import {
   Children,
   cloneElement,
   forwardRef,
+  type MouseEvent,
   type PropsWithoutRef,
 } from 'react';
 
@@ -27,9 +28,9 @@ export const DropdownMenuTrigger = forwardRef<
       {cloneElement(children, {
         ['aria-label']: '메뉴 열기',
         ['aria-haspopup']: 'menu',
-        onClick: () => {
+        onClick: (e: MouseEvent) => {
           toggle();
-          child.props.onClick?.();
+          child.props.onClick?.(e);
         },
       })}
     </div>
