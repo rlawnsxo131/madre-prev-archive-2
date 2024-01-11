@@ -7,8 +7,8 @@ export type MenuLifeCycleCallback<
 > = Callback;
 
 export type MenuContextValue = {
-  menuDidOpen?: MenuLifeCycleCallback;
-  menuDidClose?: MenuLifeCycleCallback;
+  didOpen?: MenuLifeCycleCallback;
+  didClose?: MenuLifeCycleCallback;
 };
 
 const MenuContext = createContext<MenuContextValue | null>(null);
