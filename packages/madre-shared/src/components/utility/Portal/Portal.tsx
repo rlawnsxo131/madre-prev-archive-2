@@ -16,13 +16,12 @@ function getContainer(container: PortalProps['container']) {
 }
 
 export type PortalProps = PropsWithoutRef<
-  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> &
-  PropsWithoutRef<{
+  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     children?: ReactNode;
     container?: Element | (() => Element | null) | null;
     key?: string | null;
-  }>;
+  }
+>;
 
 export const Portal = forwardRef<HTMLDivElement, PortalProps>(
   ({ children, key, container, ...props }, ref) => {

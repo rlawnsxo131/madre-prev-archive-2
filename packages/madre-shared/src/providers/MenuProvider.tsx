@@ -6,18 +6,18 @@ export type MenuLifeCycleCallback<
   Callback extends (...args: any[]) => any = (...args: any[]) => any,
 > = Callback;
 
-export type MenuContextValue = {
+export type MenuContextObject = {
   didOpen?: MenuLifeCycleCallback;
   didClose?: MenuLifeCycleCallback;
 };
 
-const MenuContext = createContext<MenuContextValue | null>(null);
+const MenuContext = createContext<MenuContextObject | null>(null);
 MenuContext.displayName = 'MenuContext';
 
 export function MenuProvider({
   children,
   ...props
-}: { children: ReactNode } & MenuContextValue) {
+}: { children: ReactNode } & MenuContextObject) {
   return (
     <MenuContext.Provider value={{ ...props }}>{children}</MenuContext.Provider>
   );
