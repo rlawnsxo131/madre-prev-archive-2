@@ -21,7 +21,7 @@ type httpLogger struct {
 
 var _ HTTPLogger = (*httpLogger)(nil)
 
-func NewHTTPLogger(w io.Writer) *httpLogger {
+func NewHTTPLogger(w io.Writer) HTTPLogger {
 	l := zerolog.New(w)
 	return &httpLogger{
 		l: &l,
