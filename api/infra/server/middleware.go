@@ -14,7 +14,7 @@ import (
 func LogEntryMiddleware(l logger.HTTPLogger) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
-			SetLogEntryCtx(c, l.NewLogEntry())
+			setLogEntryCtx(c, l.NewLogEntry())
 			return next(c)
 		}
 	}
@@ -39,7 +39,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 		},
 		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
 			var (
-				entry = GetLogEntryFromCtx(c)
+				entry = getLogEntryFromCtx(c)
 				l     = entry.GetLogger()
 			)
 			var (
@@ -81,7 +81,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 
 func BodyDumpMiddleware() echo.MiddlewareFunc {
 	return middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		GetLogEntryFromCtx(c).BodyDump(reqBody, resBody)
+		getLogEntryFromCtx(c).BodyDump(reqBody, resBody)
 	})
 }
 
@@ -123,7 +123,7 @@ func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 			err := next(c)
 
 			if err != nil {
-				GetLogEntryFromCtx(c).GetLogger().
+				getLogEntryFromCtx(c).GetLogger().
 					Err(fmt.Errorf("request-id: %s, err: %+v", getRequestId(c), err)).
 					Send()
 
