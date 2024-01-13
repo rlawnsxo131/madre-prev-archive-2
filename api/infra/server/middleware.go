@@ -11,10 +11,6 @@ import (
 	"github.com/rs/zerolog"
 )
 
-const (
-	_loggerBodyKey = "loggerBodyKey"
-)
-
 func LogEntryMiddleware(l logger.HTTPLogger) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
@@ -128,9 +124,7 @@ func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 
 			if err != nil {
 				GetLogEntryFromCtx(c).GetLogger().
-					Err(
-						fmt.Errorf("request-id: %s, err: %+v", getRequestId(c), err),
-					).
+					Err(fmt.Errorf("request-id: %s, err: %+v", getRequestId(c), err)).
 					Send()
 
 				// @TODO
