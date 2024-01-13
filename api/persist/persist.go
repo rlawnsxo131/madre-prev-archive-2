@@ -44,7 +44,6 @@ func GetQueryLayer() *QueryLayer {
 			l: lib.NewDefaultLogger(),
 		}
 	})
-
 	return singletonQueryLayer
 }
 

@@ -9,8 +9,9 @@ import (
 	"time"
 
 	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	echoMiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/rlawnsxo131/madre-server/api/infra/server/logger"
+	"github.com/rlawnsxo131/madre-server/api/infra/server/middleware"
 )
 
 type server struct {
@@ -24,19 +25,18 @@ func New() *server {
 }
 
 func (s *server) Init() *server {
-	s.engine.Use(TimeoutMiddleware())
-	s.engine.Use(LogEntryMiddleware(logger.DefaultHTTPLogger))
-	s.engine.Use(middleware.RequestID())
-	s.engine.Use(RequestLoggerMiddleware())
-	s.engine.Use(middleware.Secure())
-	s.engine.Use(CSRFMiddleware())
-	s.engine.Use(CORSMiddleware())
-	s.engine.Use(middleware.Gzip())
-	s.engine.Use(BodyDumpMiddleware())
-	s.engine.Use(RateLimiterMiddleware())
-	s.engine.Use(CustomErrorHandlerMiddleware())
-	s.engine.Use(middleware.Recover())
-
+	s.engine.Use(middleware.TimeoutMiddleware())
+	s.engine.Use(middleware.LogEntryMiddleware(logger.DefaultHTTPLogger))
+	s.engine.Use(echoMiddleware.RequestID())
+	s.engine.Use(middleware.RequestLoggerMiddleware())
+	s.engine.Use(echoMiddleware.Secure())
+	s.engine.Use(middleware.CSRFMiddleware())
+	s.engine.Use(middleware.CORSMiddleware())
+	s.engine.Use(echoMiddleware.Gzip())
+	s.engine.Use(middleware.BodyDumpMiddleware())
+	s.engine.Use(middleware.RateLimiterMiddleware())
+	s.engine.Use(middleware.CustomErrorHandlerMiddleware())
+	s.engine.Use(echoMiddleware.Recover())
 	return s
 }
 
