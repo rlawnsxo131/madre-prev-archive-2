@@ -1,14 +1,13 @@
 package server
 
 import (
-	"bytes"
 	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/rlawnsxo131/madre-server/api/common/lib"
+	"github.com/rlawnsxo131/madre-server/api/infra/server/logger"
 	"github.com/rs/zerolog"
 )
 
@@ -16,8 +15,16 @@ const (
 	_loggerBodyKey = "loggerBodyKey"
 )
 
+func LogEntryMiddleware(l logger.HTTPLogger) echo.MiddlewareFunc {
+	return func(next echo.HandlerFunc) echo.HandlerFunc {
+		return func(c echo.Context) error {
+			SetLogEntryCtx(c, l.NewLogEntry())
+			return next(c)
+		}
+	}
+}
+
 func RequestLoggerMiddleware() echo.MiddlewareFunc {
-	l := lib.NewDefaultLogger()
 	return middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogLatency:   true,
 		LogProtocol:  true,
@@ -35,6 +42,10 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 		BeforeNextFunc: func(c echo.Context) {
 		},
 		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
+			var (
+				entry = GetLogEntryFromCtx(c)
+				l     = entry.GetLogger()
+			)
 			var (
 				e          *zerolog.Event
 				statusCode int = v.Status
@@ -60,7 +71,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 				Str("method", v.Method).
 				Str("host", v.Host).
 				Str("uri", v.URI).
-				Any("body", c.Get(_loggerBodyKey)).
+				Any("body", entry.GetBody()).
 				Any("headers", v.Headers).
 				Str("referer", v.Referer).
 				Str("user-agent", v.UserAgent).
@@ -74,16 +85,7 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 
 func BodyDumpMiddleware() echo.MiddlewareFunc {
 	return middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
-		c.Set(
-			_loggerBodyKey,
-			struct {
-				ReqBody string
-				ResBody string
-			}{
-				ReqBody: bytes.NewBuffer(reqBody).String(),
-				ResBody: bytes.NewBuffer(resBody).String(),
-			},
-		)
+		GetLogEntryFromCtx(c).BodyDump(reqBody, resBody)
 	})
 }
 
@@ -97,7 +99,7 @@ func CORSMiddleware() echo.MiddlewareFunc {
 }
 
 func RateLimiterMiddleware() echo.MiddlewareFunc {
-	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(15))
+	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(20))
 }
 
 func TimeoutMiddleware() echo.MiddlewareFunc {
@@ -119,40 +121,25 @@ func CSRFMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-// @TODO 전역 에러 객체 만들고 구조체 정리
-type errData struct {
-	Message string `json:"message"`
-}
-type errRes struct {
-	Code   int     `json:"code"`
-	Status string  `json:"status"`
-	Error  errData `json:"error"`
-}
-
 func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			err := next(c)
 
 			if err != nil {
-				id := getRequestId(c)
-				c.Logger().Error(
-					fmt.Errorf("request-id: %s, err: %+v", id, err),
-				)
+				GetLogEntryFromCtx(c).GetLogger().
+					Err(
+						fmt.Errorf("request-id: %s, err: %+v", getRequestId(c), err),
+					).
+					Send()
 
+				// @TODO
+				// &echo.HTTPError { Code: 0, Message: "asdf" } 로 router 에서 return 하면
+				// he.Code, he.Message 로 들어오는데 이걸 내가 정의한 데이터와 어떻게 맞추는게 좋을지 고민해보자
 				he, ok := err.(*echo.HTTPError)
-				code := he.Code
-				res := errRes{
-					Code:   code,
-					Status: http.StatusText(code),
-				}
-
 				if ok {
-					res.Error = errData{
-						Message: "internal http error",
-					}
+					return c.JSON(he.Code, he.Message)
 				}
-				return c.JSON(code, res)
 			}
 			return err
 		}

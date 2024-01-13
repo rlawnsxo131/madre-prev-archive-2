@@ -10,6 +10,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	"github.com/rlawnsxo131/madre-server/api/infra/server/logger"
 )
 
 type server struct {
@@ -24,6 +25,7 @@ func New() *server {
 
 func (s *server) Init() *server {
 	s.engine.Use(TimeoutMiddleware())
+	s.engine.Use(LogEntryMiddleware(logger.DefaultHTTPLogger))
 	s.engine.Use(middleware.RequestID())
 	s.engine.Use(RequestLoggerMiddleware())
 	s.engine.Use(middleware.Secure())
@@ -46,7 +48,9 @@ func (s *server) Engine() *echo.Echo {
 func (s *server) Start(port int) {
 	go func() {
 		if err := s.engine.Start(fmt.Sprintf(":%d", port)); err != nil && err != http.ErrServerClosed {
-			s.engine.Logger.Fatal("shutting down the server")
+			s.engine.Logger.Fatal(fmt.Errorf(
+				"shutting down the server, err: %+v", err),
+			)
 		}
 	}()
 
