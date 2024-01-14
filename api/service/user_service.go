@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/rlawnsxo131/madre-server/api/persist"
-	"github.com/rlawnsxo131/madre-server/api/persist/repository"
+	"github.com/rlawnsxo131/madre-server/domain/persist"
+	"github.com/rlawnsxo131/madre-server/domain/persist/repository"
 )
 
 type UserService struct {

@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rlawnsxo131/madre-server/api/persist"
 	"github.com/rlawnsxo131/madre-server/api/service"
+	"github.com/rlawnsxo131/madre-server/domain/persist"
 )
 
 type authRouter struct {

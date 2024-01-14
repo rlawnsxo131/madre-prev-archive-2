@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/rlawnsxo131/madre-server/api/entity"
 	"github.com/rlawnsxo131/madre-server/common/utils"
+	"github.com/rlawnsxo131/madre-server/domain/entity"
 )
 
 type User struct {
