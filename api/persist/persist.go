@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/rlawnsxo131/madre-server/api/common/lib"
+	"github.com/rlawnsxo131/madre-server/common/lib"
 	"github.com/rs/zerolog"
 )
 

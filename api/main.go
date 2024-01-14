@@ -4,16 +4,20 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/rlawnsxo131/madre-server/api/common/lib"
-	"github.com/rlawnsxo131/madre-server/api/infra/database"
-	"github.com/rlawnsxo131/madre-server/api/infra/server"
 	"github.com/rlawnsxo131/madre-server/api/router"
 	routerv1 "github.com/rlawnsxo131/madre-server/api/router/v1"
+	"github.com/rlawnsxo131/madre-server/common/lib"
+	"github.com/rlawnsxo131/madre-server/infra/database"
+	"github.com/rlawnsxo131/madre-server/infra/httpserver"
 )
 
 func init() {
 	coreCount := runtime.NumCPU()
-	runtime.GOMAXPROCS(coreCount - 1)
+	useCoreCount := coreCount
+	if coreCount > 1 {
+		useCoreCount = coreCount - 1
+	}
+	runtime.GOMAXPROCS(useCoreCount)
 
 	lib.GetDefaultLogger().
 		Info().
@@ -33,7 +37,7 @@ func main() {
 			Send()
 	}
 
-	s := server.New().Init()
+	s := httpserver.New().Init()
 	engine := s.Engine()
 
 	root := engine.Group("")
