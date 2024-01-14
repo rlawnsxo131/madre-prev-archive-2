@@ -13,11 +13,7 @@ import (
 
 func init() {
 	coreCount := runtime.NumCPU()
-	useCoreCount := coreCount
-	if coreCount > 1 {
-		useCoreCount = coreCount - 1
-	}
-	runtime.GOMAXPROCS(useCoreCount)
+	runtime.GOMAXPROCS(coreCount)
 
 	lib.GetDefaultLogger().
 		Info().
