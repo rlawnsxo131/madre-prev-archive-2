@@ -4,17 +4,14 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/rlawnsxo131/madre-server/infra/httpserver"
+	"github.com/rlawnsxo131/madre-server/infra/server"
 )
 
 func InitHealthRouter(e *echo.Group) {
 	e.GET("/ping", func(c echo.Context) error {
-		return c.JSON(
+		return c.JSON(http.StatusOK, server.NewResponse(
 			http.StatusOK,
-			httpserver.NewResponse(
-				http.StatusOK,
-				map[string]string{"pong": "pong"},
-			),
-		)
+			map[string]string{"pong": "pong"},
+		))
 	})
 }

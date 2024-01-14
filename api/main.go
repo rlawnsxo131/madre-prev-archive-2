@@ -8,7 +8,7 @@ import (
 	routerv1 "github.com/rlawnsxo131/madre-server/api/router/v1"
 	"github.com/rlawnsxo131/madre-server/common/lib"
 	"github.com/rlawnsxo131/madre-server/infra/database"
-	"github.com/rlawnsxo131/madre-server/infra/httpserver"
+	"github.com/rlawnsxo131/madre-server/infra/server"
 )
 
 func init() {
@@ -33,7 +33,7 @@ func main() {
 			Send()
 	}
 
-	s := httpserver.New().Init()
+	s := server.New().Init()
 	engine := s.Engine()
 
 	root := engine.Group("")

@@ -1,4 +1,4 @@
-package httpserver
+package server
 
 import (
 	"context"
@@ -10,21 +10,21 @@ import (
 
 	"github.com/labstack/echo/v4"
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
-	"github.com/rlawnsxo131/madre-server/infra/httpserver/logger"
-	"github.com/rlawnsxo131/madre-server/infra/httpserver/middleware"
+	"github.com/rlawnsxo131/madre-server/infra/server/logger"
+	"github.com/rlawnsxo131/madre-server/infra/server/middleware"
 )
 
-type httpServer struct {
+type server struct {
 	engine *echo.Echo
 }
 
-func New() *httpServer {
-	return &httpServer{
+func New() *server {
+	return &server{
 		engine: echo.New(),
 	}
 }
 
-func (s *httpServer) Init() *httpServer {
+func (s *server) Init() *server {
 	s.engine.Use(middleware.TimeoutMiddleware())
 	s.engine.Use(middleware.LogEntryMiddleware(logger.DefaultHTTPLogger))
 	s.engine.Use(echoMiddleware.RequestID())
@@ -40,12 +40,12 @@ func (s *httpServer) Init() *httpServer {
 	return s
 }
 
-func (s *httpServer) Engine() *echo.Echo {
+func (s *server) Engine() *echo.Echo {
 	return s.engine
 }
 
 // @link https://echo.labstack.com/docs/cookbook/graceful-shutdown
-func (s *httpServer) Start(port int) {
+func (s *server) Start(port int) {
 	go func() {
 		if err := s.engine.Start(fmt.Sprintf(":%d", port)); err != nil && err != http.ErrServerClosed {
 			s.engine.Logger.Fatal(fmt.Errorf(
