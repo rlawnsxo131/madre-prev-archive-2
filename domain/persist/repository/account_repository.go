@@ -11,28 +11,28 @@ import (
 	"github.com/rlawnsxo131/madre-server/domain/persist/model"
 )
 
-type UserRepository struct {
+type AccountRepository struct {
 	layer  *persist.QueryLayer
-	mapper model.UserMapper
+	mapper model.AccountMapper
 }
 
-func NewUserRepository() *UserRepository {
-	return &UserRepository{
+func NewAccountRepository() *AccountRepository {
+	return &AccountRepository{
 		layer:  persist.GetQueryLayer(),
-		mapper: model.UserMapper{},
+		mapper: model.AccountMapper{},
 	}
 }
 
-var _userStruct = sqlbuilder.NewStruct(&model.User{})
+var _accountStruct = sqlbuilder.NewStruct(&model.Account{})
 
-func (repo *UserRepository) FindById(
+func (repo *AccountRepository) FindById(
 	conn persist.Conn,
 	id int64,
 	opts ...persist.QueryOption,
-) (*entity.User, error) {
+) (*entity.Account, error) {
 	options := repo.layer.Options(opts...)
 
-	sb := _userStruct.SelectFrom("user")
+	sb := _accountStruct.SelectFrom("account")
 	sb.Where(sb.Equal("id", id))
 
 	if options.WithTx {
@@ -43,19 +43,19 @@ func (repo *UserRepository) FindById(
 
 	repo.layer.Logging(query, args)
 
-	var u model.User
+	var acc model.Account
 	err := conn.
 		QueryRowContext(options.Ctx, query, args...).
-		Scan(_userStruct.Addr(&u)...)
+		Scan(_accountStruct.Addr(&acc)...)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return repo.mapper.MapToEntity(&u), nil
+	return repo.mapper.MapToEntity(&acc), nil
 }
 
-func (repo *UserRepository) ExistsByUsername(
+func (repo *AccountRepository) ExistsByUsername(
 	conn persist.Conn,
 	username string,
 	opts ...persist.QueryOption,
@@ -66,14 +66,14 @@ func (repo *UserRepository) ExistsByUsername(
 
 	query, args := sb.
 		Select("true").
-		From("user").
+		From("account").
 		Where(
 			sb.Exists(
 				existsSb.
 					Select("1").
-					From("user").
+					From("account").
 					Where(
-						existsSb.Equal("username", username),
+						existsSb.Equal("account", username),
 					),
 			),
 		).Build()

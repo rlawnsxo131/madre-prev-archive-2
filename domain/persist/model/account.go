@@ -8,8 +8,9 @@ import (
 	"github.com/rlawnsxo131/madre-server/domain/entity"
 )
 
-type User struct {
+type Account struct {
 	Id        int64          `db:"id"`
+	Uid       string         `db:"uid"`
 	Email     string         `db:"email"`
 	Username  string         `db:"username"`
 	PhotoUrl  sql.NullString `db:"photo_url"`
@@ -17,11 +18,12 @@ type User struct {
 	UpdatedAt time.Time      `db:"updated_at"`
 }
 
-type UserMapper struct{}
+type AccountMapper struct{}
 
-func (um UserMapper) MapToModel(u *entity.User) *User {
-	return &User{
+func (am AccountMapper) MapToModel(u *entity.Account) *Account {
+	return &Account{
 		Id:        u.Id,
+		Uid:       u.Uid,
 		Email:     u.Email,
 		Username:  u.Username,
 		PhotoUrl:  utils.NewNullString(u.PhotoUrl),
@@ -30,13 +32,14 @@ func (um UserMapper) MapToModel(u *entity.User) *User {
 	}
 }
 
-func (um UserMapper) MapToEntity(u *User) *entity.User {
-	return &entity.User{
-		Id:        u.Id,
-		Email:     u.Email,
-		Username:  u.Username,
-		PhotoUrl:  utils.NormalizeNullString(u.PhotoUrl),
-		CreatedAt: u.CreatedAt,
-		UpdatedAt: u.UpdatedAt,
+func (am AccountMapper) MapToEntity(a *Account) *entity.Account {
+	return &entity.Account{
+		Id:        a.Id,
+		Uid:       a.Uid,
+		Email:     a.Email,
+		Username:  a.Username,
+		PhotoUrl:  utils.NormalizeNullString(a.PhotoUrl),
+		CreatedAt: a.CreatedAt,
+		UpdatedAt: a.UpdatedAt,
 	}
 }

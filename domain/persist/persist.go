@@ -11,10 +11,10 @@ import (
 )
 
 /* example
-repo := repository.NewUserRepository()
+repo := repository.NewRepository()
 exists, err := repo.FindById(
 	conn,
-	"username",
+	id,
 	persist.WithCtx(context.Background()),
 	persist.WithTx(true),
 )
