@@ -9,14 +9,14 @@ import (
 )
 
 type authRouter struct {
-	accountService *service.AuthService
+	authService *service.AuthService
 }
 
 func InitAuthRouter(e *echo.Group, conn persist.Conn) {
 	auth := e.Group("/auth")
 
 	router := &authRouter{
-		accountService: service.NewAuthService(conn),
+		authService: service.NewAuthService(conn),
 	}
 
 	auth.POST("/signup-login/:provider", router.signupLogin())
