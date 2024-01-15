@@ -25,17 +25,17 @@ func New() *server {
 }
 
 func (s *server) Init() *server {
-	s.engine.Use(middleware.TimeoutMiddleware())
-	s.engine.Use(middleware.LogEntryMiddleware(logger.DefaultHTTPLogger))
+	s.engine.Use(middleware.Timeout())
+	s.engine.Use(middleware.LogEntry(logger.DefaultHTTPLogger))
 	s.engine.Use(echoMiddleware.RequestID())
-	s.engine.Use(middleware.RequestLoggerMiddleware())
+	s.engine.Use(middleware.RequestLogger())
 	s.engine.Use(echoMiddleware.Secure())
-	s.engine.Use(middleware.CSRFMiddleware())
-	s.engine.Use(middleware.CORSMiddleware())
+	s.engine.Use(middleware.CSRF())
+	s.engine.Use(middleware.CORS())
 	s.engine.Use(echoMiddleware.Gzip())
-	s.engine.Use(middleware.BodyDumpMiddleware())
-	s.engine.Use(middleware.RateLimiterMiddleware())
-	s.engine.Use(middleware.CustomErrorHandlerMiddleware())
+	s.engine.Use(middleware.BodyDump())
+	s.engine.Use(middleware.RateLimiter())
+	s.engine.Use(middleware.CustomErrorHandler())
 	s.engine.Use(echoMiddleware.Recover())
 	return s
 }

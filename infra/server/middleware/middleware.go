@@ -12,7 +12,7 @@ import (
 	"github.com/rs/zerolog"
 )
 
-func LogEntryMiddleware(l logger.HTTPLogger) echo.MiddlewareFunc {
+func LogEntry(l logger.HTTPLogger) echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			setLogEntryCtx(c, l.NewLogEntry())
@@ -21,7 +21,7 @@ func LogEntryMiddleware(l logger.HTTPLogger) echo.MiddlewareFunc {
 	}
 }
 
-func RequestLoggerMiddleware() echo.MiddlewareFunc {
+func RequestLogger() echo.MiddlewareFunc {
 	return middleware.RequestLoggerWithConfig(middleware.RequestLoggerConfig{
 		LogLatency:   true,
 		LogProtocol:  true,
@@ -80,13 +80,13 @@ func RequestLoggerMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-func BodyDumpMiddleware() echo.MiddlewareFunc {
+func BodyDump() echo.MiddlewareFunc {
 	return middleware.BodyDump(func(c echo.Context, reqBody, resBody []byte) {
 		getLogEntryFromCtx(c).BodyDump(reqBody, resBody)
 	})
 }
 
-func CORSMiddleware() echo.MiddlewareFunc {
+func CORS() echo.MiddlewareFunc {
 	return middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins:     []string{"http://localhost:5001", "http://localhost:8000"},
 		AllowHeaders:     []string{"*"},
@@ -95,11 +95,11 @@ func CORSMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-func RateLimiterMiddleware() echo.MiddlewareFunc {
+func RateLimiter() echo.MiddlewareFunc {
 	return middleware.RateLimiter(middleware.NewRateLimiterMemoryStore(20))
 }
 
-func TimeoutMiddleware() echo.MiddlewareFunc {
+func Timeout() echo.MiddlewareFunc {
 	return middleware.TimeoutWithConfig(middleware.TimeoutConfig{
 		ErrorMessage:               "request timeout",
 		OnTimeoutRouteErrorHandler: func(err error, c echo.Context) {},
@@ -107,7 +107,7 @@ func TimeoutMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-func CSRFMiddleware() echo.MiddlewareFunc {
+func CSRF() echo.MiddlewareFunc {
 	return middleware.CSRFWithConfig(middleware.CSRFConfig{
 		// CookieDomain: ".juntae.kim", @TODO prod 내보내기 전에 domain 체크 필요
 		TokenLookup:    "header:X-CSRF-Token,cookie:_csrf",
@@ -118,7 +118,7 @@ func CSRFMiddleware() echo.MiddlewareFunc {
 	})
 }
 
-func CustomErrorHandlerMiddleware() echo.MiddlewareFunc {
+func CustomErrorHandler() echo.MiddlewareFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			err := next(c)
