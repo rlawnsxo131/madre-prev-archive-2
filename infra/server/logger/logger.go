@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 
+	"github.com/rlawnsxo131/madre-server/common/lib"
 	"github.com/rs/zerolog"
 )
 
@@ -22,9 +23,8 @@ type httpLogger struct {
 var _ HTTPLogger = (*httpLogger)(nil)
 
 func NewHTTPLogger(w io.Writer) HTTPLogger {
-	l := zerolog.New(w)
 	return &httpLogger{
-		l: &l,
+		l: lib.NewDefaultLogger(os.Stdout),
 	}
 }
 

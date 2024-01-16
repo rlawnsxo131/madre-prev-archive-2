@@ -3,6 +3,7 @@ package persist
 import (
 	"context"
 	"database/sql"
+	"os"
 	"sync"
 	"time"
 
@@ -41,7 +42,7 @@ type QueryLayer struct {
 func GetQueryLayer() *QueryLayer {
 	_onceQueryLayer.Do(func() {
 		singletonQueryLayer = &QueryLayer{
-			l: lib.NewDefaultLogger(),
+			l: lib.NewDefaultLogger(os.Stdout),
 		}
 	})
 	return singletonQueryLayer

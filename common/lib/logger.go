@@ -1,6 +1,7 @@
 package lib
 
 import (
+	"io"
 	"os"
 	"sync"
 
@@ -25,7 +26,7 @@ func GetDefaultLogger() *zerolog.Logger {
 }
 
 // default logger
-func NewDefaultLogger() *zerolog.Logger {
-	l := zerolog.New(os.Stdout)
+func NewDefaultLogger(w io.Writer) *zerolog.Logger {
+	l := zerolog.New(w)
 	return &l
 }
