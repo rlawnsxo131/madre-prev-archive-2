@@ -4,7 +4,7 @@ import "time"
 
 type Account struct {
 	Id        int64     `json:"id"`
-	Uid       string    `json:"uid"`
+	UId       string    `json:"uid"`
 	Email     string    `json:"email"`
 	Username  string    `json:"username"`
 	PhotoUrl  string    `json:"photoUrl,omitempty"`

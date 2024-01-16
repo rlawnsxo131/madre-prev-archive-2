@@ -10,10 +10,9 @@ import (
 type meRouter struct{}
 
 func InitMeRouter(e *echo.Group, conn persist.Conn) {
-	me := e.Group("/me")
-
 	router := &meRouter{}
 
+	me := e.Group("/me")
 	me.GET("", router.getMe())
 	me.PUT("/username", router.updateUsername())
 	me.PUT("/email", router.updateEmail())

@@ -13,12 +13,11 @@ type authRouter struct {
 }
 
 func InitAuthRouter(e *echo.Group, conn persist.Conn) {
-	auth := e.Group("/auth")
-
 	router := &authRouter{
 		authService: service.NewAuthService(conn),
 	}
 
+	auth := e.Group("/auth")
 	auth.POST("/signup-login/:provider", router.signupLogin())
 	auth.DELETE("/logout", router.logout())
 	auth.DELETE("/account", router.deleteAccount())
