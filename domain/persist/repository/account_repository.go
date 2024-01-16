@@ -35,7 +35,7 @@ func (repo *AccountRepository) FindById(
 	sb := _accountStruct.SelectFrom("account")
 	sb.Where(sb.Equal("id", id))
 
-	if options.WithTx {
+	if options.WithLock {
 		sb.ForUpdate()
 	}
 

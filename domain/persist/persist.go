@@ -16,7 +16,7 @@ exists, err := repo.FindById(
 	conn,
 	id,
 	persist.WithCtx(context.Background()),
-	persist.WithTx(true),
+	persist.WithLock(true),
 )
 */
 
@@ -49,8 +49,8 @@ func GetQueryLayer() *QueryLayer {
 
 func (ql *QueryLayer) Options(opts ...QueryOption) queryOptions {
 	options := queryOptions{
-		Ctx:    context.Background(),
-		WithTx: false,
+		Ctx:      context.Background(),
+		WithLock: false,
 	}
 	for _, o := range opts {
 		o.Apply(&options)

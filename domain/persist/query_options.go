@@ -11,8 +11,8 @@ type QueryOption interface {
 
 // option variable
 type queryOptions struct {
-	Ctx    context.Context
-	WithTx bool
+	Ctx      context.Context
+	WithLock bool
 }
 
 // verify-interface-compliance
@@ -32,8 +32,8 @@ func WithCtx(ctx context.Context) QueryOption {
 	})
 }
 
-func WithTx(withTx bool) QueryOption {
+func WithLock(withLock bool) QueryOption {
 	return queryOptionFunc(func(o *queryOptions) {
-		o.WithTx = withTx
+		o.WithLock = withLock
 	})
 }
