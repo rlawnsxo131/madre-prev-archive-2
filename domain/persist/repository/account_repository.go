@@ -11,6 +11,10 @@ import (
 	"github.com/rlawnsxo131/madre-server/domain/persist/model"
 )
 
+var (
+	_accountStruct = sqlbuilder.NewStruct(&model.Account{})
+)
+
 type AccountRepository struct {
 	layer  *persist.QueryLayer
 	mapper model.AccountMapper
@@ -23,8 +27,7 @@ func NewAccountRepository() *AccountRepository {
 	}
 }
 
-var _accountStruct = sqlbuilder.NewStruct(&model.Account{})
-
+// read
 func (repo *AccountRepository) FindById(
 	conn persist.Conn,
 	id int64,
@@ -94,3 +97,5 @@ func (repo *AccountRepository) ExistsByUsername(
 
 	return exists, nil
 }
+
+// command

@@ -21,3 +21,15 @@ type AccountSocialProvider struct {
 }
 
 // @TODO history entity
+type AccountHistory struct {
+	Id             int64  `json:"id"`
+	AccountId      int64  `json:"accountId"`
+	AccountUId     string `json:"accountUId"`
+	Email          string `json:"email"`
+	Username       string `json:"username"`
+	PhotoUrl       string `json:"photoUrl,omitempty"`
+	SocialId       string `json:"socialId"`
+	SocialUsername string `json:"socialUsername,omitempty"`
+	Provider       string `json:"provider"`
+	Event          string `json:"event"`
+}
