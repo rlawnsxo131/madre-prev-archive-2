@@ -2,13 +2,14 @@ import { createContext, type ReactNode, useMemo } from 'react';
 
 import { useSafeContext } from '../../../hooks/useSafeContext';
 import {
-  useVisibleActions,
-  useVisibleState,
-  VisibleProvider,
-} from '../../../providers/VisibleProvider';
+  HiddenMenuProvider,
+  type HiddneMenuProviderProps,
+  useHiddenMenuActions,
+  useHiddenMenuState,
+} from '../../../providers/HiddenMenuProvider';
 import { type NonNullableProperties } from '../../../types/types';
 
-export type DrawerProps = {
+export type DrawerProps = HiddneMenuProviderProps & {
   children: ReactNode;
   position?: 'top' | 'right' | 'bottom' | 'left';
   duration?: number;
@@ -26,6 +27,7 @@ DrawerContext.displayName = 'DrawerContext';
 
 export function DrawerProvider({
   children,
+  lifeCycle,
   position = 'bottom',
   duration = 0.15,
   withOverlay = true,
@@ -45,20 +47,20 @@ export function DrawerProvider({
   );
 
   return (
-    <VisibleProvider>
+    <HiddenMenuProvider lifeCycle={lifeCycle}>
       <DrawerContext.Provider value={options}>
         {children}
       </DrawerContext.Provider>
-    </VisibleProvider>
+    </HiddenMenuProvider>
   );
 }
 
 export function useDrawerState() {
-  return useVisibleState();
+  return useHiddenMenuState();
 }
 
 export function useDrawerActions() {
-  return useVisibleActions();
+  return useHiddenMenuActions();
 }
 
 export function useDrawerOptions() {

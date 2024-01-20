@@ -14,14 +14,14 @@ export const DrawerItem = forwardRef<
   PropsWithoutRef<{ children: JSX.Element; className?: string }>
 >(({ children, className }, ref) => {
   const child = Children.only(children);
-  const { hide } = useDrawerActions();
+  const { close } = useDrawerActions();
 
   return (
     <li ref={ref} className={classNames(styles.DrawerItem, className)}>
       {cloneElement(children, {
         role: 'menuitem',
         onClick: () => {
-          hide();
+          close();
           child.props.onClick?.();
         },
       })}

@@ -35,7 +35,7 @@ export * from './hooks/useVisibilityEvent';
 /**
  * providers
  */
-export * from './providers/VisibleProvider';
+export * from './providers/HiddenMenuProvider';
 
 /**
  * features

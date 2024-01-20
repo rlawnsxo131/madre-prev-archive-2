@@ -1,19 +1,28 @@
-import { type ReactNode } from 'react';
+import { createContext, type ReactNode } from 'react';
 
 import {
-  useVisibleActions,
-  useVisibleState,
-  VisibleProvider,
-} from '../../../providers/VisibleProvider';
+  HiddenMenuProvider,
+  useHiddenMenuActions,
+  useHiddenMenuState,
+} from '../../../providers/HiddenMenuProvider';
+
+const AccordionContext = createContext<null>(null);
+AccordionContext.displayName = 'AccordionContext';
 
 export function AccordionProvider({ children }: { children: ReactNode }) {
-  return <VisibleProvider>{children}</VisibleProvider>;
+  return (
+    <HiddenMenuProvider>
+      <AccordionContext.Provider value={null}>
+        {children}
+      </AccordionContext.Provider>
+    </HiddenMenuProvider>
+  );
 }
 
 export function useAccordionState() {
-  return useVisibleState();
+  return useHiddenMenuState();
 }
 
 export function useAccordionActions() {
-  return useVisibleActions();
+  return useHiddenMenuActions();
 }

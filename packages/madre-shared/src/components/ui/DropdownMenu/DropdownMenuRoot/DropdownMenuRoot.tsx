@@ -17,8 +17,8 @@ export const DropdownMenuRoot = forwardRef<
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
   >
 >(({ children, className, ...props }, forwardedRef) => {
-  const { hide } = useDropdownMenuActions();
-  const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(hide);
+  const { close } = useDropdownMenuActions();
+  const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(close);
   const refs = useCombinedRefs(ref, forwardedRef);
 
   return (

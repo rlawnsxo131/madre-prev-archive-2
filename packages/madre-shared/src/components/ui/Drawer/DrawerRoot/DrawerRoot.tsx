@@ -17,8 +17,8 @@ export const DrawerRoot = forwardRef<
     DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
   >
 >(({ children, className, ...props }, forwardedRef) => {
-  const { hide } = useDrawerActions();
-  const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(hide);
+  const { close } = useDrawerActions();
+  const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(close);
   const refs = useCombinedRefs(ref, forwardedRef);
 
   return (

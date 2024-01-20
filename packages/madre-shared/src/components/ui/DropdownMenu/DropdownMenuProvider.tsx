@@ -2,13 +2,14 @@ import { createContext, type ReactNode, useMemo } from 'react';
 
 import { useSafeContext } from '../../../hooks/useSafeContext';
 import {
-  useVisibleActions,
-  useVisibleState,
-  VisibleProvider,
-} from '../../../providers/VisibleProvider';
+  HiddenMenuProvider,
+  type HiddneMenuProviderProps,
+  useHiddenMenuActions,
+  useHiddenMenuState,
+} from '../../../providers/HiddenMenuProvider';
 import { type PortalProps } from '../../utility/Portal';
 
-export type DropdownMenuProps = {
+export type DropdownMenuProps = HiddneMenuProviderProps & {
   children: ReactNode;
   align?: 'left' | 'right';
   duration?: number;
@@ -26,6 +27,7 @@ DropdownMenuContext.displayName = 'DropdownMenuContext';
 
 export function DropdownMenuProvider({
   children,
+  lifeCycle,
   align = 'left',
   duration = 0.15,
   isPortal,
@@ -45,20 +47,20 @@ export function DropdownMenuProvider({
   );
 
   return (
-    <VisibleProvider>
+    <HiddenMenuProvider lifeCycle={lifeCycle}>
       <DropdownMenuContext.Provider value={options}>
         {children}
       </DropdownMenuContext.Provider>
-    </VisibleProvider>
+    </HiddenMenuProvider>
   );
 }
 
 export function useDropdownMenuState() {
-  return useVisibleState();
+  return useHiddenMenuState();
 }
 
 export function useDropdownMenuActions() {
-  return useVisibleActions();
+  return useHiddenMenuActions();
 }
 
 export function useDropdownMenuOptions() {

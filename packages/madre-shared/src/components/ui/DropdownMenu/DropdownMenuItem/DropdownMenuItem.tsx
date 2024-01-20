@@ -17,14 +17,14 @@ export const DropdownMenuItem = forwardRef<
   }>
 >(({ children, className }, ref) => {
   const child = Children.only(children);
-  const { hide } = useDropdownMenuActions();
+  const { close } = useDropdownMenuActions();
 
   return (
     <li ref={ref} className={classNames(styles.DropdownMenuItem, className)}>
       {cloneElement(children, {
         role: 'menuitem',
         onClick: () => {
-          hide();
+          close();
           child.props.onClick?.();
         },
       })}

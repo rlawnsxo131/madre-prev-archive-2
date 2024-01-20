@@ -24,7 +24,25 @@ export const Default: Story = {
     children: null,
   },
   render: ({ children: _, ...args }) => (
-    <Drawer {...args}>
+    <Drawer
+      {...args}
+      lifeCycle={{
+        beforeOpen: () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              alert('beforeOpen');
+              resolve(true);
+            }, 0);
+          }),
+        beforeClose: () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              alert('beforeClose');
+              resolve(true);
+            }, 0);
+          }),
+      }}
+    >
       <Drawer.Root>
         <Drawer.Trigger>
           <button>클릭</button>
