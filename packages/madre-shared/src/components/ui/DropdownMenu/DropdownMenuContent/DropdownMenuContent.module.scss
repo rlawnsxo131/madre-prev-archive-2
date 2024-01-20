@@ -4,6 +4,7 @@
 .DropdownMenuContent {
   position: relative;
   display: flex;
+  // @TODO color 수정
   color: var(variables.$color-font2);
   background-color: var(variables.$color-bg-element1);
   z-index: variables.$zIndex-dropdown;

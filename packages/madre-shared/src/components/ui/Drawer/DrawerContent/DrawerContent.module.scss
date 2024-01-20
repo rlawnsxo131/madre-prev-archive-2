@@ -9,6 +9,7 @@
   flex-direction: column;
   list-style: none;
   padding: 1rem;
+  // @TODO color 수정
   color: var(variables.$color-font2);
   background-color: var(variables.$color-bg-element1);
   z-index: variables.$zIndex-drawer;

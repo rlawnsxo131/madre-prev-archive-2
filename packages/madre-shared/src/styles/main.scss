@@ -46,6 +46,14 @@ body,
     display: block;
     max-width: 100%;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  :target {
+    scroll-margin-block: 5ex;
+  }
 }
 
 /* theme */
@@ -63,8 +71,4 @@ body,
     @include mixins.spread-map(variables.$theme-map-dark);
     background-color: var(variables.$color-bg1);
   }
-}
-
-a {
-  text-decoration: none;
 }
