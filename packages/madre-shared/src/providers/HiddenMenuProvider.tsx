@@ -46,7 +46,7 @@ export type HiddneMenuProviderProps<
  * const { close } = useDropdownMenuActions();
  * 
  * return (
- *  <li ref={ref} className={classNames(styles.DropdownMenuItem, className)}>
+ *  <li>
  *    {cloneElement(children, {
  *      onClick: () => {
  *        close();
