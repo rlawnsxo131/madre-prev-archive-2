@@ -12,19 +12,20 @@ import { useRefEffect } from './useRefEffect';
 export function useOutsideClickAndEscapeEventRef<
   E extends HTMLElement = HTMLElement,
 >(event: (e: MouseEvent | KeyboardEvent) => void) {
+  /**
+   * @TODO 클릭시 중복이벤트 실행 방지
+   */
   const ref = useRefEffect<E>(
     (el) => {
       const clickHandler = (e: MouseEvent) => {
         if (e.target && el.contains(e.target as Node)) {
           return;
         }
-        e.stopPropagation();
         event(e);
       };
 
       const keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          e.stopPropagation();
           event(e);
         }
       };
