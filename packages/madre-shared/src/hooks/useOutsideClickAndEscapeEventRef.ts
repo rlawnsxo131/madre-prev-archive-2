@@ -4,7 +4,8 @@ import { useRefEffect } from './useRefEffect';
  * @description click 이벤트 발생시, ref 에 해당하는 Element 요소의
  * 바깥에서 이벤트가 발생되었다면, parameter 로 넘어온 event 를 실행합니다.
  *
- * keydown 이벤트 발생시, Escape 를 입력했다면, paramter 로 넘어온 event 를 실행합니다.
+ * keydown 이벤트 발생시, Escape 를 입력했다면,
+ * 이벤트 전파를 막고 paramter 로 넘어온 event 를 실행합니다.
  *
  * @param event
  */
@@ -17,11 +18,13 @@ export function useOutsideClickAndEscapeEventRef<
         if (e.target && el.contains(e.target as Node)) {
           return;
         }
+        e.stopPropagation();
         event(e);
       };
 
       const keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
+          e.stopPropagation();
           event(e);
         }
       };

@@ -65,7 +65,7 @@ export function HiddenMenuProvider({
   lifeCycle,
 }: HiddneMenuProviderProps) {
   const [visible, setVisible] = useState(false);
-  const prevVisible = useRef(visible);
+  const visibleRef = useRef(visible);
 
   const actions = useMemo(
     () => ({
@@ -73,14 +73,20 @@ export function HiddenMenuProvider({
         Promise.resolve(
           (visible ? lifeCycle?.beforeOpen : lifeCycle?.beforeClose)?.(),
         ).then(() => setVisible(visible)),
-      open: () =>
-        Promise.resolve(lifeCycle?.beforeOpen?.()).then(() => setVisible(true)),
-      close: () =>
-        Promise.resolve(lifeCycle?.beforeClose?.()).then(() =>
+      open: () => {
+        if (visibleRef.current) return;
+        return Promise.resolve(lifeCycle?.beforeOpen?.()).then(() =>
+          setVisible(true),
+        );
+      },
+      close: () => {
+        if (!visibleRef.current) return;
+        return Promise.resolve(lifeCycle?.beforeClose?.()).then(() =>
           setVisible(false),
-        ),
+        );
+      },
       toggle: async () => {
-        const nextState = !prevVisible.current;
+        const nextState = !visibleRef.current;
         return Promise.resolve(
           (nextState ? lifeCycle?.beforeOpen : lifeCycle?.beforeClose)?.(),
         ).then(() => setVisible(nextState));
@@ -90,7 +96,7 @@ export function HiddenMenuProvider({
   );
 
   useEffect(() => {
-    prevVisible.current = visible;
+    visibleRef.current = visible;
   }, [visible]);
 
   return (
