@@ -69,21 +69,19 @@ export function HiddenMenuProvider({
 
   const actions = useMemo(
     () => ({
-      set: async (visible: boolean) =>
-        await Promise.resolve(
+      set: (visible: boolean) =>
+        Promise.resolve(
           (visible ? lifeCycle?.beforeOpen : lifeCycle?.beforeClose)?.(),
-        ).then((_) => setVisible(visible)),
-      open: async () =>
-        await Promise.resolve(lifeCycle?.beforeOpen?.()).then(() =>
-          setVisible(true),
-        ),
-      close: async () =>
-        await Promise.resolve(lifeCycle?.beforeClose?.()).then(() =>
+        ).then(() => setVisible(visible)),
+      open: () =>
+        Promise.resolve(lifeCycle?.beforeOpen?.()).then(() => setVisible(true)),
+      close: () =>
+        Promise.resolve(lifeCycle?.beforeClose?.()).then(() =>
           setVisible(false),
         ),
       toggle: async () => {
         const nextState = !prevVisible.current;
-        return await Promise.resolve(
+        return Promise.resolve(
           (nextState ? lifeCycle?.beforeOpen : lifeCycle?.beforeClose)?.(),
         ).then(() => setVisible(nextState));
       },

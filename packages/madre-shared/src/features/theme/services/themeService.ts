@@ -35,7 +35,6 @@ class ThemeService {
       this.#setStorage(theme);
     }
     this.#setRoot(theme);
-
     return this;
   }
 
