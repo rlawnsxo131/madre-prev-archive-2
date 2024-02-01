@@ -76,7 +76,7 @@ func (repo *AccountRepository) ExistsByUsername(
 					Select("1").
 					From("account").
 					Where(
-						existsSb.Equal("account", username),
+						existsSb.Equal("username", username),
 					),
 			),
 		).Build()
