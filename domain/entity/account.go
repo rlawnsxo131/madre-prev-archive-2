@@ -30,5 +30,5 @@ type AccountHistory struct {
 	SocialId       string `json:"socialId"`
 	SocialUsername string `json:"socialUsername,omitempty"`
 	Provider       string `json:"provider"`
-	Event          string `json:"event"`
+	Action         string `json:"action"`
 }

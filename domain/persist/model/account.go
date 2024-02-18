@@ -20,26 +20,26 @@ type Account struct {
 
 type AccountMapper struct{}
 
-func (am AccountMapper) MapToModel(u *entity.Account) *Account {
+func (am AccountMapper) MapToModel(acct *entity.Account) *Account {
 	return &Account{
-		Id:        u.Id,
-		UId:       u.UId,
-		Email:     u.Email,
-		Username:  u.Username,
-		PhotoUrl:  utils.NewNullString(u.PhotoUrl),
-		CreatedAt: u.CreatedAt,
-		UpdatedAt: u.UpdatedAt,
+		Id:        acct.Id,
+		UId:       acct.UId,
+		Email:     acct.Email,
+		Username:  acct.Username,
+		PhotoUrl:  utils.NewNullString(acct.PhotoUrl),
+		CreatedAt: acct.CreatedAt,
+		UpdatedAt: acct.UpdatedAt,
 	}
 }
 
-func (am AccountMapper) MapToEntity(a *Account) *entity.Account {
+func (am AccountMapper) MapToEntity(acct *Account) *entity.Account {
 	return &entity.Account{
-		Id:        a.Id,
-		UId:       a.UId,
-		Email:     a.Email,
-		Username:  a.Username,
-		PhotoUrl:  utils.NormalizeNullString(a.PhotoUrl),
-		CreatedAt: a.CreatedAt,
-		UpdatedAt: a.UpdatedAt,
+		Id:        acct.Id,
+		UId:       acct.UId,
+		Email:     acct.Email,
+		Username:  acct.Username,
+		PhotoUrl:  utils.NormalizeNullString(acct.PhotoUrl),
+		CreatedAt: acct.CreatedAt,
+		UpdatedAt: acct.UpdatedAt,
 	}
 }

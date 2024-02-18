@@ -24,7 +24,7 @@ var _ HTTPLogger = (*httpLogger)(nil)
 
 func NewHTTPLogger(w io.Writer) HTTPLogger {
 	return &httpLogger{
-		l: lib.NewDefaultLogger(os.Stdout),
+		l: lib.NewDefaultLogger(w),
 	}
 }
 
