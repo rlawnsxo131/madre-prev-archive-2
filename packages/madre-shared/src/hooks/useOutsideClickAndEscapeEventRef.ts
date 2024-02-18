@@ -1,3 +1,4 @@
+import { once } from '../lib/utils';
 import { useRefEffect } from './useRefEffect';
 
 /**
@@ -5,24 +6,21 @@ import { useRefEffect } from './useRefEffect';
  * 바깥에서 이벤트가 발생되었다면, parameter 로 넘어온 event 를 실행합니다.
  *
  * keydown 이벤트 발생시, Escape 를 입력했다면,
- * 이벤트 전파를 막고 paramter 로 넘어온 event 를 실행합니다.
+ * paramter 로 넘어온 event 를 실행합니다.
  *
  * @param event
  */
 export function useOutsideClickAndEscapeEventRef<
   E extends HTMLElement = HTMLElement,
 >(event: (e: MouseEvent | KeyboardEvent) => void) {
-  /**
-   * @TODO 클릭시 중복이벤트 실행 방지
-   */
   const ref = useRefEffect<E>(
     (el) => {
-      const clickHandler = (e: MouseEvent) => {
+      const clickHandler = once((e: MouseEvent) => {
         if (e.target && el.contains(e.target as Node)) {
           return;
         }
         event(e);
-      };
+      });
 
       const keydownHandler = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {

@@ -67,9 +67,6 @@ export function HiddenMenuProvider({
   const [visible, setVisible] = useState(false);
   const visibleRef = useRef(visible);
 
-  /**
-   * @TODO lifecycle 함수 실행조건 수정
-   */
   const actions = useMemo(
     () => ({
       set: (visible: boolean) =>
@@ -77,10 +74,12 @@ export function HiddenMenuProvider({
           (visible ? lifeCycle?.beforeOpen : lifeCycle?.beforeClose)?.(),
         ).then(() => setVisible(visible)),
       open: () =>
-        Promise.resolve(lifeCycle?.beforeOpen?.()).then(() => setVisible(true)),
+        Promise.resolve(!visibleRef.current && lifeCycle?.beforeOpen?.()).then(
+          () => setVisible(true),
+        ),
       close: () =>
-        Promise.resolve(lifeCycle?.beforeClose?.()).then(() =>
-          setVisible(false),
+        Promise.resolve(visibleRef.current && lifeCycle?.beforeClose?.()).then(
+          () => setVisible(false),
         ),
       toggle: async () => {
         const nextState = !visibleRef.current;

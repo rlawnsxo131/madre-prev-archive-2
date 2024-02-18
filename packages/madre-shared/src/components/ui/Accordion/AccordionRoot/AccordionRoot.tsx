@@ -1,11 +1,29 @@
-import { forwardRef, type PropsWithoutRef } from 'react';
+import classNames from 'classnames';
+import {
+  type DetailedHTMLProps,
+  forwardRef,
+  type HTMLAttributes,
+  type PropsWithoutRef,
+} from 'react';
 
+import { useCombinedRefs } from '../../../../hooks/useCombinedRefs';
+import { useOutsideClickAndEscapeEventRef } from '../../../../hooks/useOutsideClickAndEscapeEventRef';
+import { useAccordionActions } from '../AccordionProvider';
 import styles from './AccordionRoot.module.scss';
 
-export type AccordionRootProps = PropsWithoutRef<{}>;
+export const AccordionRoot = forwardRef<
+  HTMLDivElement,
+  PropsWithoutRef<
+    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+  >
+>(({ children, className }, forwardedRef) => {
+  const { close } = useAccordionActions();
+  const ref = useOutsideClickAndEscapeEventRef<HTMLDivElement>(close);
+  const refs = useCombinedRefs(ref, forwardedRef);
 
-export const AccordionRoot = forwardRef<HTMLDivElement, AccordionRootProps>(
-  (props, ref) => {
-    return <div ref={ref} className={styles.AccordionRoot}></div>;
-  },
-);
+  return (
+    <div ref={refs} className={classNames(styles.AccordionRoot, className)}>
+      {children}
+    </div>
+  );
+});

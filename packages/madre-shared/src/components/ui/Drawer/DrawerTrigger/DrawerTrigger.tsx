@@ -24,6 +24,7 @@ export const DrawerTrigger = forwardRef<
         onClick: (e: MouseEvent) => {
           toggle();
           child.props.onClick?.(e);
+          ((e.target || e.currentTarget) as any)?.blur();
         },
       })}
     </div>
