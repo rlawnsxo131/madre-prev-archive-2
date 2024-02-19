@@ -7,7 +7,8 @@ import (
 	"github.com/rlawnsxo131/madre-server/api/router"
 	routerv1 "github.com/rlawnsxo131/madre-server/api/router/v1"
 	"github.com/rlawnsxo131/madre-server/common/lib"
-	"github.com/rlawnsxo131/madre-server/infra/database"
+
+	"github.com/rlawnsxo131/madre-server/infra/rdb"
 	"github.com/rlawnsxo131/madre-server/infra/server"
 )
 
@@ -23,8 +24,8 @@ func init() {
 }
 
 func main() {
-	db, err := database.CreateConnection(
-		database.MainDBConfig(),
+	db, err := rdb.CreateConnection(
+		rdb.MainDBConfig(),
 	)
 	if err != nil {
 		lib.GetDefaultLogger().
