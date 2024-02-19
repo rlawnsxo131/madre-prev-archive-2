@@ -7,6 +7,7 @@ import (
 	"github.com/huandu/go-sqlbuilder"
 
 	"github.com/rlawnsxo131/madre-server/domain/entity"
+	"github.com/rlawnsxo131/madre-server/domain/mapper"
 	"github.com/rlawnsxo131/madre-server/domain/persist"
 	"github.com/rlawnsxo131/madre-server/domain/persist/model"
 )
@@ -17,13 +18,13 @@ var (
 
 type AccountRepository struct {
 	layer  *persist.QueryLayer
-	mapper model.AccountMapper
+	mapper mapper.AccountMapper
 }
 
 func NewAccountRepository() *AccountRepository {
 	return &AccountRepository{
 		layer:  persist.GetQueryLayer(),
-		mapper: model.AccountMapper{},
+		mapper: mapper.AccountMapper{},
 	}
 }
 
@@ -46,16 +47,16 @@ func (repo *AccountRepository) FindById(
 
 	repo.layer.Logging(query, args)
 
-	var acc model.Account
+	var acct model.Account
 	err := conn.
 		QueryRowContext(options.Ctx, query, args...).
-		Scan(_accountStruct.Addr(&acc)...)
+		Scan(_accountStruct.Addr(&acct)...)
 
 	if err != nil {
 		return nil, err
 	}
 
-	return repo.mapper.MapToEntity(&acc), nil
+	return repo.mapper.MapToEntity(&acct), nil
 }
 
 func (repo *AccountRepository) ExistsByUsername(
