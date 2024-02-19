@@ -8,7 +8,7 @@ import (
 
 type AccountMapper struct{}
 
-func (am AccountMapper) MapToModel(acct *entity.Account) *model.Account {
+func (mapper AccountMapper) MapToModel(acct *entity.Account) *model.Account {
 	return &model.Account{
 		Id:        acct.Id,
 		UId:       acct.UId,
@@ -20,7 +20,7 @@ func (am AccountMapper) MapToModel(acct *entity.Account) *model.Account {
 	}
 }
 
-func (am AccountMapper) MapToEntity(acct *model.Account) *entity.Account {
+func (mapper AccountMapper) MapToEntity(acct *model.Account) *entity.Account {
 	return &entity.Account{
 		Id:        acct.Id,
 		UId:       acct.UId,
