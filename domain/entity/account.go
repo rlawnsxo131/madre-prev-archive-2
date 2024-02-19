@@ -20,7 +20,6 @@ type AccountSocialProvider struct {
 	Provider       string `json:"provider"`
 }
 
-// @TODO history entity
 type AccountHistory struct {
 	Id             int64  `json:"id"`
 	AccountId      int64  `json:"accountId"`
