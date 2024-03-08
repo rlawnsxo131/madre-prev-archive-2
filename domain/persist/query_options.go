@@ -32,8 +32,8 @@ func WithCtx(ctx context.Context) QueryOption {
 	})
 }
 
-func WithLock(withLock bool) QueryOption {
+func WithLock() QueryOption {
 	return queryOptionFunc(func(o *queryOptions) {
-		o.WithLock = withLock
+		o.WithLock = true
 	})
 }

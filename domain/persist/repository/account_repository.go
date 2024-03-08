@@ -53,6 +53,9 @@ func (repo *AccountRepository) FindById(
 		Scan(_accountStruct.Addr(&acct)...)
 
 	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, nil
+		}
 		return nil, err
 	}
 
@@ -91,9 +94,9 @@ func (repo *AccountRepository) ExistsByUsername(
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return exists, err
+			return false, nil
 		}
-		return exists, err
+		return false, err
 	}
 
 	return exists, nil
