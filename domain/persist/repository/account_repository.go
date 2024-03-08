@@ -91,9 +91,9 @@ func (repo *AccountRepository) ExistsByUsername(
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return false, nil
+			return exists, err
 		}
-		return false, err
+		return exists, err
 	}
 
 	return exists, nil
