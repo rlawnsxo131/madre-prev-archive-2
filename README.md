@@ -1,2 +1,2 @@
 # madre-prev-archive-2
-madre 기록
+madre 이전 기록
