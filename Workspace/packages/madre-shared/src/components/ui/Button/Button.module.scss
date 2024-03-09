@@ -1,0 +1,189 @@
+@use '../../../styles/variables';
+
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  isolation: isolate;
+
+  &:active:not([disabled]) {
+    transform: scale(0.97, 0.95);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  &.full-width {
+    flex: 1 1 100%;
+  }
+
+  &.small {
+    height: 1.825rem;
+    font-size: 0.9rem;
+    padding: 0.25rem 0.725rem;
+  }
+
+  &.medium {
+    height: 2rem;
+    font-size: 1rem;
+    padding: 0.25rem 0.725rem;
+  }
+
+  &.large {
+    height: 2.5rem;
+    font-size: 1.125rem;
+    padding: 0.25rem 1.125rem;
+  }
+
+  &.radius-none {
+    border-radius: 0;
+  }
+
+  &.radius-medium {
+    border-radius: 0.5rem;
+  }
+
+  &.radius-full {
+    border-radius: 2rem;
+  }
+
+  // solid
+  &.solid {
+    &.primary {
+      color: var(variables.$color-white);
+      background-color: var(variables.$color-blue90);
+      border: 1px solid var(variables.$color-blue90);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-blue100);
+        border: 1px solid var(variables.$color-blue100);
+      }
+    }
+
+    &.primary-low {
+      color: var(variables.$color-blue110);
+      background-color: var(variables.$color-blue40);
+      border: 1px solid var(variables.$color-blue40);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-blue50);
+        border: 1px solid var(variables.$color-blue50);
+      }
+    }
+
+    &.secondary {
+      color: var(variables.$color-gray120);
+      background-color: var(variables.$color-gray30);
+      border: 1px solid var(variables.$color-gray30);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-gray40);
+        border: 1px solid var(variables.$color-gray40);
+      }
+    }
+
+    &.warn {
+      color: var(variables.$color-white);
+      background-color: var(variables.$color-red90);
+      border: 1px solid var(variables.$color-red90);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-red100);
+        border: 1px solid var(variables.$color-red100);
+      }
+    }
+
+    &[disabled] {
+      color: var(variables.$color-gray80);
+      background-color: var(variables.$color-gray30);
+      border: 1px solid var(variables.$color-gray30);
+    }
+  }
+
+  // outline
+  &.outline {
+    &.primary {
+      color: var(variables.$color-blue110);
+      background-color: transparent;
+      border: 1px solid var(variables.$color-blue100);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-blue20);
+        border: 1px solid var(variables.$color-blue110);
+      }
+    }
+
+    &.primary-low {
+      color: var(variables.$color-blue110);
+      background-color: var(variables.$color-blue20);
+      border: 1px solid var(variables.$color-blue100);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-blue30);
+      }
+    }
+
+    &.secondary {
+      color: var(variables.$color-gray120);
+      background-color: transparent;
+      border: 1px solid var(variables.$color-gray80);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-gray30);
+      }
+    }
+
+    &.warn {
+      color: var(variables.$color-red110);
+      background-color: var(variables.$color-red20);
+      border: 1px solid var(variables.$color-red100);
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-red30);
+      }
+    }
+
+    &[disabled] {
+      color: var(variables.$color-gray80);
+      border: 1px solid var(variables.$color-gray30);
+    }
+  }
+
+  // ghost
+  &.ghost {
+    &.primary {
+      color: var(variables.$color-blue110);
+      background-color: transparent;
+      border: 1px solid transparent;
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-blue30);
+      }
+    }
+
+    &.primary-low {
+      color: var(variables.$color-blue110);
+      background-color: transparent;
+      border: 1px solid transparent;
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-gray30);
+      }
+    }
+
+    &.secondary {
+      color: var(variables.$color-gray120);
+      background-color: transparent;
+      border: 1px solid transparent;
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-gray30);
+      }
+    }
+
+    &.warn {
+      color: var(variables.$color-red110);
+      background-color: transparent;
+      border: 1px solid transparent;
+      &:hover:not([disabled]) {
+        background-color: var(variables.$color-red30);
+      }
+    }
+
+    &[disabled] {
+      color: var(variables.$color-gray80);
+    }
+  }
+}

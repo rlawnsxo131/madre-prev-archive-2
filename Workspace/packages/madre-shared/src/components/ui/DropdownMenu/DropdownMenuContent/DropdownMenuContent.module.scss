@@ -1,0 +1,35 @@
+@use '../../../../styles/variables';
+@use '../../../../styles/mixins';
+
+.DropdownMenuContent {
+  position: relative;
+  display: flex;
+  // @TODO color 수정
+  color: var(variables.$color-font2);
+  background-color: var(variables.$color-bg-element1);
+  z-index: variables.$zIndex-dropdown;
+
+  .items {
+    @include mixins.reset-ul;
+
+    position: absolute;
+    top: 0.125rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 8rem;
+    width: max-content;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: var(variables.$color-bg-element1);
+    border: 1px solid var(variables.$color-border1);
+    isolation: isolate;
+
+    &.left {
+      left: 0;
+    }
+
+    &.right {
+      right: 0;
+    }
+  }
+}

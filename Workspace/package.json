@@ -1,0 +1,22 @@
+{
+  "name": "madre-client",
+  "version": "0.0.1",
+  "description": "madre-client monorepo",
+  "scripts": {
+    "list": "pnpm list",
+    "install:frozen-lockfile": "pnpm i --frozen-lockfile",
+    "shared": "pnpm --filter @madre/shared",
+    "brandsite": "pnpm --filter @madre/brandsite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "prettier": "^3.2.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

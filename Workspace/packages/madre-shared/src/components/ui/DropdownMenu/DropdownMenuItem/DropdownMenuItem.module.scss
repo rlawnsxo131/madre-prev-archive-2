@@ -1,0 +1,17 @@
+@use '../../../../styles/variables';
+
+.DropdownMenuItem {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: var(variables.$color-bg-hover-element1);
+  }
+
+  & > * {
+    flex: 1;
+    padding: 0.5rem;
+  }
+}

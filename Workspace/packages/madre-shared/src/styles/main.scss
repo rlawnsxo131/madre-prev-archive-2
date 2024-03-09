@@ -1,0 +1,74 @@
+@use './mixins';
+@use './variables';
+
+html,
+body,
+:root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: none;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: none;
+
+  * {
+    box-sizing: inherit;
+    font-family: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+
+  ul[role='list'],
+  ol[role='list'] {
+    list-style: none;
+  }
+
+  img,
+  picture {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  :target {
+    scroll-margin-block: 5ex;
+  }
+}
+
+/* theme */
+:root {
+  color-scheme: light dark;
+
+  @include mixins.spread-map(variables.$theme-map-base);
+
+  &[data-theme='light'] {
+    @include mixins.spread-map(variables.$theme-map-light);
+    background-color: var(variables.$color-bg1);
+  }
+
+  &[data-theme='dark'] {
+    @include mixins.spread-map(variables.$theme-map-dark);
+    background-color: var(variables.$color-bg1);
+  }
+}

@@ -1,0 +1,14 @@
+@use '@madre/shared/variables.scss';
+
+.Index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  height: 100%;
+  padding-top: 3rem;
+
+  @media (min-width: variables.$breakpoint-l) {
+    padding-top: 4rem;
+  }
+}

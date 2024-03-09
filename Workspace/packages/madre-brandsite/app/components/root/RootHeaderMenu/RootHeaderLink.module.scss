@@ -1,0 +1,14 @@
+@use '@madre/shared/variables.scss';
+
+.link {
+  color: var(variables.$color-font1);
+  font-weight: 500;
+
+  &.active {
+    color: var(variables.$color-primary1);
+  }
+
+  &.pending {
+    color: var(variables.$color-primary2);
+  }
+}

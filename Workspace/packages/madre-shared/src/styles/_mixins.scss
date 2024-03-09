@@ -1,0 +1,19 @@
+@use './variables';
+
+/* spread map variable */
+@mixin spread-map($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+}
+
+@mixin reset-button {
+  all: unset;
+  outline: revert;
+}
+
+@mixin reset-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,204 @@
+/* z-index */
+$zIndex-overlay: 12;
+$zIndex-dropdown: 15;
+$zIndex-drawer: 15;
+
+/* break point */
+$breakpoint-xxs: 320px;
+$breakpoint-xs: 375px;
+$breakpoint-s: 425px;
+$breakpoint-sm: 640px;
+$breakpoint-sl: 768px;
+$breakpoint-m: 800px;
+$breakpoint-lm: 820px;
+$breakpoint-l: 1024px;
+$breakpoint-xl: 1440px;
+$breakpoint-xxl: 1920px;
+
+/* themes */
+// feature color
+$color-bg1: --color-bg1;
+
+$color-bg-element1: --color-bg-element1;
+
+$color-bg-hover-element1: --color-bg-hover-element1;
+
+$color-font1: --color-font1;
+$color-font2: --color-font2;
+
+$color-border1: --color-border1;
+
+$color-svg-fill1: --color-svg-fill1;
+
+$color-primary1: --color-primary1;
+$color-primary2: --color-primary2;
+$color-warn1: --color-warn1;
+
+// default theme color
+// scale link: https://www.radix-ui.com/colors/docs/palette-composition/understanding-the-scale
+$color-white: --color-white;
+$color-black: --color-black;
+
+$color-gray10: --color-gray10;
+$color-gray20: --color-gray20;
+$color-gray30: --color-gray30;
+$color-gray40: --color-gray40;
+$color-gray50: --color-gray50;
+$color-gray60: --color-gray60;
+$color-gray70: --color-gray70;
+$color-gray80: --color-gray80;
+$color-gray90: --color-gray90;
+$color-gray100: --color-gray100;
+$color-gray110: --color-gray110;
+$color-gray120: --color-gray120;
+
+$color-blue10: --color-blue10;
+$color-blue20: --color-blue20;
+$color-blue30: --color-blue30;
+$color-blue40: --color-blue40;
+$color-blue50: --color-blue50;
+$color-blue60: --color-blue60;
+$color-blue70: --color-blue70;
+$color-blue80: --color-blue80;
+$color-blue90: --color-blue90;
+$color-blue100: --color-blue100;
+$color-blue110: --color-blue110;
+$color-blue120: --color-blue120;
+
+$color-red10: --color-red10;
+$color-red20: --color-red20;
+$color-red30: --color-red30;
+$color-red40: --color-red40;
+$color-red50: --color-red50;
+$color-red60: --color-red60;
+$color-red70: --color-red70;
+$color-red80: --color-red80;
+$color-red90: --color-red90;
+$color-red100: --color-red100;
+$color-red110: --color-red110;
+$color-red120: --color-red120;
+
+$theme-map-base: (
+  $color-white: #ffffff,
+  $color-black: #000000,
+);
+
+$theme-map-light: (
+  // feature color
+  $color-bg1: #ffffff,
+
+  $color-bg-element1: #ffffff,
+
+  $color-bg-hover-element1: #f9f9f9,
+
+  $color-font1: #000000,
+  $color-font2: #000000,
+
+  $color-border1: #e8e8e8,
+
+  $color-svg-fill1: #000000,
+
+  $color-primary1: #0090ff,
+  $color-primary2: #0588f0,
+  $color-warn1: #e5484d,
+
+  // default theme color
+  $color-gray10: #fcfcfc,
+  $color-gray20: #f9f9f9,
+  $color-gray30: #f0f0f0,
+  $color-gray40: #e8e8e8,
+  $color-gray50: #e0e0e0,
+  $color-gray60: #d9d9d9,
+  $color-gray70: #cecece,
+  $color-gray80: #bbbbbb,
+  $color-gray90: #8d8d8d,
+  $color-gray100: #838383,
+  $color-gray110: #646464,
+  $color-gray120: #202020,
+
+  $color-blue10: #fbfdff,
+  $color-blue20: #f4faff,
+  $color-blue30: #e6f4fe,
+  $color-blue40: #d5efff,
+  $color-blue50: #c2e5ff,
+  $color-blue60: #acd8fc,
+  $color-blue70: #8ec8f6,
+  $color-blue80: #5eb1ef,
+  $color-blue90: #0090ff,
+  $color-blue100: #0588f0,
+  $color-blue110: #0d74ce,
+  $color-blue120: #113264,
+
+  $color-red10: #fffcfc,
+  $color-red20: #fff7f7,
+  $color-red30: #feebec,
+  $color-red40: #ffdbdc,
+  $color-red50: #ffcdce,
+  $color-red60: #fdbdbe,
+  $color-red70: #f4a9aa,
+  $color-red80: #eb8e90,
+  $color-red90: #e5484d,
+  $color-red100: #dc3e42,
+  $color-red110: #ce2c31,
+  $color-red120: #641723
+);
+
+$theme-map-dark: (
+  // feature color
+  $color-bg1: #111111,
+
+  $color-bg-element1: #222222,
+
+  $color-bg-hover-element1: #191919,
+
+  $color-font1: #ffffff,
+  $color-font2: #eeeeee,
+
+  $color-border1: #3a3a3a,
+
+  $color-svg-fill1: #ffffff,
+
+  $color-primary1: #0090ff,
+  $color-primary2: #3b9eff,
+  $color-warn1: #e5484d,
+
+  // default theme color
+  $color-gray10: #111111,
+  $color-gray20: #191919,
+  $color-gray30: #222222,
+  $color-gray40: #2a2a2a,
+  $color-gray50: #313131,
+  $color-gray60: #3a3a3a,
+  $color-gray70: #484848,
+  $color-gray80: #606060,
+  $color-gray90: #6e6e6e,
+  $color-gray100: #7b7b7b,
+  $color-gray110: #b4b4b4,
+  $color-gray120: #eeeeee,
+
+  $color-blue10: #0d1520,
+  $color-blue20: #111927,
+  $color-blue30: #0d2847,
+  $color-blue40: #003362,
+  $color-blue50: #004074,
+  $color-blue60: #104d87,
+  $color-blue70: #205d9e,
+  $color-blue80: #2870bd,
+  $color-blue90: #0090ff,
+  $color-blue100: #3b9eff,
+  $color-blue110: #70b8ff,
+  $color-blue120: #c2e6ff,
+
+  $color-red10: #191111,
+  $color-red20: #201314,
+  $color-red30: #3b1219,
+  $color-red40: #500f1c,
+  $color-red50: #611623,
+  $color-red60: #72232d,
+  $color-red70: #8c333a,
+  $color-red80: #b54548,
+  $color-red90: #e5484d,
+  $color-red100: #ec5d5e,
+  $color-red110: #ff9592,
+  $color-red120: #ffd1d9
+);

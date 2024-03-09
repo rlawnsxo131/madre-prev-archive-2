@@ -1,0 +1,15 @@
+@use '../../../styles/variables';
+
+.Icons {
+  &.default {
+    fill: var(variables.$color-svg-fill1);
+  }
+
+  &.primary {
+    fill: var(variables.$color-primary1);
+  }
+
+  &.warn {
+    fill: var(variables.$color-warn1);
+  }
+}
